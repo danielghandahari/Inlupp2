@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <bool.h>
 #include <string.h>
 
 typedef struct _tree_ tree;
@@ -40,11 +39,11 @@ struct _list_
   int tot_amount;
   elem *first;
   elem *last;
-}
+};
 
 struct _elem_
 {
   char *shelf;
   int amount;
   elem *next;
-}
+};
