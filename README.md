@@ -1,3 +1,3 @@
 # Inlupp2
-Daniel Ghandahari
+Daniel Ghandahari\n
 Tim Svensson (snygg)
