@@ -23,6 +23,7 @@ LDIR=../lib/
 _DEPS=
 DEPS=$(patsubst %,$(IDIR)%,$(_DEPS))
 
+# creates the file paths to all .o files
 _OBJ=database.o main.o
 OBJ=$(patsubst %,$(ODIR)%,$(_OBJ))
 
