@@ -34,16 +34,32 @@ struct _content_
   list *shelves;
 };
 
+// generel lista
+
 struct _list_
 {
-  int tot_amount;
+  void *stuff;
+
   elem *first;
   elem *last;
 };
 
 struct _elem_
 {
-  char *shelf;
-  int amount;
+  void * box;
+
   elem *next;
+};
+
+// listan inehåll
+
+struct shelf
+{
+  char* shelf_num;
+  int amount;
+};
+
+struct sum
+{
+  int totamount;
 };

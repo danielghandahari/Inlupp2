@@ -41,7 +41,7 @@ OBJ=$(patsubst %,$(ODIR)%,$(_OBJ))
 
 # create the objects files used for compiling
 $(ODIR)%.o:%.c $(DEPS)
-	@echo "##\tMake:\tCompiling$@\tusing: $^."
+	@echo "##\tMake:\tCompiling $@ using: $^."
 	@$(CC) -c -o $@ $< $(CFLAGS)
 
 
