@@ -1,8 +1,9 @@
-#include <stdio.h>
+#include <std_include.h>
+#include <menu.h>
 
 int main(int argc, char *argv[])
 {
-  printf("This is main speaking.\n");
+  menu();
 
   return 0;
 }
