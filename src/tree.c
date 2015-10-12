@@ -1,6 +1,7 @@
 #include<stdbool.h>
 #include<string.h>
 #include<tree.h>
+<<<<<<< HEAD
 
 #define Equal action == 0
 #define Left action > 0
@@ -9,7 +10,10 @@
 #define PtrToRightNode &((*current)->right
 
 
+=======
+>>>>>>> origin/daniel
 
+#define Equal action == 0
 
 struct _tree_
 {
@@ -33,6 +37,7 @@ node * create_tree()
   return t;
 }
 
+#define PtrToLeftNode
 
 
 
@@ -48,13 +53,21 @@ bool check_node_exists(node **n, node *mynode)
 
       if (Left)
 	{
+<<<<<<< HEAD
 	  current = PtrToLeftNode;
+=======
+	  current = &((*current)->left);
+>>>>>>> origin/daniel
 	  check_node_exists(current, mynode);
 	}
 
       if (Right)
 	{
+<<<<<<< HEAD
 	  current = PtrToRightNode;
+=======
+	  current = &((*n)->righ)t;
+>>>>>>> origin/daniel
 	  check_node_exists(current, mynode);
 	}
     }
