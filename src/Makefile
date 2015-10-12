@@ -14,9 +14,8 @@ _DEPS=database.h io.h menu.h tree.h list.h read.h
 DEPS=$(patsubst %,$(IDIR)%,$(_DEPS))
 
 # creates the file paths to all .o files
-_OBJ=database.o io.o main.o menu.o tree.o list.o read.o
+_OBJ=database.o io.o main.o menu.o read.o list.o tree.o
 OBJ=$(patsubst %,$(ODIR)%,$(_OBJ))
-
 
 
 # This...	  ...tells the compiler...

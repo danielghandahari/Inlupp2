@@ -1,5 +1,5 @@
-#ifndef _IO_H_
-#define _IO_H_
+#ifndef __IO_H__
+#define __IO_H__
 
 void print_menu();
 
