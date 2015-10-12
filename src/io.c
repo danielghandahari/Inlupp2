@@ -30,7 +30,7 @@ void print_menu()
 
 void add_item()
 {
-  printf("Add item\n");
+
 }
 
 void remove_item()

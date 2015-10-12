@@ -1,5 +1,5 @@
-#ifndef _READ_H_
-#define _READ_H_
+#ifndef __READ_H__
+#define __READ_H__
 
 #include <std_include.h>
 

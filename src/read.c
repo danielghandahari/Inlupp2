@@ -1,14 +1,14 @@
 #include <read.h>
 
-// TODO empty strings are to be catched
+// TODO empty strings are to be catched and killed
 bool read_stdin(char *string_dest, size_t buffer_size)
 {
   char *buffer = (char *) malloc(sizeof(char) * buffer_size);
   ssize_t string_length = getline(&buffer, &buffer_size, INPUT);
 
-  check_debug(string_length >= 0, "Unable to read stream or empty string");
+  check_debug(string_length > 0, "Unable to read stream or empty string");
 
-  buffer[string_length - 1] = '\0';
+  buffer[string_length] = '\0';
   strcpy(string_dest, buffer);
 
   log_info("buffer %s", buffer);
@@ -17,7 +17,7 @@ bool read_stdin(char *string_dest, size_t buffer_size)
 
  error:
   free(buffer);
-  return true;
+  return false;
 }
 
 
