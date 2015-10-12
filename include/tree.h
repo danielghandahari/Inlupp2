@@ -1,3 +1,7 @@
+#ifndef __TREE__
+#define __TREE__
+
+
 typedef struct _tree_ tree;
 typedef struct _node_ node;
 
@@ -29,3 +33,4 @@ void append_node_in_tree(tree *t, node *mynode);
 void append_node(node **n, node *mynode); //KANSKEHEJDÅ
 
 
+#endif

@@ -1,6 +1,6 @@
 #include<stdbool.h>
 #include<string.h>
-#include"list.h"
+#include<list.h>
 
 struct _list_
 {

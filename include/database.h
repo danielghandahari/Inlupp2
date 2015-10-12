@@ -1,3 +1,8 @@
+#ifndef __DATABASE__
+#define __DATABASE__
+
+
+
 typedef struct _ware_ ware;
 
 typedef struct _shelf_ shelf;
@@ -33,3 +38,5 @@ bool check_shelf_used_in_tree(tree *t, elem *e);
 bool check_shelf_used(node **n, elem *e);
 
 //=================================
+
+#endif
