@@ -1,7 +1,8 @@
 #include<stdbool.h>
 #include<string.h>
-#include"tree.h"
+#include<tree.h>
 
+#define Equal action == 0
 
 struct _tree_
 {
@@ -25,27 +26,30 @@ node * create_tree()
   return t;
 }
 
+#define PtrToLeftNode
 
 
 
 bool check_node_exists(node **n, node *mynode)
 {
-  while ((*n) != NULL)
+  node **current = n;
+
+  while (*current != NULL)
     {
       int action = key_compare((*n)->key, mynode->key); //TODO: MACRO?
 
-      if (action == 0) return true;
+      if (Equal) return true;
 
       if (action > 0)
 	{
-	  *n = (*n)->left;
-	  check_node_exists(n, mynode);
+	  current = &((*current)->left);
+	  check_node_exists(current, mynode);
 	}
 
       if (action < 0)
 	{
-	  *n = (*n)->right;
-	  check_node_exists(n, mynode);
+	  current = &((*n)->righ)t;
+	  check_node_exists(current, mynode);
 	}
     }
   return false;

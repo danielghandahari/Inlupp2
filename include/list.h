@@ -1,3 +1,8 @@
+#ifndef __LIST__
+#define __LIST__
+
+
+
 typedef struct _list_ list;
 typedef struct _elem_ elem;
 
@@ -9,3 +14,6 @@ int elem_compare(void *e1, void *e2); //KLAR i DB.C  //KANSKE TYPECASTEA MED VOI
 
 
 void generate_new_elem();
+
+
+#endif

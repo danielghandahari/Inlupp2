@@ -1,9 +1,9 @@
 #include <stdlib.h>
 #include <string.h>
-#include<stdbool.h>
-#include"../lib/tree.h"
-#include"../lib/list.h"
-#include"../lib/database.h"
+#include <stdbool.h>
+#include <tree.h>
+#include <list.h>
+#include <database.h>
 
 //ICKE-GENERELLA STRUCTAR FÖR TREE.C
 
