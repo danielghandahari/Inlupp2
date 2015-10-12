@@ -1,15 +1,8 @@
 #include <std_include.h>
+#include <database.h>
+#include <io.h>
 
 #define CORRECT_INPUT "AREPCX"
-
-
-
-char read_char();
-char *read_string();
-char *read_word();
-int read_int();
-
-
 
 
 void print_menu()
@@ -26,32 +19,50 @@ void print_menu()
   printf("E[X]it\n\n");
 }
 
+#define Print_add_item_header print_string("Add item\n========\n\n");
 
+void print_string(const char *s)
+{
+  printf("%s",s);
+}
 
 void add_item()
 {
+  
+
+  char item_name[LENGTH];
+  char item_desc[LENGTH];
+  char item_shelf[LENGTH];
+  int item_price = -1;
+  int item_amount = -1;
+
 
 }
+
 
 void remove_item()
 {
   printf("Remove item\n");
 }
 
+
 void edit_item()
 {
   printf("Edit item\n");
 }
+
 
 void print_warehouse()
 {
   printf("Print Warehouse\n");
 }
 
+
 void pack_trolley()
 {
   printf("Pack the trolley\n");
 }
+
 
 void exit_program(bool *exit)
 {
@@ -66,45 +77,4 @@ char get_user_choice()
   printf("Your choice\n");
 
   return 'X';
-}
-
-
-
-char read_char()
-{
-  char input = NULL;
-
-  scanf(" %c", &input);
-
-  return input;
-}
-
-char *read_string()
-{
-  char *input = {'\0'};
-
-  scanf("%s", input);
-
-  return input;
-}
-
-char *read_word()
-{
-  char *input = read_string();
-
-  for(int i = 0; i < strlen(input); i++)
-    {
-      if(input[i] == ' ')
-	{
-	  input[i] = '\0';
-	  break;
-	}
-    }
-
-  return input;
-}
-
-int read_int()
-{
-  
 }
