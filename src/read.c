@@ -24,7 +24,7 @@ bool read_stdin(char *string_dest, size_t buffer_size)
 bool read_string(char *string_ptr)
 {
   char *tmp_ptr = (char *) malloc(sizeof(char) * LENGTH);
-  sentinel(read_stdin(tmp_ptr, LENGTH), "Unable to read string");
+  check_debug(tmp_ptr, "NULL");
 
   for(int i = 0; i < strlen(tmp_ptr); ++i)
     {

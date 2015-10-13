@@ -71,7 +71,7 @@ void append_node(node **n, node *mynode)
 
   if((*current) == NULL)
     {
-      **current = &(mynode);      
+      *current = mynode;
     }
 
   void *key1 = (*current)->key;

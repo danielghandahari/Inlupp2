@@ -1,7 +1,9 @@
 #include <std_include.h>
+
 #include <tree.h>
 #include <list.h>
 #include <database.h>
+
 #include <io.h>
 
 #define CORRECT_INPUT "AREPCX"
@@ -21,8 +23,6 @@ void print_menu()
   printf("E[X]it\n\n");
 }
 
-#define Print_add_item_header print_string("Add item\n========\n\n");
-
 void print_string(const char *s)
 {
   printf("%s",s);
@@ -30,21 +30,13 @@ void print_string(const char *s)
 
 void add_item()
 {
-<<<<<<< HEAD
   /*
-=======
->>>>>>> 981ef866c627a34aedfbacaca8aa9b0503134503
   char *item_name;
   char *item_desc;
   char *item_shelf_loc;
   int item_price = -1;
   int item_amount = -1;
-<<<<<<< HEAD
   */
-=======
-
->>>>>>> 981ef866c627a34aedfbacaca8aa9b0503134503
-
 }
 
 
