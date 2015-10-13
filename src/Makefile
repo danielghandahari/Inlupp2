@@ -20,4 +20,7 @@ run:inlupp2
 double_hash:
 	@echo "##"
 
-all:double_hash $(OUT) clean run
+rm_out:
+	@rm -f $(OUT)
+
+all:double_hash rm_out $(OUT) clean run

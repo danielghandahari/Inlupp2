@@ -1,5 +1,8 @@
 #include <read.h>
 
+#include <ctype.h>
+#include <stdlib.h>
+
 // TODO empty strings are to be catched and killed
 bool read_stdin(char *string_dest, size_t buffer_size)
 {
