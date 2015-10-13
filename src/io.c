@@ -28,11 +28,9 @@ void print_string(const char *s)
 
 void add_item()
 {
-  
-
-  char item_name[LENGTH];
-  char item_desc[LENGTH];
-  char item_shelf[LENGTH];
+  char *item_name;
+  char *item_desc;
+  char *item_shelf_loc;
   int item_price = -1;
   int item_amount = -1;
 
