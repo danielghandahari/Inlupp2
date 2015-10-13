@@ -6,8 +6,8 @@
 #define Equal action == 0
 #define Left action > 0
 #define Right action < 0
-#define PtrToLeftNode &((*current)->left
-#define PtrToRightNode &((*current)->right
+#define PtrToLeftNode &((*current)->left)
+#define PtrToRightNode &((*current)->right)
 			 
 tree * create_tree()
 {
