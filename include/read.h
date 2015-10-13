@@ -1,7 +1,14 @@
 #ifndef __READ_H__
 #define __READ_H__
 
-#include <std_include.h>
+#include <dbg.h>
+
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#include <unistd.h>
 
 #define LENGTH 512
 #define INPUT stdin

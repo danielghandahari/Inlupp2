@@ -6,19 +6,19 @@ _OBJ	=database.o io.o list.o main.o menu.o read.o tree.o
 OBJ	=$(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o:%.c
-	@echo "##\tMake:\tCompiling: $@\n##\t\tUsing: $^"
-	@$(CC) -c -o $@ $< $(CFLAGS)
+	@echo "##\tMake:\tCompiling $@"
+	@$(CC) $(CFLAGS) -c -o $@ $<
 
 inlupp2:$(OBJ)
-	@echo "##\n##\tMake:\tCompiling: $@\n##\t\tUsing: $(OBJ).\n##"
-	@$(CC) -o $@ $^ $(CFLAGS)
+	@echo "##\tMake:\tCompiling $@"
+	@$(CC) $(CFLAGS) -o $@ $^
 
 clean:
 	@echo "##\tMake:\tCleaning up waste."
 	@rm -f -r ../*/*~ ../*/*# ../*/*/*~ ../*/*/*#
 
 run:inlupp2
-	@echo "##\tMake:\tRunning file.\n##"
+	@echo "##\tMake:\tRunning file.\n##\n"
 	@./$^
 
 double_hash:

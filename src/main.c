@@ -1,9 +1,6 @@
-#include <std_include.h>
-#include <menu.h>
-
-int main(int argc, char *argv[])
+int main()
 {
-  menu();
+  
 
   return 0;
 }

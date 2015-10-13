@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <list.h>
 
-//#define Equal action == 0
+#define Equal action == 0
 
 
 

@@ -3,11 +3,11 @@
 #include <assert.h>
 #include "tree.h"
 
-/*#define Equal action == 0
+#define Equal action == 0
 #define Left action > 0
 #define Right action < 0
-#define PtrToLeftNode &((*current)->left
-#define PtrToRightNode &((*current)->right*/
+#define PtrToLeftNode &((*current)->left)
+#define PtrToRightNode &((*current)->right)
 
 
 
@@ -73,7 +73,7 @@ void append_node(node **n, node *mynode)
 
   if((*current) == NULL)
     {
-      **current = &(mynode);      
+      *current = mynode;
     }
 
   void *key1 = (*current)->key;
