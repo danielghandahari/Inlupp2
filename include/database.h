@@ -1,8 +1,6 @@
 #ifndef __DATABASE__
 #define __DATABASE__
 
-
-
 typedef struct _ware_ ware;
 
 typedef struct _shelf_ shelf;
@@ -18,12 +16,7 @@ typedef struct _sum_ sum;
 
 
 
-
-
-
-
-//ICKE GENERELLA FUNKTIONER I TREE.C
-
+//ICKE GENERELLA FUNKTIONER FÖR TREE.C
 
 void *increment_shelf();
 //====================================

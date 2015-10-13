@@ -1,6 +1,11 @@
-#include<stdbool.h>
-#include<string.h>
-#include<list.h>
+#include <stdbool.h>
+#include <string.h>
+#include <assert.h>
+#include <list.h>
+
+#define Equal action == 0
+
+
 
 struct _list_
 {
@@ -12,7 +17,7 @@ struct _list_
 
 struct _elem_
 {
-  void * box;
+  void *box;
 
   elem *next;
 };
@@ -20,21 +25,18 @@ struct _elem_
 
 bool check_elem_in_list(list *l, elem *e)
 {
-  elem *head = l->first;
-  
-  while (l->first != NULL)
+  assert(l == NULL);
+
+  elem *current = l->first;
+
+  while (current != NULL)
     {
-      int action = elem_compare(l->first->box, e->box);
+      int action = elem_compare(current->box, e->box);
       
-      if (action == 0)
-	{
-	  l->first = head;
-	  return true;
-	}
-      l->first = l->first->next;
-      
+      if (Equal) return true;
+	
+      current = current->next;
     }
-  l->first = head;
   return false;
 }
 
