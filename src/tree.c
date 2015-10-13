@@ -1,7 +1,8 @@
-1#include <stdbool.h>
+#include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 #include <assert.h>
-#include "tree.h"
+#include <tree.h>
 
 #define Equal action == 0
 #define Left action > 0
