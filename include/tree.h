@@ -10,7 +10,21 @@ node * create_node();
 tree * create_tree();
   
 
+struct _tree_
+{
+  node *root;
+};
 
+			 
+struct _node_
+{
+  void *key;
+
+  void *content;
+
+  node *left;
+  node *right;
+};
 
 
 
