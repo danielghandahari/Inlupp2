@@ -1,4 +1,4 @@
-#include <stdbool.h>
+1#include <stdbool.h>
 #include <string.h>
 #include <assert.h>
 #include "tree.h"
@@ -8,26 +8,6 @@
 #define Right action < 0
 #define PtrToLeftNode &((*current)->left
 #define PtrToRightNode &((*current)->right
-
-
-			 
-struct _tree_
-{
-  node *root;
-};
-
-			 
-struct _node_
-{
-  void *key;
-
-  void *content;
-
-  node *left;
-  node *right;
-};
-
-
 			 
 tree * create_tree()
 {
@@ -47,7 +27,8 @@ node * create_node()
 			 
 bool check_node_exists(node **n, node *mynode)
 {
-  assert(mynode == NULL);
+
+//assert(mynode == NULL);
 
   node **current = n;
 
@@ -76,7 +57,7 @@ bool check_node_exists(node **n, node *mynode)
 			 
 bool check_node_exists_in_tree(tree *t, node *mynode)
 {
-  assert(t == NULL);
+//assert(t == NULL);
   return check_node_exists(&(t->root), mynode);   
 }
 
@@ -84,7 +65,7 @@ bool check_node_exists_in_tree(tree *t, node *mynode)
 			 
 void append_node(node **n, node *mynode)
 {
-  assert(mynode == NULL);
+//assert(mynode == NULL);
 
   node **current = n;
 
@@ -108,6 +89,6 @@ void append_node(node **n, node *mynode)
 
 void append_node_in_tree(tree *t, node *mynode)
 {
-  assert(t == NULL);
+//assert(t == NULL);
   return append_node(&(t->root), mynode);
 }

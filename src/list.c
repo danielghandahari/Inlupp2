@@ -7,20 +7,6 @@
 
 
 
-struct _list_
-{
-  void *stuff;
-
-  elem *first;
-  elem *last;
-};
-
-struct _elem_
-{
-  void *box;
-
-  elem *next;
-};
 
 
 bool check_elem_in_list(list *l, elem *e)
