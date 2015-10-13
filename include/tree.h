@@ -22,15 +22,9 @@ int key_compare(void *key1, void *key2);
 
 
 
-
-
-
-
-
-
 void append_node_in_tree(tree *t, node *mynode);
 
-void append_node(node **n, node *mynode); //KANSKEHEJDÅ
+void append_node(node **n, node *mynode); 
 
 
 #endif
