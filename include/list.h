@@ -21,11 +21,8 @@ struct _elem_
 
 bool check_elem_in_list(list *l, elem *e); 
 
-<<<<<<< HEAD
-=======
 bool check_elem_in_list(list *l, elem *e); 
 
->>>>>>> 981ef866c627a34aedfbacaca8aa9b0503134503
 int elem_compare(void *e1, void *e2); 
 
 
