@@ -4,7 +4,7 @@
 #include <tree.h>
 #include <list.h>
 #include <assert.h>
-#include <database>
+#include <database.h>
 
 #define ElementOf(SHELF) &(SHELF)
 #define ElementOrShelfOf(SHELF) (ElementOf(SHELF) || SHELF)
@@ -51,8 +51,8 @@ int key_compare(void *key1, void *key2)
   char *str1 = (char*)key1;
   char *str2 = (char*)key2;
 
-  assert(strcmp(key1, "") == 0);
-  assert(strcmp(key2, "") == 0);
+  //assert(strcmp(key1, "") == 0);
+  //assert(strcmp(key2, "") == 0);
   
   return strcmp(str1, str2);
 }
@@ -64,8 +64,8 @@ int elem_compare(void *e1, void *e2)
   shelf *shlf1 = (shelf*)e1;
   shelf *shlf2 = (shelf*)e2;
 
-  assert(ElementOrShelfOf(shlf1) == NULL); 
-  assert(ElementOrShelfOf(shlf2) == NULL);
+  //assert(ElementOrShelfOf(shlf1) == NULL); 
+  //assert(ElementOrShelfOf(shlf2) == NULL);
   
   return key_compare(shlf1->location , shlf2->location);
 }
@@ -74,7 +74,7 @@ int elem_compare(void *e1, void *e2)
 
 bool check_shelf_used(node **n, elem *e)
 {
-  check_shelf_used_ASSERT(n);
+  //check_shelf_used_ASSERT(n);
 
   node **current = n;
   
