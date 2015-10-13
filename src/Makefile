@@ -1,15 +1,11 @@
 IDIR	=../include
-ODIR	=obj
 CC	=gcc
 CFLAGS 	=-Wall -std=c11 -ggdb -I$(IDIR)
-_OBJ	=database.o io.o list.o main.o menu.o read.o tree.o
-OBJ	=$(patsubst %,$(ODIR)/%,$(_OBJ))
+CFILE	=database.c io.c list.c main.c menu.c read.c tree.c
 
-$(ODIR)/%.o:%.c
-	@echo "##\tMake:\tCompiling $@"
-	@$(CC) $(CFLAGS) -c -o $@ $<
+OUT	=inlupp2
 
-inlupp2:$(OBJ)
+$(OUT):$(CFILE)
 	@echo "##\tMake:\tCompiling $@"
 	@$(CC) $(CFLAGS) -o $@ $^
 
@@ -24,4 +20,4 @@ run:inlupp2
 double_hash:
 	@echo "##"
 
-all:double_hash inlupp2 clean run
+all:double_hash $(OUT) clean run
