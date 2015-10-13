@@ -1,3 +1,5 @@
+#define _GNU_SOURCE
+
 #include <read.h>
 
 #include <ctype.h>
@@ -95,7 +97,7 @@ bool read_int(int *int_ptr)
 
 bool read_shelf(char *shelf_ptr)
 {
-  char *tmp_string;
+  char *tmp_string = {'\0'};
 
   if(!read_string(tmp_string))
     {
