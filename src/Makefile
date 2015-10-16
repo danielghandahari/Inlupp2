@@ -11,7 +11,10 @@ $(OUT):$(CFILE)
 
 clean:
 	@echo "##\tMake:\tCleaning up waste."
-	@rm -f -r ../*/*~ ../*/*# ../*/*/*~ ../*/*/*#
+	@rm -fr ../*~
+	@rm -fr ../*#
+	@rm -fr ../*.dSYM
+	@rm -fr ../*.DS_Store
 
 run:inlupp2
 	@rm -f inlupp2_stderr
