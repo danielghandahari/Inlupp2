@@ -11,15 +11,15 @@ $(OUT):$(CFILE)
 
 clean:
 	@echo "##\tMake:\tCleaning up waste."
-	@rm -fr ../*~
-	@rm -fr ../*#
-	@rm -fr ../*.dSYM
-	@rm -fr ../*.DS_Store
+	@rm -fr ../*/*~
+	@rm -fr ../*/*#
+	@rm -fr ../*/*.dSYM
+	@rm -fr ../*/*.DS_Store
 
 run:inlupp2
 	@rm -f inlupp2_stderr
 	@touch inlupp2_stderr
-	@echo "##\tMake:\tRunning file.\n##\n"
+	@echo "##\n##\tMake:\tRunning file.\n##\n##\n"
 	@./$^
 
 double_hash:
@@ -28,4 +28,4 @@ double_hash:
 rm_out:
 	@rm -f $(OUT)
 
-all:double_hash rm_out $(OUT) clean run
+all:double_hash rm_out $(OUT) clean
