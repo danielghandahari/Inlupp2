@@ -5,18 +5,22 @@
 #include <ctype.h>
 #include <stdlib.h>
 
+
+
 // TODO empty strings are to be catched and killed
-bool read_stdin(char *string_dest, size_t buffer_size)
+bool read_stream(char *string_dest, size_t buffer_size, FILE *input)
 {
-  char *buffer = (char *) malloc(sizeof(char) * buffer_size);
-  ssize_t string_length = getline(&buffer, &buffer_size, INPUT);
+  char *buffer = (char *)calloc(1, sizeof(char) * buffer_size);
 
-  check_debug(string_length > 0, "Unable to read stream or empty string");
+  ssize_t num_of_chars = getline(&buffer, &buffer_size, input);
+  
+  check_debug(buffer, "\tread_stream\tbuffer is NULL pointer");
+  check_debug(num_of_chars > 0, "\tread_stream\tunable to read stream or empty string");
 
-  buffer[string_length] = '\0';
+  buffer[num_of_chars] = '\0';
   strcpy(string_dest, buffer);
 
-  log_info("buffer %s", buffer);
+  log_info("\tread_stream\tbuffer \"%s\"", buffer);
   free(buffer);
   return true;
 
@@ -26,103 +30,105 @@ bool read_stdin(char *string_dest, size_t buffer_size)
 }
 
 
-bool read_string(char *string_ptr)
-{
-  char *tmp_ptr = (char *) malloc(sizeof(char) * LENGTH);
-  check_debug(tmp_ptr, "NULL");
 
-  for(int i = 0; i < strlen(tmp_ptr); ++i)
+#define read_string_aux(A) read_stream(A, STREAM_LENGTH, STREAM_INPUT)
+
+bool read_string(char *dest)
+{
+  char tmp[STREAM_LENGTH] = {'\0'};
+  check_debug(read_string_aux(tmp), "\tread_string\tread_stream failed");
+
+  for(int i = 0; tmp[i] != '\0'; ++i)
     {
-      if(tmp_ptr[i] == '\n')
+      if(tmp[i] == '\n')
 	{
-	  tmp_ptr[i] = '\0';
+	  tmp[i] = '\0';
 	  break;
 	}
     }
 
-  log_info("tmp_ptr %s", tmp_ptr);
-  strcpy(string_ptr, tmp_ptr);
-  free(tmp_ptr);
-      
+  check_debug(strlen(tmp) > 1, "\tread_string\tempty string");
+
+  log_info("\tread_string\ttmp \"%s\"", tmp);
+  strcpy(dest, tmp);
+
   return true;
   
  error:
-  free(tmp_ptr);
   return false;
 }
 
 
-bool read_char(char *char_ptr)
-{
-  check_debug(char_ptr, "NULL pointer");
 
-  if(read_stdin(char_ptr, 1))
-    {
-      log_info("char_ptr %c", char_ptr[0]);
-      return true; 
-    }
+#define read_char_aux(A) read_stream(tmp, 1, STREAM_INPUT)
+
+bool read_char(char *dest)
+{
+  char tmp[2] = {'\0'};
+
+  check_debug(read_char_aux(tmp), "\tread_char\tread_stream failed");
+  check_debug(isalnum(tmp[0]), "\tread_char\ttmp is not alphabetic nor numeric");
+  log_info("\tread_char\ttmp '%c'", tmp[0]);
+
+  dest[0] = tmp[0];
+
+  return true; 
 
  error:
   return false;
 }
 
 
-bool read_int(int *int_ptr)
+
+bool is_number(char *s)
 {
-  char *tmp_str = (char *) malloc(sizeof(char) * LENGTH);
+  for(int i = 0; s[i] != '\0'; ++i)
+    {
+      check_debug(isdigit(s[i]), "\tis_number\ts is not numeric");
+    }
 
-  read_string(tmp_str);
+  return true;
 
-  check_debug(tmp_str, "tmp_str == %p", tmp_str);
+ error:
+  return false;
+}
+
+
+
+bool read_int(int *dest)
+{
+  char buffer[STREAM_LENGTH];
+
+  check_debug(read_string(buffer), "\tread_int\tread_string failed");
+  check_debug(strlen(buffer) > 1, "\tread_int\tempty string");
+  check_debug(is_number(buffer), "\tread_int\tbuffer is not a numeric value");
   
-  for(int i = 0; i < strlen(tmp_str); ++i)
-    {
-      if(!isdigit(tmp_str[i]))
-	{
-	  log_err("tmp_str is not a numerig value");
-	  return false;
-	}
-    }
-
-  log_info("tmp_str %s", tmp_str);
-  *int_ptr = atoi(tmp_str);
+  log_info("\tread_int\tbuffer \"%s\"", buffer);
+  *dest = atoi(buffer);
 
   return true;
 
  error:
-  free(tmp_str);
   return false;
 }
 
 
-bool read_shelf(char *shelf_ptr)
+
+bool read_shelf(char *dest)
 {
-  char *tmp_string = {'\0'};
+  char s[STREAM_LENGTH];
 
-  if(!read_string(tmp_string))
-    {
-      log_err("Unable to read string");
-      return false;
-    }
+  check_debug(read_string(s), "\tread_shelf\tread_string failed");
+  check_debug(isalpha(s[0]), "\tread_shelf\ts[0] is not alphabetic");
+  check_debug(is_number(&s[1]), "\tread_shelf\ttail of s is not mumeric");
 
-  if(!isalpha(tmp_string[0]))
-    {
-      log_err("Head of tmp_string is not alphabetic");
-      return false;
-    }
+  s[0] = toupper(s[0]);
+  log_info("\tread_shelf\ts \"%s\"", s);
 
-  for(int i = 1; i < strlen(tmp_string); ++i)
-    {
-      if(!isdigit(tmp_string[i]))
-	{
-	  log_err("Tail of tmp_string is not numeric");
-	  return false;
-	}
-    }
+  strcpy(dest, s);
 
-  tmp_string[0] = toupper(tmp_string[0]);
-  log_info("tmp_string %s", tmp_string);
-
-  strcpy(shelf_ptr, tmp_string);
   return true;
+
+ error:
+  return false;
 }

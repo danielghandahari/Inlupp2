@@ -10,8 +10,8 @@
 
 #include <unistd.h>
 
-#define LENGTH 512
-#define INPUT stdin
+#define STREAM_LENGTH 512
+#define STREAM_INPUT stdin
 
 bool read_char(char *char_ptr);
 bool read_string(char *string_ptr);

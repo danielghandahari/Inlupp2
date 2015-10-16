@@ -1,80 +1,116 @@
-#include <std_include.h>
-
-#include <tree.h>
-#include <list.h>
-#include <database.h>
+#define CORRECT_INPUT "AREPCX"
 
 #include <io.h>
 
-#define CORRECT_INPUT "AREPCX"
 
-
-void print_menu()
+bool correct_input(const char c, const char *correct)
 {
-  printf("\n");
-  printf("Welcome to warehouse 2.0\n");
-  printf("========================\n\n");
+  for(int i = 0; correct[i] != '\0'; i++)
+    {
+      if(c == correct[i]) return true;
+    }
 
-  printf("[A]dd an item\n");
-  printf("[R]emove an item\n");
-  printf("[E]dit an item\n");
-  printf("[P]rint the warehouse\n");
-  printf("Pa[C]k your trolley\n");
-  printf("E[X]it\n\n");
+  return false;
 }
 
-void print_string(const char *s)
+char get_menu_choice()
 {
-  printf("%s",s);
+  char input;
+
+  while(1)
+    {
+       print_choice();
+
+       check_debug(read_char(&input), "\tget_user_choice\tread_char failed");
+       check_debug(correct_input(input, CORRECT_INPUT), "\tget_user_choice\tincorrect input");
+
+       break;
+
+    error:
+       print_incorrect_input();
+    }
+
+  return input;
 }
+
+
+
+void get_string_input(char *dest, const char *prompt)
+{
+  char s[STREAM_LENGTH];
+
+  print_string(prompt);
+
+  while(1)
+    {
+      if(!read_string(s)) goto incorrect;
+
+      break;
+
+    incorrect:
+      print_incorrect_input();
+    }
+
+  strcpy(dest, s);
+}
+
 
 void add_item()
 {
-  /*
-  char *item_name;
-  char *item_desc;
-  char *item_shelf_loc;
-  int item_price = -1;
-  int item_amount = -1;
-  */
+  print_add_header();
+
+  char item_name[STREAM_LENGTH] = {'\0'};
+
+  get_string_input(item_name, "Input item name\n");
+
+  /* char item_description[STREAM_LENGTH] = {'\0'}; */
+  /* int item_price = -1; */
+
+  //check_item_exists
+  //if exists
+  //print item
+  //else
+
+  
+  
+  //price
+
+  //shelf
+  //quantity
 }
+
 
 
 void remove_item()
 {
-  printf("Remove item\n");
+  print_remove_header();
 }
+
 
 
 void edit_item()
 {
-  printf("Edit item\n");
+  print_edit_header();
 }
+
 
 
 void print_warehouse()
 {
-  printf("Print Warehouse\n");
+  print_warehouse_header();
 }
+
 
 
 void pack_trolley()
 {
-  printf("Pack the trolley\n");
+  print_trolley_header();
 }
+
 
 
 void exit_program(bool *exit)
 {
-  printf("Good bye\n");
+  print_exit();
   *exit = true;
-}
-
-
-
-char get_user_choice()
-{
-  printf("Your choice\n");
-
-  return 'X';
 }

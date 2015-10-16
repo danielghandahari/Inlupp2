@@ -1,7 +1,7 @@
 IDIR	=../include
 CC	=gcc
 CFLAGS 	=-Wall -std=c11 -ggdb -I$(IDIR)
-CFILE	=database.c io.c list.c main.c menu.c read.c tree.c
+CFILE	=database.c io.c list.c main.c menu.c read.c tree.c print.c
 
 OUT	=inlupp2
 
@@ -14,6 +14,8 @@ clean:
 	@rm -f -r ../*/*~ ../*/*# ../*/*/*~ ../*/*/*#
 
 run:inlupp2
+	@rm -f inlupp2_stderr
+	@touch inlupp2_stderr
 	@echo "##\tMake:\tRunning file.\n##\n"
 	@./$^
 

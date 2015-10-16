@@ -1,9 +1,14 @@
 #ifndef __IO_H__
 #define __IO_H__
 
+#include <read.h>
+#include <print.h>
+
+#include <stdbool.h>
+
 void print_menu();
 
-char get_user_choice();
+char get_menu_choice();
 
 void add_item();
 void remove_item();

@@ -18,7 +18,7 @@ void menu()
 void choose_option(bool *exit)
 {
 
-  switch(get_user_choice())
+  switch(get_menu_choice())
     {
     case 'A': add_item(); break;
 
