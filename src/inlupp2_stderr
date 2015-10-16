@@ -1,3 +1,0 @@
-[INFO] (read.c:23) 	read_stream	buffer "X
-"
-[INFO] (read.c:71) 	read_char	tmp 'X'
