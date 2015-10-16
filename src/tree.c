@@ -3,13 +3,22 @@
 #include <string.h>
 #include <assert.h>
 #include <tree.h>
+#include <tree_secret.h>
+
+
 
 #define Equal action == 0
 #define Left action > 0
 #define Right action < 0
-#define PtrToLeftNode &((*current)->left)
-#define PtrToRightNode &((*current)->right)
-			 
+#define PtrToLeftNode(NODE) &((*NODE)->left)
+#define PtrToRightNode(NODE) &((*NODE)->right)
+#define NodeIsLeaf(NODE) !((*NODE)->left) && !((*NODE)->right)
+#define NodeOneChild(NODE) (((*NODE)->left) && !((*NODE)->right)) || (!((*NODE)->left) && ((*NODE)->right)) 
+#define NodeTwoChild(NODE) ((*NODE)->left) && ((*NODE)->right)
+
+
+
+
 tree * create_tree()
 {
   tree *t = calloc(1, sizeof(tree));
@@ -26,47 +35,44 @@ node * create_node()
 
 
 			 
-bool check_node_exists(node **n, node *mynode)
+node * check_node_exists(node **n, void *key)
 {
-
-//assert(mynode == NULL);
-
   node **current = n;
 
   while (*current != NULL)
     {
-      int action = key_compare((*current)->key, mynode->key); 
+      int action = key_compare((*current)->key, key); 
 
-      if (Equal) return true;
+      if (Equal) return (*current);
 
       if (Left)
 	{
-	  current = PtrToLeftNode;
-	  check_node_exists(current, mynode);
+	  current = PtrToLeftNode(current);
+	  check_node_exists(current, key);
 	}
 
       if (Right)
 	{
-	  current = PtrToRightNode;
-	  check_node_exists(current, mynode);
+	  current = PtrToRightNode(current);
+	  check_node_exists(current, key);
 	}
     }
-  return false;
+  return NULL;
 }
 
 
 			 
-bool check_node_exists_in_tree(tree *t, node *mynode)
+bool check_node_exists_in_tree(tree *t, void *key)
 {
-//assert(t == NULL);
-  return check_node_exists(&(t->root), mynode);   
+  assert(t == NULL);
+  return check_node_exists(&(t->root), key);   
 }
 
 
 			 
 void append_node(node **n, node *mynode)
 {
-//assert(mynode == NULL);
+  assert(mynode == NULL);
 
   node **current = n;
 
@@ -81,15 +87,120 @@ void append_node(node **n, node *mynode)
   
   if(Equal) return;
 
-  if(Right) append_node(PtrToRightNode, mynode);
+  if(Right) append_node(PtrToRightNode(n), mynode);
     
-  if(Left) append_node(PtrToLeftNode, mynode);
+  if(Left) append_node(PtrToLeftNode(n), mynode);
 }
 
 
 
 void append_node_in_tree(tree *t, node *mynode)
 {
-//assert(t == NULL);
+  assert(t == NULL);
   return append_node(&(t->root), mynode);
+}
+
+
+node * get_node_in_tree(tree *t, void *key)
+{
+  return get_node(&(t->root), key);
+}
+
+
+
+node * get_node(node **n, void *key)
+{
+  return check_node_exists(n, key);
+
+}
+
+
+
+bool find_node_in_tree(tree *t, void *key)
+{
+  return find_node(&(t->root), key);
+}
+
+
+
+bool find_node(node **n, void *key)
+{
+  return check_node_exists(n, key);
+}
+
+
+
+void del_node_zero_child(node **n)
+{
+  free(*n);
+  *n = NULL;
+}
+
+
+
+void del_node_one_child(node **n)
+{
+  if((*n)->right == NULL)
+    {
+      node *temp = (*n)->left;
+      free(*n);
+      *n = temp;
+      return;
+    }
+
+    if((*n)->left == NULL)
+    {
+      node *temp = (*n)->right;
+      free(*n);
+      *n = temp;
+      return;
+    }
+    else assert(false);
+}
+
+
+
+void del_node_two_child(node **n)
+{
+  node **mtol = find_max_to_left(n);
+
+  copy_node(*mtol, *n);
+
+  if(!((*mtol)->left) && !((*mtol)->right)) del_node_zero_child(mtol);
+  if(!((*mtol)->left) || !((*mtol)->right)) del_node_one_child(mtol);
+  
+}
+
+
+
+void copy_node(node *from, node *to)
+{
+  to->key = (from)->key;
+  to->content = (from)->content;
+  to->left = (from)->left;
+  to->right = (from)->right;  
+}
+
+
+
+node **find_max_to_left(node **n)
+{
+  node **temp = &((*n)->left);
+
+  while((*temp)->right) (*temp) = (*temp)->right;
+    
+  return temp;
+}
+
+
+
+
+void rem_node_in_tree(tree *t, void *key)
+{
+  node *n = get_node_in_tree(t, key);
+  node **dptr = &n;
+
+  if(NodeIsLeaf(dptr)) del_node_zero_child(dptr);
+  if(NodeOneChild(dptr)) del_node_one_child(dptr);
+  if(NodeTwoChild(dptr)) del_node_two_child(dptr);
 }

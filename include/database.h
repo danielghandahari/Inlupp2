@@ -17,8 +17,9 @@ typedef struct _sum_ sum;
 
 
 //ICKE GENERELLA FUNKTIONER FÖR TREE.C
+void incr_shelf_and_tot(list *l, void *elembox, int incr);
 
-void *increment_shelf();
+void incr_shelf(shelf *s, int incr);
 //====================================
 
 
@@ -26,10 +27,13 @@ void *increment_shelf();
 
 
 //GENERELLA FÖR BÅDE TREE OCH LIST
-bool check_shelf_used_in_tree(tree *t, elem *e);
+bool check_shelf_used_in_tree(tree *t, void *elembox);
 
-bool check_shelf_used(node **n, elem *e);
+bool check_shelf_used(node **n, void *elembox);
 
+
+
+bool check_used_by_item(tree *t, void *key, void *shelfloc);
 //=================================
-
+r
 #endif

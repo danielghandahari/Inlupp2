@@ -19,14 +19,31 @@ struct _elem_
   elem *next;
 };
 
-bool check_elem_in_list(list *l, elem *e); 
 
-bool check_elem_in_list(list *l, elem *e); 
+
+
+bool find_elem_in_list(list *l, void *elembox);
+
+elem *get_elem(elem *e, void *elembox);
+
+elem * get_elem_in_list(list *l, void *elembox); 
+
+
+
 
 int elem_compare(void *e1, void *e2); 
 
 
-void generate_new_elem();
 
+
+
+
+
+//FÖR REMOVE_ITEM
+
+
+void rem_elem_in_list(list *l, void *elembox);
+
+void  rem_elem(elem *e, void *elembox);
 
 #endif
