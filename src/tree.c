@@ -166,9 +166,7 @@ void del_node_two_child(node **n)
 
   copy_node(*mtol, *n);
 
-  if(!((*mtol)->left) && !((*mtol)->right)) del_node_zero_child(mtol);
-  if(!((*mtol)->left) || !((*mtol)->right)) del_node_one_child(mtol);
-  
+  rem_node(mtol);
 }
 
 
@@ -177,8 +175,6 @@ void copy_node(node *from, node *to)
 {
   to->key = (from)->key;
   to->content = (from)->content;
-  to->left = (from)->left;
-  to->right = (from)->right;  
 }
 
 
@@ -197,10 +193,19 @@ node **find_max_to_left(node **n)
 
 void rem_node_in_tree(tree *t, void *key)
 {
-  node *n = get_node_in_tree(t, key);
+  rem_node(&(t->root), key);
+}  
+
+
+void rem_node(node **n, void *key)
+{
+  node *n = get_node(n, key);
   node **dptr = &n;
 
   if(NodeIsLeaf(dptr)) del_node_zero_child(dptr);
   if(NodeOneChild(dptr)) del_node_one_child(dptr);
   if(NodeTwoChild(dptr)) del_node_two_child(dptr);
 }
+
+
+
