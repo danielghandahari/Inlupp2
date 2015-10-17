@@ -14,9 +14,9 @@ void print_menu();
 
 char get_menu_choice();
 
-void add_item();
-void remove_item();
-void edit_item();
+void add_ware();
+void remove_ware();
+void edit_ware();
 void print_warehouse();
 void pack_trolley();
 void exit_program(bool *exit);

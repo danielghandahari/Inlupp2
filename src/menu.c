@@ -20,11 +20,11 @@ void choose_option(bool *exit)
 
   switch(get_menu_choice())
     {
-    case 'A': add_item(); break;
+    case 'A': add_ware(); break;
 
-    case 'R': remove_item(); break;
+    case 'R': remove_ware(); break;
 
-    case 'E': edit_item(); break;
+    case 'E': edit_ware(); break;
 
     case 'P': print_warehouse(); break;
 
