@@ -4,6 +4,10 @@
 #include <read.h>
 #include <print.h>
 
+#include <database.h>
+#include <tree.h>
+#include <list.h>
+
 #include <stdbool.h>
 
 void print_menu();
