@@ -45,7 +45,7 @@ bool check_used_by_item(tree *t, void *key, void *shelfloc);
 
 ware *ware_exists(tree *t, char *ware_name);
 bool shelf_ok(tree *t, ware *w, char *shelf_loc);
-void insert_ware(tree *t, ware *w, char *ware_name, char *ware_desc, int ware_price, char *shelf_loc, int shelf_amount);
+void insert_ware(tree *t, ware *w, char *ware_name, char *ware_desc, int ware_price, char *ware_shelf, int ware_amount);
 
 char *get_ware_name(ware *w);
 char *get_ware_desc(ware *w);

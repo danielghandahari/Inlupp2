@@ -18,20 +18,65 @@ char get_menu_choice(char *prompt)
   return c;
 }
 
+void user_input_string(char *dest, const char *m)
+{
+  char tmp[STREAM_LENGTH] = {'\0'};
 
+  while(1) // TODO check for invalid input
+    {
+      printf("%s", m);
+      print_choice();
+      if(read_string(tmp)) break;
+    }
+
+  log_info("%20s%s", "user_input_string", tmp);
+  strcpy(dest, tmp);
+}
+
+void user_input_shelf(char *dest, const char *m)
+{
+  char tmp[STREAM_LENGTH] = {'\0'};
+
+  while(1) // TODO check for invalid input
+    {
+      printf("%s", m);
+      print_choice();
+      if(read_shelf(tmp)) break;
+    }
+
+  log_info("%20s%s", "user_input_shelf", tmp);
+  strcpy(dest, tmp);
+}
+
+void user_input_int(int *dest, const char *m)
+{
+  int tmp = -1;
+
+  while(1) // TODO check for invalid input
+    {
+      printf("%s", m);
+      print_choice();
+      if(read_int(&tmp)) break;
+    }
+
+  log_info("%20s%i", "user_input_int", tmp);
+  *dest = tmp;
+}
+
+
+
+#define read_name(A) user_input_string(A, "Ware name\n")
+#define read_description(A) user_input_string(A, "Ware description\n")
+#define read_price(A) user_input_int(A, "Ware price\n")
+#define read_shelf(A) user_input_shelf(A, "Ware shelf\n")
+#define read_amount(A) user_input_int(A, "Ware amount\n")
 
 void add_ware(tree *t)
 {
   print_add_header();
 
   char ware_name[STREAM_LENGTH] = {'\0'};
-
-  while(1) // TODO check for invalid input
-    {
-      printf("Input ware name\n");
-      print_choice();
-      if(read_string(ware_name)) break;
-    }
+  read_name(ware_name);
 
   void *w = NULL; // TODO ware_exists(t, ware_name);
 
@@ -40,41 +85,22 @@ void add_ware(tree *t)
   
   if(w) // TODO implement
     {
+      printf("Ware already exists in warehouse\n");
       // print_ware(w);
     }
   else
     {
-      while(1) // TODO check for invalid input
-	{
-	  printf("Input description\n");
-	  print_choice();
-	  if(read_string(ware_description)) break;
-	}
-      while(1) // TODO check for invalid input
-	{
-	  printf("Input price\n");
-	  print_choice();
-	  if(read_int(&ware_price)) break;
-	}
+      read_description(ware_description);      
+      read_price(&ware_price);
     }
   
   char ware_shelf[STREAM_LENGTH] = {'\0'};
-
-  while(1) // TODO check for invalid input
-    {
-      printf("Input shelf location\n");
-      print_choice();
-      if(read_shelf(ware_shelf)) break;
-    }
+  read_shelf(ware_shelf);
 
   int ware_amount;
-  
-  while(1) // TODO check for invalid input
-    {
-      printf("Input amount\n");
-      print_choice();
-      if(read_int(&ware_amount)) break;
-    }
+  read_amount(&ware_amount);  
+
+
 
   printf("\n");
 
@@ -84,6 +110,8 @@ void add_ware(tree *t)
 
   printf("%-15s%s\n", "Shelf", ware_shelf);
   printf("%-15s%i\n", "Amount", ware_amount);
+
+  //insert_ware(t, w, ware_name, ware_desc, ware_price, ware_shelf, ware_amount);
 }
 
 void remove_ware(tree *t)
