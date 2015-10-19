@@ -1,135 +1,135 @@
 #include <print.h>
+#include <database.h>
+
+#define LINE_LENGTH 25
+#define print_delimiter print_line(LINE_LENGTH, '=')
 
 
-
-void print_string(const char *s)
+void print_centered(const char *s, int line_length)
 {
-  printf("%s",s);
+  int string_length = strlen(s);
+  int center = line_length / 2;
+
+  int white_space = center - string_length / 2;
+
+  for(int i = 0; i < white_space; i++)
+    {
+      printf(" ");
+    }
+
+  printf("%s\n", s);
+}
+
+void print_line(const int line_length, const char c)
+{
+  for(int i = 0; i < line_length; i++)
+    {
+      printf("%c", c);
+    }
+
+  printf("\n");
+}
+
+
+void print_ware_shelves(ware *w)
+{
+  print_delimiter;
+  /*
+  for(elem *e = get_first_shelf(w); e; get_next_shelf(e))
+    {
+      printf("%6s%6i\n", get_shelf_loc(e), get_shelf_amount(e));
+    }
+  */
+  printf("\n");
+}
+
+
+void print_ware(ware *w)
+{
+  print_delimiter;
+  printf("\n");
+  /*
+  printf("%-18s%s\n", "Ware name", get_ware_name(w));
+  printf("%-18s%s\n", "Ware description", get_ware_desc(w));
+  printf("%-18s%i\n", "Ware price", get_ware_price(w));
+  */
+  print_ware_shelves(w);
 }
 
 
 
 void print_incorrect_input()
 {
-  char out[STREAM_LENGTH] = {'\0'};
-
-  strcat(out, "\n");
-  strcat(out, "Incorrect input\n");
-
-  print_string(out);
+  printf("\n");
+  printf("Incorrect input\n");
 }
 
 void print_choice()
 {
-  char out[STREAM_LENGTH] = {'\0'};
-  
-  strcat(out, "\n");
-  strcat(out, "$ ");
-
-  print_string(out);
+  printf("$ ");
 }
-
-
 
 void print_menu()
 {
-  char out[STREAM_LENGTH] = {'\0'};
+  printf("\n");
+  print_delimiter;
+  print_centered("Welcome to warehouse 2.0", LINE_LENGTH);
+  print_delimiter;
+  printf("\n");
 
-  strcat(out, "\n");
-  strcat(out, "==========================\n");
-  strcat(out, " Welcome to warehouse 2.0\n");
-  strcat(out, "==========================\n\n");
-
-  strcat(out, "[A]dd an item\n");
-  strcat(out, "[R]emove an item\n");
-  strcat(out, "[E]dit an item\n");
-  strcat(out, "[P]rint the warehouse\n");
-  strcat(out, "Pa[C]k your trolley\n");
-  strcat(out, "E[X]it\n");
-
-  print_string(out);
+  printf("[A]dd an item\n");
+  printf("[R]emove an item\n");
+  printf("[E]dit an item\n");
+  printf("[P]rint the warehouse\n");
+  printf("Pa[C]k your trolley\n");
+  printf("E[X]it\n\n");
 }
-
-
 
 void print_add_header()
 {
-  char out[STREAM_LENGTH] = {'\0'};
-  
-  strcat(out, "\n");
-  strcat(out, "=============\n");
-  strcat(out, " Add an item\n");
-  strcat(out, "=============\n\n");
-
-  print_string(out);
+  printf("\n");
+  print_delimiter;
+  print_centered("Add ware", LINE_LENGTH);
+  print_delimiter;
+  printf("\n");
 }
-
-
 
 void print_remove_header()
 {
-  char out[STREAM_LENGTH] = {'\0'};
-
-  strcat(out, "\n");
-  strcat(out, "=============\n");
-  strcat(out, " Remove item\n");
-  strcat(out, "=============\n\n");
-
-  print_string(out);
+  printf("\n");
+  print_delimiter;
+  print_centered("Remove item", LINE_LENGTH);
+  print_delimiter;
 }
-
-
 
 void print_edit_header()
 {
-  char out[STREAM_LENGTH] = {'\0'};
-
-  strcat(out, "\n");
-  strcat(out, "=============\n");
-  strcat(out, " Edit item\n");
-  strcat(out, "=============\n\n");
-
-  print_string(out);
+  printf("\n");
+  print_delimiter;
+  print_centered("Edit item", LINE_LENGTH);
+  print_delimiter;
 }
-
-
 
 void print_warehouse_header()
 {
-  char out[STREAM_LENGTH] = {'\0'};
-
-  strcat(out, "\n");
-  strcat(out, "===========\n");
-  strcat(out, " Warehouse\n");
-  strcat(out, "===========\n\n");
-
-  print_string(out);
+  printf("\n");
+  print_delimiter;
+  print_centered("Warehouse", LINE_LENGTH);
+  print_delimiter;
 }
-
-
 
 void print_trolley_header()
 {
-  char out[STREAM_LENGTH] = {'\0'};
-
-  strcat(out, "\n");
-  strcat(out, "==============\n");
-  strcat(out, " Pack Trolley\n");
-  strcat(out, "==============\n\n");
-
-  print_string(out);
+  printf("\n");
+  print_delimiter;
+  print_centered("Pack Trolley", LINE_LENGTH);
+  print_delimiter;
 }
-
-
 
 void print_exit()
 {
-  char out[STREAM_LENGTH] = {'\0'};
-
-  strcat(out, "\n");
-  strcat(out, "==========\n");
-  strcat(out, " Good bye\n");
-  strcat(out, "==========\n\n");
-
-  print_string(out);
+  printf("\n");
+  print_delimiter;
+  print_centered("Good bye", LINE_LENGTH);
+  print_delimiter;
 }

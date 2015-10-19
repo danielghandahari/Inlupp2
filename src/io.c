@@ -10,8 +10,8 @@ char get_menu_choice(char *prompt)
 
   while(1)
     {
-      print_string(prompt);
-  
+      printf("%s", prompt);
+      print_choice();
       if(read_char(&c)) break;
     }
 
@@ -28,7 +28,8 @@ void add_ware(tree *t)
 
   while(1) // TODO check for invalid input
     {
-      print_string("Input ware name\n");
+      printf("Input ware name\n");
+      print_choice();
       if(read_string(ware_name)) break;
     }
 
@@ -45,12 +46,14 @@ void add_ware(tree *t)
     {
       while(1) // TODO check for invalid input
 	{
-	  print_string("Input description\n");
+	  printf("Input description\n");
+	  print_choice();
 	  if(read_string(ware_description)) break;
 	}
       while(1) // TODO check for invalid input
 	{
-	  print_string("Input price\n");
+	  printf("Input price\n");
+	  print_choice();
 	  if(read_int(&ware_price)) break;
 	}
     }
@@ -59,7 +62,8 @@ void add_ware(tree *t)
 
   while(1) // TODO check for invalid input
     {
-      print_string("Input shelf location\n");
+      printf("Input shelf location\n");
+      print_choice();
       if(read_shelf(ware_shelf)) break;
     }
 
@@ -67,20 +71,25 @@ void add_ware(tree *t)
   
   while(1) // TODO check for invalid input
     {
-      print_string("Input amount\n");
+      printf("Input amount\n");
+      print_choice();
       if(read_int(&ware_amount)) break;
     }
 
+  printf("\n");
+
+  printf("%-15s%s\n", "Name", ware_name);
+  printf("%-15s%s\n", "Description", ware_description);
+  printf("%-15s%i\n", "Price", ware_price);
+
+  printf("%-15s%s\n", "Shelf", ware_shelf);
+  printf("%-15s%i\n", "Amount", ware_amount);
 }
-
-
 
 void remove_ware(tree *t)
 {
   print_remove_header();
 }
-
-
 
 void edit_ware(tree *t)
 {
@@ -88,20 +97,41 @@ void edit_ware(tree *t)
 }
 
 
+#define PRINT_TILL_CHECK 20
 
 void print_warehouse(tree *t)
 {
   print_warehouse_header();
+
+  //ware *w = get_first_ware(t)
+
+  //if(!w)
+  {
+    printf("The warehouse is empty");
+    return;
+  }
+
+  //for(int num_printed = 0; w; w = get_next_ware(w, t))
+    {
+      //char *str_to_print = "%d: %s", num_printed, get_ware_name(w);
+      //printf(str_to_print);
+
+      //w = get_next_ware(w, t);
+      //if(++num_printed >= PRINT_TILL_CHECK)
+      {
+	printf("Select a ware by typing its corresponding index,\n type 'X' to exit or type 'N' to print the next page\n");
+	print_choice();
+	
+      }
+    }
 }
-
-
 
 void pack_trolley(tree *t)
 {
   print_trolley_header();
+
+  
 }
-
-
 
 void exit_program(bool *exit)
 {

@@ -6,8 +6,6 @@
 
 #define STREAM_LENGTH 512
 
-void print_string(const char *s);
-
 void print_incorrect_input();
 void print_choice();
 
