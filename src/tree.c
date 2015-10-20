@@ -166,7 +166,7 @@ void del_node_two_child(node **n)
 
   copy_node(*mtol, *n);
 
-  rem_node(mtol);
+  rem_node(mtol, (*mtol)->key);
 }
 
 
@@ -199,8 +199,8 @@ void rem_node_in_tree(tree *t, void *key)
 
 void rem_node(node **n, void *key)
 {
-  node *n = get_node(n, key);
-  node **dptr = &n;
+  node *temp = get_node(n, key);
+  node **dptr = &temp;
 
   if(NodeIsLeaf(dptr)) del_node_zero_child(dptr);
   if(NodeOneChild(dptr)) del_node_one_child(dptr);

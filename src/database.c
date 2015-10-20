@@ -7,6 +7,7 @@
 #include <database.h>
 #include <tree_secret.h>
 
+#define Equal action == 0
 #define ElementOf(SHELF) &(SHELF)
 #define ElementOrShelfOf(SHELF) (ElementOf(SHELF) == NULL || SHELF == NULL)
 #define check_shelf_used_ASSERT(NODE) ware *emptylistptr =(ware*)((*NODE)->content); \
@@ -71,7 +72,8 @@ int elem_compare(void *e1, void *e2)
 
 
 
-bool check_shelf_used(node **n, void *elembox)
+
+bool check_shelf_used(node **n, char *key)
 {
   check_shelf_used_ASSERT(n);
 
@@ -80,21 +82,24 @@ bool check_shelf_used(node **n, void *elembox)
   if((*current))
     {
       ware *c =(ware*)((*current)->content);
-      bool eleminlist = find_elem_in_list(c->shelves, elembox);
+      bool eleminlist = find_elem_in_list_DB(c->shelves, key);
 
       if (eleminlist) return true;
       
-      else return check_shelf_used(&((*current)->left), elembox) || check_shelf_used(&((*current)->right), elembox); //SKARV, KOLLAR DEN INTE BA VÄNSTER?;   
+      else return check_shelf_used(&((*current)->left), key) || check_shelf_used(&((*current)->right), key); 
     }
   return false;
 }
 
 
-bool check_shelf_used_in_tree(tree *t, void *elembox)
+
+bool check_shelf_used_in_tree(tree *t, char *key)
 {
   assert(t == NULL); 
-  return  check_shelf_used(&(t->root), elembox);
+  return  check_shelf_used(&(t->root), key);
 }
+
+
 
 void incr_shelf_and_tot(list *l, void *elembox, int incr)
 {
@@ -107,14 +112,16 @@ void incr_shelf_and_tot(list *l, void *elembox, int incr)
   totalamount += incr;
 }
 
-  
+
+
 void incr_shelf(shelf *s, int incr)
 {
   s->amount += incr;
 }
 
 
-bool check_used_by_item(tree *t, void *key, void *shelfloc)
+
+bool check_used_by_ware(tree *t, void *key, void *shelfloc)
 {
   node *mynode = get_node_in_tree(t, key);
 
@@ -125,3 +132,87 @@ bool check_used_by_item(tree *t, void *key, void *shelfloc)
 
 
 
+bool find_elem_in_list_DB(list *l, char *key)
+{
+  return find_elem_DB(l->first, key);
+}
+
+
+
+bool find_elem_DB(elem *e, char *key)
+{
+  return get_elem_DB(e, key);
+}
+
+
+
+elem * get_elem_in_list_DB(list *l, char *key)
+{
+  return get_elem_DB(l->first, key);
+}
+
+
+
+elem * get_elem_DB(elem *e, char *key)
+{
+  elem *current = e;
+  shelf *s = (shelf*)current->box;
+  
+  while (e)
+    {
+      int action = key_compare(s->location, key);
+      
+      if (Equal) return current;
+      current = current->next;
+    }
+  return NULL;
+}
+
+
+
+//TIMS FUNKTIONER
+
+ware *ware_exists(tree *t, char *warename)
+{
+  node *n = get_node_in_tree(t, warename);
+
+  ware *w = (ware*)n->content;
+
+  return w;
+}
+
+
+
+bool shelf_ok(tree *t, ware *w, char *shelfloc)
+{
+  if(w) return find_elem_in_list_DB(w->shelves, shelfloc); 
+
+  else return check_shelf_used_in_tree(t, shelfloc);
+}
+
+
+
+void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice, char *shelfloc, int shelfamount)
+{
+  if (w)
+    {
+      bool shelfexists = find_elem_in_list_DB(w->shelves, shelfloc);
+
+      if(shelfexists)
+	{
+	  elem *e = get_elem_in_list_DB(w->shelves, shelfloc);
+	  shelf *s = (shelf*)e->box;
+
+	  s->amount += shelfamount;
+	  int i = (int)w->shelves->stuff;
+	  i += shelfamount;
+	}
+      if(!shelfexists)
+	{
+	  
+	}
+    }
+}
+
+
+//===========================================

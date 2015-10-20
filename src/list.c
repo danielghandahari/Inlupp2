@@ -16,17 +16,19 @@ bool find_elem_in_list(list *l, void *elembox)
 
 elem * get_elem_in_list(list *l, void *elembox)
 {
-  return  get_elem(l->first, elembox);
+  return get_elem(l->first, elembox);
 }
 
 elem * get_elem(elem *e, void *elembox)
 {
+  elem *current = e;
+
   while (e)
     {
-      int action = elem_compare(e->box, elembox);
+      int action = elem_compare(current->box, elembox);
       
-      if (Equal) return e;
-      e = e->next;
+      if (Equal) return current;
+      current = current->next;
     }
   return NULL;
 }
@@ -42,12 +44,16 @@ void rem_elem_in_list(list *l, void *elembox)
   rem_elem(l->first, elembox);
 }
 
-void rem_elem(elem *e, void *elembox)
+
+//GÖR KLART EFTER DU GJORT TIMS FUNKTIONER
+
+/*void rem_elem(elem *e, void *elembox)
 {
-  elem *myelem = get_elem(e, elembox);
+  elem *temp = get_elem(e, elembox);
     
-}
+  }*/
 
 
 
 
+void insert_elem_in_list(list *l, void *elembox);
