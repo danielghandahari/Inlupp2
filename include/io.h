@@ -14,11 +14,11 @@ void print_menu();
 
 char get_menu_choice();
 
-void add_ware();
-void remove_ware();
-void edit_ware();
-void print_warehouse();
-void pack_trolley();
-void exit_program(bool *exit);
+void add_ware(tree *t);
+void remove_ware(tree *t);
+void edit_ware(tree *t);
+int print_warehouse(tree *t);
+void pack_trolley(tree *t);
+void exit_program(bool *exit, tree *t);
 
 #endif

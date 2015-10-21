@@ -43,8 +43,11 @@ bool check_shelf_used(node **n, void *elembox);
 bool check_used_by_item(tree *t, void *key, void *shelfloc);
 //=================================
 
+tree *create_new_tree();
+
 ware *ware_exists(tree *t, char *ware_name);
-bool shelf_ok(tree *t, ware *w, char *shelf_loc);
+ware *get_ware_at(tree *t, int index);
+bool shelf_ok(tree *t, ware *w, char *ware_shelf);
 void insert_ware(tree *t, ware *w, char *ware_name, char *ware_desc, int ware_price, char *ware_shelf, int ware_amount);
 
 char *get_ware_name(ware *w);
@@ -58,4 +61,6 @@ elem *get_next_shelf(elem *e);
 char *get_shelf_loc(elem *e);
 int get_shelf_amount(elem *e);
 
+ware *get_ware_at(tree *t, int index);
+ware *get_ware(node *n);
 #endif

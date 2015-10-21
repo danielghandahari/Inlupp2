@@ -16,6 +16,7 @@ void print_add_header();
 void print_remove_header();
 void print_edit_header();
 void print_warehouse_header();
+void print_end_of_warehouse();
 void print_trolley_header();
 
 #endif

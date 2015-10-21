@@ -66,4 +66,8 @@ void remove_elem(node **n, void *key);
 
 
 bool check_elems_left();
+
+void *get_content(node *n);
+
+node *get_root(tree *t);
 #endif

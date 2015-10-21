@@ -1,38 +1,46 @@
 #include <std_include.h>
+#include <database.h>
 #include <io.h>
 
-void choose_option(bool *exit);
+void choose_option(bool *exit, tree *t);
 
 void menu()
 {
   bool exit = false;
+  tree *t = create_tree();
 
   while(!exit)
     {
       print_menu();
 
-      choose_option(&exit);
+      choose_option(&exit, t);
     }
 }
 
-void choose_option(bool *exit)
-{
 
+
+void choose_option(bool *exit, tree *t)
+{
   switch(get_menu_choice())
     {
-    case 'A': add_ware(); break;
+    case 'a':
+    case 'A': add_ware(t); break;
 
-    case 'R': remove_ware(); break;
+    case 'r':
+    case 'R': remove_ware(t); break;
 
-    case 'E': edit_ware(); break;
+    case 'e':
+    case 'E': edit_ware(t); break;
 
-    case 'P': print_warehouse(); break;
+    case 'p':
+    case 'P': print_warehouse(t); break;
 
-    case 'C': pack_trolley(); break;
+    case 'c':
+    case 'C': pack_trolley(t); break;
 
-    case 'X': exit_program(exit); break;
+    case 'x':
+    case 'X': exit_program(exit, t); break;
 
     default: printf("This should not happen!\n");
     }
 }
-

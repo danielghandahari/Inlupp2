@@ -118,6 +118,19 @@ void print_warehouse_header()
   print_delimiter;
 }
 
+void print_end_of_warehouse()
+{
+  printf("\n");
+  print_delimiter;
+  print_centered("Warehouse empty", LINE_LENGTH);
+  print_delimiter;
+}
+
+void print_warehouse_empty()
+{
+  print_centered("The warehouse is empty");
+}
+
 void print_trolley_header()
 {
   printf("\n");

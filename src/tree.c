@@ -209,3 +209,12 @@ void rem_node(node **n, void *key)
 
 
 
+void *get_content(node *n)
+{
+  return n->content;
+}
+
+node *get_root(tree *t)
+{
+  return t->root;
+}

@@ -130,28 +130,20 @@ bool check_used_by_ware(tree *t, void *key, void *shelfloc)
   return find_elem_in_list(myitem->shelves, shelfloc);
 }
 
-
-
 bool find_elem_in_list_DB(list *l, char *key)
 {
   return find_elem_DB(l->first, key);
 }
-
-
 
 bool find_elem_DB(elem *e, char *key)
 {
   return get_elem_DB(e, key);
 }
 
-
-
 elem * get_elem_in_list_DB(list *l, char *key)
 {
   return get_elem_DB(l->first, key);
 }
-
-
 
 elem * get_elem_DB(elem *e, char *key)
 {
@@ -169,7 +161,6 @@ elem * get_elem_DB(elem *e, char *key)
 }
 
 
-
 //TIMS FUNKTIONER
 
 ware *ware_exists(tree *t, char *warename)
@@ -181,7 +172,31 @@ ware *ware_exists(tree *t, char *warename)
   return w;
 }
 
+void get_ware_at_aux(node *n, int index, int *acc, ware *w)
+{
+  if(*acc <= index)
+    {
+      if(n->left) get_ware_at_aux(n->left, index, acc, w);
+  
+      if(index == *acc) w = get_ware(n);
+      else ++(*acc);
 
+      if(n->right) get_ware_at_aux(n->right, index, acc, w);
+    }
+}
+
+ware *get_ware_at(tree *t, int index)
+{
+  int *acc = 0;
+  node *root = get_root(t);
+
+  if(!root) return NULL;
+
+  ware *w = NULL;
+  get_ware_at_aux(root, index, acc, w);
+
+  return w;
+}
 
 bool shelf_ok(tree *t, ware *w, char *shelfloc)
 {
@@ -189,8 +204,6 @@ bool shelf_ok(tree *t, ware *w, char *shelfloc)
 
   else return check_shelf_used_in_tree(t, shelfloc);
 }
-
-
 
 void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice, char *shelfloc, int shelfamount)
 {
@@ -214,5 +227,12 @@ void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice
     }
 }
 
+ware *get_ware(node *n)
+{
+  return (ware *)get_content(n);
+}
 
-//===========================================
+char *get_ware_name(ware *w)
+{
+  return w->name;
+}
