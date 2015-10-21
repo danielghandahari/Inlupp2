@@ -153,6 +153,16 @@ void edit_ware(tree *t)
 
 
 
+bool is_string_digit(const char *s)
+{
+  for(int i = 0, length = strlen(s); i < length; i++)
+    {
+      if(!isdigit(s[i])) return false;
+    }
+
+  return true;
+}
+
 #define PRINT_TILL_CHECK 20
 
 int print_warehouse(tree *t)
@@ -208,7 +218,7 @@ int print_warehouse(tree *t)
       break;
 
     default:
-      if(isdigit(input))
+      if(is_string_digit(input))
 	{
 	  int i = atoi(input);
 	  if(0 < i && i <= PRINT_TILL_CHECK) return i - 1 + 20 * page;
