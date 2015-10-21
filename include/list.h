@@ -10,7 +10,6 @@ elem * create_elem();
 
 list * create_list();
 
-
 bool find_elem_in_list(list *l, void *elembox);
 
 elem *get_elem(elem *e, void *elembox);

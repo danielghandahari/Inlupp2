@@ -23,7 +23,7 @@ struct _ware_
 {
   char *name;
   char *desc;
-  int *price;
+  int price;
 
   list *shelves;
 };
@@ -35,7 +35,7 @@ struct _ware_
 struct _shelf_
 {
   char *location;
-  int *amount;
+  int amount;
 };
 
 struct _sum_
@@ -51,7 +51,11 @@ ware * create_ware()
   return w;
 }
 
-
+shelf *create_shelf()
+{
+  shelf *s = (shelf *) calloc(1, sizeof(shelf));
+  return s;
+}
 
 int key_compare(void *key1, void *key2)
 {
@@ -123,7 +127,7 @@ void incr_shelf_and_tot(list *l, void *elembox, int incr)
 
 void incr_shelf(shelf *s, int incr)
 {
-  *(s->amount) += incr;
+  s->amount += incr;
 }
 
 
@@ -173,9 +177,9 @@ elem * get_elem_DB(elem *e, char *key)
 ware *ware_exists(tree *t, char *warename)
 {
   node *n = get_node_in_tree(t, warename);
+  if(!n) return NULL;
 
   ware *w = (ware*)n->content;
-
   return w;
 }
 
@@ -241,15 +245,16 @@ void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice
 
       w->name = warename;
       w->desc = waredesc;
-      *(w->price) = wareprice;
+      w->price = wareprice;
       w->shelves = l;
 
       insert_elem_in_list(l, e);
 
-      shelf *s = (shelf*)e->box;
+      shelf *s = create_shelf();
+      e->box = s;
 
       s->location = shelfloc;
-      *(s->amount) = shelfamount;
+      s->amount = shelfamount;
 
       n->key = warename;
       n->content = w;
@@ -275,7 +280,7 @@ char *get_ware_desc(ware *w)
 
 int get_ware_price(ware *w)
 {
-  return *(w->price);
+  return w->price;
 }
 
 
@@ -309,5 +314,5 @@ char *get_shelf_loc(elem *e)
 int get_shelf_amount(elem *e)
 {
   shelf *s = (shelf*)e->box;
-  return *(s->amount);
+  return s->amount;
 }

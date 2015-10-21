@@ -86,13 +86,15 @@ void add_ware(tree *t)
   char ware_description[STREAM_LENGTH] = {'\0'};
   int ware_price = -1;
   
-  if(w) //TODO implement
-    {
-      printf("Ware already exists in warehouse\n");
+  if(w)
+    {b
+      printf("\nWare already exists in warehouse\n\n");
       print_ware(w);
     }
   else
     {
+      printf("\nNew ware\n\n");
+
       read_description(ware_description);      
       read_price(&ware_price);
     }
