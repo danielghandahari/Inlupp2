@@ -48,15 +48,13 @@ void print_ware(ware *w)
 {
   print_delimiter;
   printf("\n");
-  /*
+
   printf("%-18s%s\n", "Ware name", get_ware_name(w));
   printf("%-18s%s\n", "Ware description", get_ware_desc(w));
   printf("%-18s%i\n", "Ware price", get_ware_price(w));
-  */
+
   print_ware_shelves(w);
 }
-
-
 
 void print_incorrect_input()
 {
@@ -85,6 +83,10 @@ void print_menu()
   printf("E[X]it\n\n");
 }
 
+
+
+// Add
+
 void print_add_header()
 {
   printf("\n");
@@ -94,6 +96,10 @@ void print_add_header()
   printf("\n");
 }
 
+
+
+// Remove
+
 void print_remove_header()
 {
   printf("\n");
@@ -101,6 +107,10 @@ void print_remove_header()
   print_centered("Remove item", LINE_LENGTH);
   print_delimiter;
 }
+
+
+
+// Warehouse
 
 void print_edit_header()
 {
@@ -128,8 +138,13 @@ void print_end_of_warehouse()
 
 void print_warehouse_empty()
 {
-  print_centered("The warehouse is empty");
+  printf("\n");
+  print_centered("The warehouse is empty", LINE_LENGTH);
 }
+
+
+
+// Trolley
 
 void print_trolley_header()
 {
@@ -138,6 +153,10 @@ void print_trolley_header()
   print_centered("Pack Trolley", LINE_LENGTH);
   print_delimiter;
 }
+
+
+
+// Exit
 
 void print_exit()
 {

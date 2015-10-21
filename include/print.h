@@ -10,13 +10,19 @@ void print_incorrect_input();
 void print_choice();
 
 void print_menu();
-void print_exit();
 
 void print_add_header();
+void print_ware();
+
 void print_remove_header();
+
 void print_edit_header();
+
 void print_warehouse_header();
+void print_warehouse_empty();
 void print_end_of_warehouse();
+
 void print_trolley_header();
 
+void print_exit();
 #endif

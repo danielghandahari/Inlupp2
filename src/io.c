@@ -79,7 +79,7 @@ void add_ware(tree *t)
   char ware_name[STREAM_LENGTH] = {'\0'};
   read_name(ware_name);
 
-  void *w = NULL; //TODO ware_exists(t, ware_name);
+  void *w = ware_exists(t, ware_name);
 
   char ware_description[STREAM_LENGTH] = {'\0'};
   int ware_price = -1;
@@ -87,7 +87,7 @@ void add_ware(tree *t)
   if(w) //TODO implement
     {
       printf("Ware already exists in warehouse\n");
-      //print_ware(w);
+      print_ware(w);
     }
   else
     {
@@ -109,7 +109,7 @@ void add_ware(tree *t)
   printf("%-15s%s\n", "Shelf", ware_shelf);
   printf("%-15s%i\n", "Amount", ware_amount);
 
-  //TODO insert_ware(t, w, ware_name, ware_description, ware_price, ware_shelf, ware_amount);
+  insert_ware(t, w, ware_name, ware_description, ware_price, ware_shelf, ware_amount);
 }
 
 

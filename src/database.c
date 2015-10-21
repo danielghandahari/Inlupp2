@@ -71,8 +71,8 @@ int elem_compare(void *e1, void *e2)
   shelf *shlf1 = (shelf*)e1;
   shelf *shlf2 = (shelf*)e2;
 
-  assert(ElementOrShelfOf(shlf1)); 
-  assert(ElementOrShelfOf(shlf2));
+  assert(shlf1); 
+  assert(shlf2);
   
   return key_compare(shlf1->location , shlf2->location);
 }
@@ -266,4 +266,14 @@ ware *get_ware(node *n)
 char *get_ware_name(ware *w)
 {
   return w->name;
+}
+
+char *get_ware_desc(ware *w)
+{
+  return w->desc;
+}
+
+int get_ware_price(ware *w)
+{
+  return *(w->price);
 }
