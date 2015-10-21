@@ -6,6 +6,8 @@
 #include <assert.h>
 #include <database.h>
 #include <tree_secret.h>
+#include <list_secret.h>
+
 
 #define Equal action == 0
 #define ElementOf(SHELF) &(SHELF)
@@ -21,7 +23,7 @@ struct _ware_
 {
   char *name;
   char *desc;
-  int price;
+  int *price;
 
   list *shelves;
 };
@@ -33,7 +35,7 @@ struct _ware_
 struct _shelf_
 {
   char *location;
-  int amount;
+  int *amount;
 };
 
 struct _sum_
@@ -43,6 +45,11 @@ struct _sum_
 //===================================
 
 
+ware * create_ware()
+{
+  ware *w = calloc(1, sizeof(ware));
+  return w;
+}
 
 
 
@@ -108,15 +115,15 @@ void incr_shelf_and_tot(list *l, void *elembox, int incr)
 
   incr_shelf(s, incr);
 
-  int totalamount  = (int)l->stuff;
-  totalamount += incr;
+  int *totalamount  = (int*)l->stuff;
+  (*totalamount) += incr;
 }
 
 
 
 void incr_shelf(shelf *s, int incr)
 {
-  s->amount += incr;
+  *(s->amount) += incr;
 }
 
 
@@ -214,16 +221,40 @@ void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice
       if(shelfexists)
 	{
 	  elem *e = get_elem_in_list_DB(w->shelves, shelfloc);
-	  shelf *s = (shelf*)e->box;
-
-	  s->amount += shelfamount;
-	  int i = (int)w->shelves->stuff;
-	  i += shelfamount;
+	  
+	  incr_shelf_and_tot(w->shelves, e->box, shelfamount);       
 	}
       if(!shelfexists)
 	{
-	  
+	  elem *e = create_elem();
+
+	  insert_elem_in_list(w->shelves, e);
+	  incr_shelf_and_tot(w->shelves, e->box, shelfamount);       
 	}
+    }
+  else
+    {
+      node *n = create_node();
+      ware *w = create_ware();
+      list *l = create_list();
+      elem *e = create_elem();
+
+      w->name = warename;
+      w->desc = waredesc;
+      *(w->price) = wareprice;
+      w->shelves = l;
+
+      insert_elem_in_list(l, e);
+
+      shelf *s = (shelf*)e->box;
+
+      s->location = shelfloc;
+      *(s->amount) = shelfamount;
+
+      n->key = warename;
+      n->content = w;
+
+      append_node_in_tree(t, n);
     }
 }
 

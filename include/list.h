@@ -4,22 +4,11 @@
 typedef struct _list_ list;
 typedef struct _elem_ elem;
 
-struct _list_
-{
-  void *stuff;
-
-  elem *first;
-  elem *last;
-};
-
-struct _elem_
-{
-  void *box;
-
-  elem *next;
-};
 
 
+elem * create_elem();
+
+list * create_list();
 
 
 bool find_elem_in_list(list *l, void *elembox);
@@ -34,7 +23,9 @@ elem * get_elem_in_list(list *l, void *elembox);
 int elem_compare(void *e1, void *e2); 
 
 
+void insert_elem_in_list(list *l, elem *e);
 
+elem * get_last_elem(list *l);
 
 
 

@@ -14,34 +14,34 @@ typedef struct _node_ node;
 typedef struct _sum_ sum;
 
 
-
-//ICKE GENERELLA FUNKTIONER I TREE.C
-
+ware * create_ware();
 
 
-//====================================
-
-
-
-//ICKE GENERELLA FUNKTIONER FÖR TREE.C
 void incr_shelf_and_tot(list *l, void *elembox, int incr);
 
 void incr_shelf(shelf *s, int incr);
-//====================================
 
 
 
 
+bool find_elem_in_list_DB(list *l, char *key);
 
-//GENERELLA FÖR BÅDE TREE OCH LIST
-bool check_shelf_used_in_tree(tree *t, void *elembox);
+bool find_elem_DB(elem *e, char *key);
 
-bool check_shelf_used(node **n, void *elembox);
+elem * get_elem_DB(elem *e, char *key);
+
+
+
+
+bool check_shelf_used_in_tree(tree *t, char *key);
+
+bool check_shelf_used(node **n, char *key);
 
 
 
 bool check_used_by_item(tree *t, void *key, void *shelfloc);
-//=================================
+
+
 
 tree *create_new_tree();
 

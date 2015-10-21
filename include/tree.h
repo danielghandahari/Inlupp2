@@ -55,6 +55,7 @@ void copy_node(node *from, node *to);
 
 void rem_node_in_tree(tree *t, void *key);
 
+void rem_node(node **n, void *key);
 
 node **find_max_to_left(node **n);
 
