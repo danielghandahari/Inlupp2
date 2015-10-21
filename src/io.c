@@ -9,12 +9,14 @@ char get_menu_choice(char *prompt)
 {
   char c = '\0';
 
-  while(1)
+  while(1) //TODO fix if read_char returns false
     {
       printf("%s", prompt);
       print_choice();
       if(read_char(&c)) break;
     }
+
+  log_info("%20s%20s'%c'", "get_menu_choice", "c", c);
 
   return c;
 }
@@ -30,7 +32,7 @@ void user_input_string(char *dest, const char *m)
       if(read_string(tmp)) break;
     }
 
-  log_info("%20s%s", "user_input_string", tmp);
+  log_info("%20s%20s \"%s\"", "user_input_string", "tmp", tmp);
   strcpy(dest, tmp);
 }
 

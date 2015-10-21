@@ -2,12 +2,8 @@
 
 #include <read.h>
 
-#include <ctype.h>
-#include <stdlib.h>
 
 
-
-// TODO empty strings are to be catched and killed
 bool read_stream(char *string_dest, size_t buffer_size, FILE *input)
 {
   char *buffer = (char *)calloc(1, sizeof(char) * buffer_size);
@@ -20,7 +16,7 @@ bool read_stream(char *string_dest, size_t buffer_size, FILE *input)
   buffer[num_of_chars] = '\0';
   strcpy(string_dest, buffer);
 
-  log_info("\tread_stream\tbuffer \"%s\"", buffer);
+  log_info("\t%-20s%-20s \"%s\"", "read_stream", "buffer", buffer);
   free(buffer);
   return true;
 
@@ -68,10 +64,9 @@ bool read_char(char *dest)
 
   check_debug(read_char_aux(tmp), "\tread_char\tread_stream failed");
   check_debug(isalnum(tmp[0]), "\tread_char\ttmp is not alphabetic nor numeric");
-  log_info("\tread_char\ttmp '%c'", tmp[0]);
+  log_info("%20s%20s'%c'", "read_char", "tmp", tmp[0]);
 
   dest[0] = tmp[0];
-
   return true; 
 
  error:

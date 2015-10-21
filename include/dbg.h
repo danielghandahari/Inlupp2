@@ -9,6 +9,8 @@
 #define debug(M, ...)
 
 #else
+//TODO #define DUMP(func, varname, format)
+
 #define debug(M, ...)				\
   fprintf(stderr,				\
 	  "[DEBUG] %s:%d: " M "\n",		\
