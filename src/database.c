@@ -277,3 +277,37 @@ int get_ware_price(ware *w)
 {
   return *(w->price);
 }
+
+
+
+list *get_list(ware *w)
+{
+  return w->shelves;
+}
+
+
+elem *get_first_shelf(ware *w)
+{
+  return w->shelves->first;
+}
+
+
+elem *get_next_shelf(elem *e)
+{
+  return e->next;
+}
+
+
+char *get_shelf_loc(elem *e)
+{
+  shelf *s = (shelf*)e->box;
+  return s->location;
+}
+
+
+
+int get_shelf_amount(elem *e)
+{
+  shelf *s = (shelf*)e->box;
+  return *(s->amount);
+}

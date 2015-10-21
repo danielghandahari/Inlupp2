@@ -1,0 +1,3 @@
+[INFO] (read.c:23) 	read_stream	buffer "ANEEEJ
+"
+[INFO] (read.c:71) 	read_char	tmp 'A'

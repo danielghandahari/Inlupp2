@@ -54,7 +54,7 @@ char *get_ware_name(ware *w);
 char *get_ware_desc(ware *w);
 int get_ware_price(ware *w);
 
-shelves *get_shelves(ware *w);
+list *get_list(ware *w);
 elem *get_first_shelf(ware *w);
 elem *get_next_shelf(elem *e);
 
