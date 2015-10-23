@@ -10,13 +10,13 @@ bool read_stream(char *string_dest, size_t buffer_size, FILE *input)
 
   ssize_t num_of_chars = getline(&buffer, &buffer_size, input);
   
-  check_debug(buffer, "\tread_stream\tbuffer is NULL pointer");
-  check_debug(num_of_chars > 0, "\tread_stream\tunable to read stream or empty string");
+  check_debug(buffer, "'buffer' is NULL pointer");
+  check_debug(num_of_chars > 0, "Unable to read stream or empty string");
 
-  buffer[num_of_chars] = '\0';
+  buffer[num_of_chars-1] = '\0'; //This removes the '\n' at the end of the buffer
   strcpy(string_dest, buffer);
 
-  log_info("\t%-20s%-20s \"%s\"", "read_stream", "buffer", buffer);
+  log_info("read_stream", buffer, "%s");
   free(buffer);
   return true;
 
@@ -32,7 +32,7 @@ bool read_stream(char *string_dest, size_t buffer_size, FILE *input)
 bool read_string(char *dest)
 {
   char tmp[STREAM_LENGTH] = {'\0'};
-  check_debug(read_string_aux(tmp), "\tread_string\tread_stream failed");
+  check_debug(read_string_aux(tmp), "'read_stream' failed");
 
   for(int i = 0; tmp[i] != '\0'; ++i)
     {
@@ -43,11 +43,8 @@ bool read_string(char *dest)
 	}
     }
 
-  check_debug(strlen(tmp) > 1, "\tread_string\tempty string");
-
-  log_info("\tread_string\ttmp \"%s\"", tmp);
+  check_debug(strlen(tmp) >= 1, "'tmp' is an empty string");
   strcpy(dest, tmp);
-
   return true;
   
  error:
@@ -62,9 +59,8 @@ bool read_char(char *dest)
 {
   char tmp[2] = {'\0'};
 
-  check_debug(read_char_aux(tmp), "\tread_char\tread_stream failed");
-  check_debug(isalnum(tmp[0]), "\tread_char\ttmp is not alphabetic nor numeric");
-  log_info("%20s%20s'%c'", "read_char", "tmp", tmp[0]);
+  check_debug(read_char_aux(tmp), "'read_stream' failed");
+  check_debug(isalnum(tmp[0]), "'tmp' is not alphabetic nor numeric");
 
   dest[0] = tmp[0];
   return true; 
@@ -79,7 +75,7 @@ bool is_number(char *s)
 {
   for(int i = 0; s[i] != '\0'; ++i)
     {
-      check_debug(isdigit(s[i]), "\tis_number\ts is not numeric");
+      check_debug(isdigit(s[i]), "'s' is not numeric");
     }
 
   return true;
@@ -94,13 +90,9 @@ bool read_int(int *dest)
 {
   char buffer[STREAM_LENGTH];
 
-  check_debug(read_string(buffer), "\tread_int\tread_string failed");
-  check_debug(strlen(buffer) > 1, "\tread_int\tempty string");
-  check_debug(is_number(buffer), "\tread_int\tbuffer is not a numeric value");
-  
-  log_info("\tread_int\tbuffer \"%s\"", buffer);
+  check_debug(read_string(buffer), "'read_string' failed");
+  check_debug(is_number(buffer), "'is_number' failed");
   *dest = atoi(buffer);
-
   return true;
 
  error:
@@ -113,15 +105,14 @@ bool read_shelf(char *dest)
 {
   char s[STREAM_LENGTH];
 
-  check_debug(read_string(s), "\tread_shelf\tread_string failed");
-  check_debug(isalpha(s[0]), "\tread_shelf\ts[0] is not alphabetic");
-  check_debug(is_number(&s[1]), "\tread_shelf\ttail of s is not mumeric");
+  check_debug(read_string(s), "'read_string' failed");
+  check_debug(strlen(s) > 1, "'s' is to short");
+  check_debug(strlen(s) < 4, "'s' is to long");
+  check_debug(isalpha(s[0]), "head of 's' is not alphabetic");
+  check_debug(is_number(&s[1]), "Tail of 's' is not numeric");
 
   s[0] = toupper(s[0]);
-  log_info("\tread_shelf\ts \"%s\"", s);
-
   strcpy(dest, s);
-
   return true;
 
  error:

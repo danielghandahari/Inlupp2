@@ -1,3 +1,5 @@
+#define _GNU_SOURCE
+
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
@@ -7,6 +9,8 @@
 #include <database.h>
 #include <tree_secret.h>
 #include <list_secret.h>
+#include <dbg.h>
+#include <string.h>
 
 
 #define Equal action == 0
@@ -59,11 +63,16 @@ shelf *create_shelf()
 
 int key_compare(void *key1, void *key2)
 {
+  assert(key1 && key2);
+
   char *str1 = (char*)key1;
   char *str2 = (char*)key2;
 
-  assert(strcmp(key1, "") == 0);
-  assert(strcmp(key2, "") == 0);
+  log_info("key_compare", str1, "%s");
+  log_info("key_compare", str2, "%s");
+
+  assert(strlen(str1) > 0);
+  assert(strlen(str2) > 0);
   
   return strcmp(str1, str2);
 }
@@ -161,13 +170,14 @@ elem * get_elem_DB(elem *e, char *key)
   elem *current = e;
   shelf *s = (shelf*)current->box;
   
-  while (e)
+  while (current)
     {
       int action = key_compare(s->location, key);
       
       if (Equal) return current;
       current = current->next;
     }
+
   return NULL;
 }
 
@@ -176,35 +186,55 @@ elem * get_elem_DB(elem *e, char *key)
 
 ware *ware_exists(tree *t, char *warename)
 {
-  node *n = get_node_in_tree(t, warename);
+  log_info("ware_exists", t, "%p");
+  log_info("ware_exists", warename, "%p");
+  log_info("ware_exists", warename, "%s");
+
+  node *n = get_node_in_tree(t, warename); //warename skickas in som om det vore en 'key'.
+  log_info("ware_exists", n, "%p");
+
   if(!n) return NULL;
 
   ware *w = (ware*)n->content;
+  log_info("ware_exists", w, "%p");
+
   return w;
 }
 
-void get_ware_at_aux(node *n, int index, int *acc, ware *w)
+ware *get_ware_at_aux(node *n, int index, int *acc)
 {
-  if(*acc <= index)
-    {
-      if(n->left) get_ware_at_aux(n->left, index, acc, w);
-  
-      if(index == *acc) w = get_ware(n);
-      else ++(*acc);
+  log_info("get_ware_at_aux", n, "%p");
 
-      if(n->right) get_ware_at_aux(n->right, index, acc, w);
-    }
+  log_info("get_ware_at_aux", *acc, "%d");
+  log_info("get_ware_at_aux", index, "%d");
+
+  if(*acc > index) return NULL; //might cause logical faults
+
+  if(n->left) get_ware_at_aux(n->left, index, acc);
+  
+  if(index == *acc) return get_ware(n);
+  else ++(*acc);
+
+  if(n->right) get_ware_at_aux(n->right, index, acc);
+
+  return NULL;
 }
 
 ware *get_ware_at(tree *t, int index)
 {
-  int *acc = 0;
+  log_info("get_ware_at", t, "%p");
+  log_info("get_ware_at", index, "%d");
+
+  int *acc = calloc(1, sizeof(int));
+  *acc = 0;
   node *root = get_root(t);
 
   if(!root) return NULL;
 
-  ware *w = NULL;
-  get_ware_at_aux(root, index, acc, w);
+  ware *w = get_ware_at_aux(root, index, acc);
+  log_info("get_ware_at", w, "%p");
+
+  free(acc);
 
   return w;
 }
@@ -218,19 +248,29 @@ bool shelf_ok(tree *t, ware *w, char *shelfloc)
 
 void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice, char *shelfloc, int shelfamount)
 {
+  log_info("insert_ware", t, "%p");
+  log_info("insert_ware", w, "%p");
+  log_info("insert_ware", warename, "%s");
+
+  log_info("insert_ware", shelfloc, "%s");
+  log_info("insert_ware", shelfamount, "%d");
+
   if (w)
     {
       bool shelfexists = find_elem_in_list_DB(w->shelves, shelfloc);
+      log_info("insert_ware", shelfexists, "%d");
 
       if(shelfexists)
 	{
 	  elem *e = get_elem_in_list_DB(w->shelves, shelfloc);
+	  log_info("add_ware", e, "%p");
 	  
 	  incr_shelf_and_tot(w->shelves, e->box, shelfamount);       
 	}
       if(!shelfexists)
 	{
 	  elem *e = create_elem();
+	  log_info("add_ware", e, "%p");
 
 	  insert_elem_in_list(w->shelves, e);
 	  incr_shelf_and_tot(w->shelves, e->box, shelfamount);       
@@ -243,21 +283,27 @@ void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice
       list *l = create_list();
       elem *e = create_elem();
 
-      w->name = warename;
-      w->desc = waredesc;
+      log_info("insert_ware", n, "%p");
+      log_info("insert_ware", w, "%p");
+      log_info("insert_ware", l, "%p");
+      log_info("insert_ware", e, "%p");
+
+      n->key = strdup(warename); //TODO generate key
+      n->content = w;
+
+      w->name = strdup(warename);
+      w->desc = strdup(waredesc);
       w->price = wareprice;
       w->shelves = l;
 
       insert_elem_in_list(l, e);
 
       shelf *s = create_shelf();
+      log_info("insert_ware", s, "%p");
       e->box = s;
 
-      s->location = shelfloc;
+      s->location = strdup(shelfloc);
       s->amount = shelfamount;
-
-      n->key = warename;
-      n->content = w;
 
       append_node_in_tree(t, n);
     }
@@ -315,4 +361,11 @@ int get_shelf_amount(elem *e)
 {
   shelf *s = (shelf*)e->box;
   return s->amount;
+}
+
+
+void destroy_warehouse(tree *t)
+{
+  //TODO implement everything
+  if(t) return;
 }

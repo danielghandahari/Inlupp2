@@ -41,6 +41,6 @@ void choose_option(bool *exit, tree *t)
     case 'x':
     case 'X': exit_program(exit, t); break;
 
-    default: printf("This should not happen!\n");
+    default: printf("Incorrect input\n");
     }
 }

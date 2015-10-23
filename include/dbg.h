@@ -5,17 +5,19 @@
 #include <errno.h>
 #include <string.h>
 
+#define INDENT "%-19s%-12s%-5d"
+
 #ifdef NDEBUG
 #define debug(M, ...)
 
 #else
-//TODO #define DUMP(func, varname, format)
-
 #define debug(M, ...)				\
   fprintf(stderr,				\
-	  "[DEBUG] %s:%d: " M "\n",		\
-	  __FILE__,				\
+	  INDENT "%s\n",			\
+	  "[DEBUG]",				\
+	  __FILE__":",				\
 	  __LINE__,				\
+	  M,					\
 	  ##__VA_ARGS__)
 #endif
 #define clean_errno()				\
@@ -37,10 +39,13 @@
 	  clean_errno(),			\
 	  ##__VA_ARGS__)
 
-#define log_info(M, ...)			\
-  fprintf(stderr, "[INFO] (%s:%d) " M "\n",	\
-	  __FILE__,				\
+#define log_info(func, varname, format, ...)	\
+  fprintf(stderr,				\
+	  INDENT "%-20s%-20s" format "\n",	\
+	  "[INFO]",				\
+	  __FILE__":",				\
 	  __LINE__,				\
+	  func, #varname, varname		\
 	  ##__VA_ARGS__)
 
 #define check(A, M, ...)			\

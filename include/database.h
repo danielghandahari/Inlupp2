@@ -63,4 +63,6 @@ int get_shelf_amount(elem *e);
 
 ware *get_ware_at(tree *t, int index);
 ware *get_ware(node *n);
+
+void destroy_warehouse(tree *t);
 #endif

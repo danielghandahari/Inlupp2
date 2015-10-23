@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <tree.h>
 #include <tree_secret.h>
+#include <dbg.h>
 
 
 
@@ -25,38 +26,32 @@ tree * create_tree()
   return t;
 }
 
-
-
 node * create_node()
 {
   node *n = calloc(1, sizeof(node));
   return n;
 }
-
-
 			 
-node * check_node_exists(node **n, void *key)
+node * check_node_exists(node **nn, void *key)
 {
-  node **current = n;
+  log_info("check_node_exists", nn, "%p");
+  log_info("check_node_exists", key, "%p");
 
-  while (*current != NULL)
-    {
-      int action = key_compare((*current)->key, key); 
+  if(*nn == NULL) return NULL;
 
-      if (Equal) return (*current);
+  node *n_current = *nn;
+  void *n_key = n_current->key;
 
-      if (Left)
-	{
-	  current = PtrToLeftNode(current);
-	  check_node_exists(current, key);
-	}
+  log_info("check_node_exists", n_key, "%p");
 
-      if (Right)
-	{
-	  current = PtrToRightNode(current);
-	  check_node_exists(current, key);
-	}
-    }
+  int result = key_compare(n_key, key);
+
+  log_info("check_node_exists", result, "%d");
+
+  if(result == 0) return n_current;
+  else if(result < 0) return check_node_exists(&(n_current->left), key);
+  else if(result > 0) return check_node_exists(&(n_current->right), key);
+
   return NULL;
 }
 
@@ -64,6 +59,9 @@ node * check_node_exists(node **n, void *key)
 			 
 bool check_node_exists_in_tree(tree *t, void *key)
 {
+  log_info("check_node_exists_in_tree", t, "%p");
+  log_info("check_node_exists_in_tree", key, "%p");
+
   assert(t == NULL);
   return check_node_exists(&(t->root), key);   
 }
@@ -72,7 +70,10 @@ bool check_node_exists_in_tree(tree *t, void *key)
 			 
 void append_node(node **n, node *mynode)
 {
-  assert(mynode == NULL);
+  log_info("append_node", n, "%p");
+  log_info("append_node", mynode, "%p");
+
+  assert(mynode != NULL);
 
   node **current = n;
 
@@ -96,7 +97,7 @@ void append_node(node **n, node *mynode)
 
 void append_node_in_tree(tree *t, node *mynode)
 {
-  assert(t == NULL);
+  assert(t != NULL);
   return append_node(&(t->root), mynode);
 }
 
@@ -106,37 +107,26 @@ node * get_node_in_tree(tree *t, void *key)
   return get_node(&(t->root), key);
 }
 
-
-
 node * get_node(node **n, void *key)
 {
   return check_node_exists(n, key);
-
 }
-
-
 
 bool find_node_in_tree(tree *t, void *key)
 {
   return find_node(&(t->root), key);
 }
 
-
-
 bool find_node(node **n, void *key)
 {
   return check_node_exists(n, key);
 }
-
-
 
 void del_node_zero_child(node **n)
 {
   free(*n);
   *n = NULL;
 }
-
-
 
 void del_node_one_child(node **n)
 {
@@ -157,8 +147,6 @@ void del_node_one_child(node **n)
     }
     else assert(false);
 }
-
-
 
 void del_node_two_child(node **n)
 {

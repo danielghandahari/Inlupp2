@@ -40,7 +40,7 @@ elem * get_elem(elem *e, void *elembox)
 {
   elem *current = e;
 
-  while (e)
+  while (current)
     {
       int action = elem_compare(current->box, elembox);
       
@@ -79,14 +79,14 @@ void insert_elem_in_list(list *l, elem *e)
     {
       l->first = e;
       l->last = e;
+      e->next = NULL;
     }
-  if(l->first)
+  else
     {
-      elem *lastelem = get_last_elem(l);
-
-      lastelem->next = e;
+      l->last->next = e;
       l->last = e;
-    }
+      e->next = NULL;
+    }  
 }
 
 

@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <menu.h>
+#include <dbg.h>
 
 int main()
 {

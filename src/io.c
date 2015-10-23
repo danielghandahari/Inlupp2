@@ -9,14 +9,12 @@ char get_menu_choice(char *prompt)
 {
   char c = '\0';
 
-  while(1) //TODO fix if read_char returns false
+  while(1)
     {
       printf("%s", prompt);
       print_choice();
       if(read_char(&c)) break;
     }
-
-  log_info("%20s%20s'%c'", "get_menu_choice", "c", c);
 
   return c;
 }
@@ -32,7 +30,6 @@ void user_input_string(char *dest, const char *m)
       if(read_string(tmp)) break;
     }
 
-  log_info("%20s%20s \"%s\"", "user_input_string", "tmp", tmp);
   strcpy(dest, tmp);
 }
 
@@ -40,14 +37,13 @@ void user_input_shelf(char *dest, const char *m)
 {
   char tmp[STREAM_LENGTH] = {'\0'};
 
-  while(1) //TODO check for invalid input
+  while(1)
     {
       printf("%s", m);
       print_choice();
       if(read_shelf(tmp)) break;
     }
 
-  log_info("%20s%s", "user_input_shelf", tmp);
   strcpy(dest, tmp);
 }
 
@@ -62,7 +58,6 @@ void user_input_int(int *dest, const char *m)
       if(read_int(&tmp)) break;
     }
 
-  log_info("%20s%i", "user_input_int", tmp);
   *dest = tmp;
 }
 
@@ -80,14 +75,16 @@ void add_ware(tree *t)
 
   char ware_name[STREAM_LENGTH] = {'\0'};
   read_name(ware_name);
+  log_info("add_ware", ware_name, "%s");
 
   void *w = ware_exists(t, ware_name);
+  log_info("add_ware", w, "%p");
 
   char ware_description[STREAM_LENGTH] = {'\0'};
   int ware_price = -1;
   
   if(w)
-    {b
+    {
       printf("\nWare already exists in warehouse\n\n");
       print_ware(w);
     }
@@ -105,15 +102,10 @@ void add_ware(tree *t)
   int ware_amount;
   read_amount(&ware_amount);  
 
-
-  printf("\n");
-  printf("%-15s%s\n", "Name", ware_name);
-  printf("%-15s%s\n", "Description", ware_description);
-  printf("%-15s%i\n", "Price", ware_price);
-  printf("%-15s%s\n", "Shelf", ware_shelf);
-  printf("%-15s%i\n", "Amount", ware_amount);
-
   insert_ware(t, w, ware_name, ware_description, ware_price, ware_shelf, ware_amount);
+
+  //TODO move to print.c
+  printf("\nWare added to warehouse\n\n");
 }
 
 
@@ -124,12 +116,15 @@ void remove_ware(tree *t)
 
   //TODO
 
-  //print warehouse
-  //get index of ware to remove
-  //print ware
+  int index = print_warehouse(t);
+
+  ware *w = get_ware_at(t, index);
+  print_ware(w);
+
   //get shelf to remove
   //remove shelf
   //print result
+
 }
 
 
@@ -140,8 +135,10 @@ void edit_ware(tree *t)
 
   //TODO
 
-  //print warehouse
-  //get index of ware to be edited
+  int index = print_warehouse(t);
+
+  ware *w = get_ware_at(t, index);
+  print_ware(w);
 
   //again:
 
@@ -173,13 +170,16 @@ int print_warehouse(tree *t)
 {
   print_warehouse_header();
 
+  log_info("print_warehouse", t, "%p");
+
   int index = 0;
   int page = 0;
   ware *w = get_ware_at(t, index);
+
+  log_info("print_warehouse", w, "%p");
   
   if(!w)
     {
-      //TODO move to print.c
       print_warehouse_empty();
       goto exit;
     }
@@ -187,9 +187,7 @@ int print_warehouse(tree *t)
  print_next_page:
   while(w)
     {
-      //TODO move to print.c
-      printf("%-6i ", (index) + 1);
-      printf("%s\n", get_ware_name(w));
+      print_index_name(index, get_ware_name(w));
       ++index;
       
       w = get_ware_at(t, index);
@@ -198,14 +196,10 @@ int print_warehouse(tree *t)
   if(!w) print_end_of_warehouse();
 
  incorrect_input:
-
-  //TODO move to print.c
-  printf("Choose a ware 1 - 20\n");
-  printf("[P]rint next page\n");
-  printf("E[X]it warehouse viewer\n");
+  print_p_wh_menu();
 
   char input[STREAM_LENGTH] = {'\0'};
-  read_string(input); //TODO check valid input
+  read_string(input);
 
   //TODO move to different fuction
   switch(input[0])
@@ -225,7 +219,12 @@ int print_warehouse(tree *t)
       if(is_string_digit(input))
 	{
 	  int i = atoi(input);
-	  if(0 < i && i <= PRINT_TILL_CHECK) return i - 1 + 20 * page;
+	  if(0 < i && i <= PRINT_TILL_CHECK)
+	    {
+	      int final = i - 1 + 20 * page;
+	      print_ware(get_ware_at(t, final));
+	      return final;
+	    }
 	}
       
       goto incorrect_input;
@@ -241,15 +240,21 @@ void pack_trolley(tree *t)
 {
   print_trolley_header();
 
-  //TODO
+  bool again = true;
 
-  //do
+  do
+    {
+      int index = print_warehouse(t);
 
-  //print warehouse
-  //select ware to pack
-  //get number of wares to put in the trolley
+      ware *w = get_ware_at(t, index);
+      print_ware(w); //stuff
 
-  //while(pack another ware)
+      //get amount to pack
+
+      //pack another ware?
+      again = false;
+
+    } while(again);
 
   //print trolley
 }
@@ -259,6 +264,6 @@ void pack_trolley(tree *t)
 void exit_program(bool *exit, tree *t)
 {
   print_exit();
-  //TODO destroy_warehouse(t);
+  destroy_warehouse(t);
   *exit = true;
 }

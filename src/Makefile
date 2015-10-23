@@ -1,6 +1,6 @@
 IDIR	=../include
 CC	=gcc
-CFLAGS 	=-Wall -std=c11 -ggdb -I$(IDIR)
+CFLAGS 	=-Wall -std=c11 -ggdb -Wextra -Werror -Wfatal-errors -I$(IDIR)
 CFILE	=database.c io.c list.c main.c menu.c read.c tree.c print.c
 
 OUT	=inlupp2
@@ -28,4 +28,4 @@ double_hash:
 rm_out:
 	@rm -f $(OUT)
 
-all:double_hash rm_out $(OUT) clean
+all:double_hash rm_out $(OUT) clean double_hash

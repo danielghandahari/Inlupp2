@@ -21,6 +21,8 @@ void print_edit_header();
 void print_warehouse_header();
 void print_warehouse_empty();
 void print_end_of_warehouse();
+void print_index_name(int index, char *ware_name);
+void print_p_wh_menu();
 
 void print_trolley_header();
 

@@ -1,5 +1,6 @@
 #include <print.h>
 #include <database.h>
+#include <dbg.h>
 
 #define LINE_LENGTH 25
 #define print_delimiter print_line(LINE_LENGTH, '=')
@@ -30,32 +31,6 @@ void print_line(const int line_length, const char c)
   printf("\n");
 }
 
-
-void print_ware_shelves(ware *w)
-{
-  print_delimiter;
-  /*
-  for(elem *e = get_first_shelf(w); e; get_next_shelf(e))
-    {
-      printf("%6s%6i\n", get_shelf_loc(e), get_shelf_amount(e));
-    }
-  */
-  printf("\n");
-}
-
-
-void print_ware(ware *w)
-{
-  print_delimiter;
-  printf("\n");
-
-  printf("%-18s%s\n", "Ware name", get_ware_name(w));
-  printf("%-18s%s\n", "Ware description", get_ware_desc(w));
-  printf("%-18s%i\n", "Ware price", get_ware_price(w));
-
-  print_ware_shelves(w);
-}
-
 void print_incorrect_input()
 {
   printf("\n");
@@ -66,6 +41,10 @@ void print_choice()
 {
   printf("$ ");
 }
+
+
+
+// menu
 
 void print_menu()
 {
@@ -81,6 +60,39 @@ void print_menu()
   printf("[P]rint the warehouse\n");
   printf("Pa[C]k your trolley\n");
   printf("E[X]it\n\n");
+}
+
+
+
+// ware
+
+void print_ware_shelves(ware *w)
+{
+  print_delimiter;
+  
+  elem *e = get_first_shelf(w);
+
+    while(e)
+    {
+      log_info("print_ware_shelves", e, "%p");
+
+      printf("%-4s%i\n", get_shelf_loc(e), get_shelf_amount(e));
+      e = get_next_shelf(e);
+    }
+  
+  printf("\n");
+}
+
+void print_ware(ware *w)
+{
+  print_delimiter;
+  printf("\n");
+
+  printf("%-18s%s\n", "Ware name", get_ware_name(w));
+  printf("%-18s%s\n", "Ware description", get_ware_desc(w));
+  printf("%-18s%i\n", "Ware price", get_ware_price(w));
+
+  print_ware_shelves(w);
 }
 
 
@@ -140,6 +152,18 @@ void print_warehouse_empty()
 {
   printf("\n");
   print_centered("The warehouse is empty", LINE_LENGTH);
+}
+
+void print_index_name(int index, char *ware_name)
+{
+  printf("%-6i %s\n", index + 1, ware_name);
+}
+
+void print_p_wh_menu()
+{
+  printf("Choose a ware 1 - 20\n");
+  printf("[P]rint next page\n");
+  printf("E[X]it warehouse viewer\n");
 }
 
 
