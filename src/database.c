@@ -361,6 +361,7 @@ int get_shelf_amount(elem *e)
 {
   shelf *s = (shelf*)e->box;
   return s->amount;
+
 }
 
 
@@ -368,4 +369,5 @@ void destroy_warehouse(tree *t)
 {
   //TODO implement everything
   if(t) return;
+
 }
