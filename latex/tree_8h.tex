@@ -1,0 +1,96 @@
+\hypertarget{tree_8h}{}\section{Documents/\+I\+O\+O\+P\+M/\+Inlupp2/include/tree.h File Reference}
+\label{tree_8h}\index{Documents/\+I\+O\+O\+P\+M/\+Inlupp2/include/tree.\+h@{Documents/\+I\+O\+O\+P\+M/\+Inlupp2/include/tree.\+h}}
+
+
+Header file for a general binary search tree.  
+
+
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{tree_8h_abc757cf78b88c11432ad751dced317f6}{}typedef struct \hyperlink{struct__tree__}{\+\_\+tree\+\_\+} {\bfseries tree}\label{tree_8h_abc757cf78b88c11432ad751dced317f6}
+
+\item 
+\hypertarget{tree_8h_ae2f6cc247390bcd39c396880935b4d0c}{}typedef struct \hyperlink{struct__node__}{\+\_\+node\+\_\+} {\bfseries node}\label{tree_8h_ae2f6cc247390bcd39c396880935b4d0c}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{tree_8h_a4a7e8458364f3f44e6aaed93aad3a3d3}{}\hyperlink{struct__node__}{node} $\ast$ {\bfseries create\+\_\+node} ()\label{tree_8h_a4a7e8458364f3f44e6aaed93aad3a3d3}
+
+\item 
+\hypertarget{tree_8h_a86ae788ee3c9750f57c88ff424f56066}{}\hyperlink{struct__tree__}{tree} $\ast$ {\bfseries create\+\_\+tree} ()\label{tree_8h_a86ae788ee3c9750f57c88ff424f56066}
+
+\item 
+\hypertarget{tree_8h_a8f2a4aedc98425b346c167cf20db69fc}{}bool {\bfseries check\+\_\+node\+\_\+exists\+\_\+in\+\_\+tree} (\hyperlink{struct__tree__}{tree} $\ast$t, void $\ast$key)\label{tree_8h_a8f2a4aedc98425b346c167cf20db69fc}
+
+\item 
+\hypertarget{tree_8h_a051f7c248a122a7414cb4ebff1fdc080}{}\hyperlink{struct__node__}{node} $\ast$ {\bfseries check\+\_\+node\+\_\+exists} (\hyperlink{struct__node__}{node} $\ast$$\ast$n, void $\ast$key)\label{tree_8h_a051f7c248a122a7414cb4ebff1fdc080}
+
+\item 
+\hypertarget{tree_8h_ad7d0042e0e078ee2f69b1ba4dd915513}{}int {\bfseries key\+\_\+compare} (void $\ast$key1, void $\ast$key2)\label{tree_8h_ad7d0042e0e078ee2f69b1ba4dd915513}
+
+\item 
+\hypertarget{tree_8h_a951ec7b3beb39f3d89be1f2179b89f07}{}void {\bfseries append\+\_\+node\+\_\+in\+\_\+tree} (\hyperlink{struct__tree__}{tree} $\ast$t, \hyperlink{struct__node__}{node} $\ast$mynode)\label{tree_8h_a951ec7b3beb39f3d89be1f2179b89f07}
+
+\item 
+\hypertarget{tree_8h_a065805d181870c281fc1d073ba94f87d}{}void {\bfseries append\+\_\+node} (\hyperlink{struct__node__}{node} $\ast$$\ast$n, \hyperlink{struct__node__}{node} $\ast$mynode)\label{tree_8h_a065805d181870c281fc1d073ba94f87d}
+
+\item 
+\hypertarget{tree_8h_a1df01d949eae9cf587071a46cbae5ef8}{}\hyperlink{struct__node__}{node} $\ast$ {\bfseries get\+\_\+node\+\_\+in\+\_\+tree} (\hyperlink{struct__tree__}{tree} $\ast$t, void $\ast$key)\label{tree_8h_a1df01d949eae9cf587071a46cbae5ef8}
+
+\item 
+\hypertarget{tree_8h_a8fc6f8118ffc21f77c0b818c0f48a84e}{}\hyperlink{struct__node__}{node} $\ast$ {\bfseries get\+\_\+node} (\hyperlink{struct__node__}{node} $\ast$$\ast$n, void $\ast$key)\label{tree_8h_a8fc6f8118ffc21f77c0b818c0f48a84e}
+
+\item 
+\hypertarget{tree_8h_a11f81ca9cff0704a8c7ac7aff2344cac}{}bool {\bfseries find\+\_\+node\+\_\+in\+\_\+tree} (\hyperlink{struct__tree__}{tree} $\ast$t, void $\ast$key)\label{tree_8h_a11f81ca9cff0704a8c7ac7aff2344cac}
+
+\item 
+\hypertarget{tree_8h_aa53e0d53ef3a9bb4e7b7629396e9978c}{}bool {\bfseries find\+\_\+node} (\hyperlink{struct__node__}{node} $\ast$$\ast$n, void $\ast$key)\label{tree_8h_aa53e0d53ef3a9bb4e7b7629396e9978c}
+
+\item 
+\hypertarget{tree_8h_a18897453e0e26f25143e188754746c45}{}void {\bfseries del\+\_\+node\+\_\+zero\+\_\+child} (\hyperlink{struct__node__}{node} $\ast$$\ast$n)\label{tree_8h_a18897453e0e26f25143e188754746c45}
+
+\item 
+\hypertarget{tree_8h_ab87ed09c261a9e3b82533afd61b817be}{}void {\bfseries del\+\_\+node\+\_\+one\+\_\+child} (\hyperlink{struct__node__}{node} $\ast$$\ast$n)\label{tree_8h_ab87ed09c261a9e3b82533afd61b817be}
+
+\item 
+\hypertarget{tree_8h_a0b166b3424a7d80c82d0c3af50964312}{}void {\bfseries del\+\_\+node\+\_\+two\+\_\+child} (\hyperlink{struct__node__}{node} $\ast$$\ast$n)\label{tree_8h_a0b166b3424a7d80c82d0c3af50964312}
+
+\item 
+\hypertarget{tree_8h_a151aa78c5639b6cbada1078e475c3fdf}{}void {\bfseries copy\+\_\+node} (\hyperlink{struct__node__}{node} $\ast$from, \hyperlink{struct__node__}{node} $\ast$to)\label{tree_8h_a151aa78c5639b6cbada1078e475c3fdf}
+
+\item 
+\hypertarget{tree_8h_aba3d97e935f8df0f2875f6d5a8bbc047}{}void {\bfseries rem\+\_\+node\+\_\+in\+\_\+tree} (\hyperlink{struct__tree__}{tree} $\ast$t, void $\ast$key)\label{tree_8h_aba3d97e935f8df0f2875f6d5a8bbc047}
+
+\item 
+\hypertarget{tree_8h_a335d113cb6add8f1a3307b29caec6ffe}{}void {\bfseries rem\+\_\+node} (\hyperlink{struct__node__}{node} $\ast$$\ast$n, void $\ast$key)\label{tree_8h_a335d113cb6add8f1a3307b29caec6ffe}
+
+\item 
+\hypertarget{tree_8h_aac0d6a26a0b80ce6ff883665ff80e21e}{}\hyperlink{struct__node__}{node} $\ast$$\ast$ {\bfseries find\+\_\+max\+\_\+to\+\_\+left} (\hyperlink{struct__node__}{node} $\ast$$\ast$n)\label{tree_8h_aac0d6a26a0b80ce6ff883665ff80e21e}
+
+\item 
+\hypertarget{tree_8h_accf81af7507d1f933167cb5030c2e3c7}{}void {\bfseries remove\+\_\+elem\+\_\+in\+\_\+tree} (\hyperlink{struct__tree__}{tree} $\ast$t, void $\ast$key)\label{tree_8h_accf81af7507d1f933167cb5030c2e3c7}
+
+\item 
+\hypertarget{tree_8h_aba76a73ac12112c9cb9087efa5f52a8d}{}void {\bfseries remove\+\_\+elem} (\hyperlink{struct__node__}{node} $\ast$$\ast$n, void $\ast$key)\label{tree_8h_aba76a73ac12112c9cb9087efa5f52a8d}
+
+\item 
+\hypertarget{tree_8h_ac28e0ae6ad83db8ffbdb0498ff10fbc0}{}bool {\bfseries check\+\_\+elems\+\_\+left} ()\label{tree_8h_ac28e0ae6ad83db8ffbdb0498ff10fbc0}
+
+\item 
+\hypertarget{tree_8h_afe5c8908a387d99bf57a79e36b11bd59}{}void $\ast$ {\bfseries get\+\_\+content} (\hyperlink{struct__node__}{node} $\ast$n)\label{tree_8h_afe5c8908a387d99bf57a79e36b11bd59}
+
+\item 
+\hypertarget{tree_8h_a491aaff7eff81bee0f27c27831a4d0e8}{}\hyperlink{struct__node__}{node} $\ast$ {\bfseries get\+\_\+root} (\hyperlink{struct__tree__}{tree} $\ast$t)\label{tree_8h_a491aaff7eff81bee0f27c27831a4d0e8}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header file for a general binary search tree. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Ghandahari and Tim Svensson 
+\end{DoxyAuthor}

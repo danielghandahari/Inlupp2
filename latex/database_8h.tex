@@ -1,0 +1,136 @@
+\hypertarget{database_8h}{}\section{Documents/\+I\+O\+O\+P\+M/\+Inlupp2/include/database.h File Reference}
+\label{database_8h}\index{Documents/\+I\+O\+O\+P\+M/\+Inlupp2/include/database.\+h@{Documents/\+I\+O\+O\+P\+M/\+Inlupp2/include/database.\+h}}
+
+
+Header file for the database.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\\*
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{database_8h_abc757cf78b88c11432ad751dced317f6}{}typedef struct \hyperlink{struct__tree__}{\+\_\+tree\+\_\+} {\bfseries tree}\label{database_8h_abc757cf78b88c11432ad751dced317f6}
+
+\item 
+\hypertarget{database_8h_ab98fc08e8cb904bbe219151c23af50ad}{}typedef struct \hyperlink{struct__ware__}{\+\_\+ware\+\_\+} {\bfseries ware}\label{database_8h_ab98fc08e8cb904bbe219151c23af50ad}
+
+\item 
+\hypertarget{database_8h_a683027791f017c6a3e7461863a678be1}{}typedef struct \+\_\+shelves\+\_\+ {\bfseries shelves}\label{database_8h_a683027791f017c6a3e7461863a678be1}
+
+\item 
+\hypertarget{database_8h_ad0b0870b71056c3497756a31063c1270}{}typedef struct \hyperlink{struct__shelf__}{\+\_\+shelf\+\_\+} {\bfseries shelf}\label{database_8h_ad0b0870b71056c3497756a31063c1270}
+
+\item 
+\hypertarget{database_8h_a2f6f0a28361a33629ecc294bc865b99c}{}typedef struct \hyperlink{struct__list__}{\+\_\+list\+\_\+} {\bfseries list}\label{database_8h_a2f6f0a28361a33629ecc294bc865b99c}
+
+\item 
+\hypertarget{database_8h_a9b00743088c2c9af7f944460274fb9f2}{}typedef struct \hyperlink{struct__elem__}{\+\_\+elem\+\_\+} {\bfseries elem}\label{database_8h_a9b00743088c2c9af7f944460274fb9f2}
+
+\item 
+\hypertarget{database_8h_ae2f6cc247390bcd39c396880935b4d0c}{}typedef struct \hyperlink{struct__node__}{\+\_\+node\+\_\+} {\bfseries node}\label{database_8h_ae2f6cc247390bcd39c396880935b4d0c}
+
+\item 
+\hypertarget{database_8h_a6824fd2679ec240376a985eafa3ad573}{}typedef struct \hyperlink{struct__sum__}{\+\_\+sum\+\_\+} {\bfseries sum}\label{database_8h_a6824fd2679ec240376a985eafa3ad573}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{database_8h_a79fbc839f4a039d9d697983fc81b25d4}{}\hyperlink{struct__ware__}{ware} $\ast$ \hyperlink{database_8h_a79fbc839f4a039d9d697983fc81b25d4}{create\+\_\+ware} ()\label{database_8h_a79fbc839f4a039d9d697983fc81b25d4}
+
+\begin{DoxyCompactList}\small\item\em returns a pointer to a ware, allocated on the heap \end{DoxyCompactList}\item 
+\hypertarget{database_8h_a0f5ec43acbc37a734278834db4864232}{}void {\bfseries incr\+\_\+shelf\+\_\+and\+\_\+tot} (\hyperlink{struct__list__}{list} $\ast$l, char $\ast$key, int incr)\label{database_8h_a0f5ec43acbc37a734278834db4864232}
+
+\item 
+\hypertarget{database_8h_ae6dc8ad8f534a5c519397faeff3e6b67}{}void {\bfseries incr\+\_\+shelf} (\hyperlink{struct__shelf__}{shelf} $\ast$s, int incr)\label{database_8h_ae6dc8ad8f534a5c519397faeff3e6b67}
+
+\item 
+\hypertarget{database_8h_aa62fe85ee665d081a7efda7a3c62e9af}{}bool {\bfseries find\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B} (\hyperlink{struct__list__}{list} $\ast$l, char $\ast$key)\label{database_8h_aa62fe85ee665d081a7efda7a3c62e9af}
+
+\item 
+\hypertarget{database_8h_a256d4a5b4910c04b7a289f3009c15983}{}bool {\bfseries find\+\_\+elem\+\_\+\+D\+B} (\hyperlink{struct__elem__}{elem} $\ast$e, char $\ast$key)\label{database_8h_a256d4a5b4910c04b7a289f3009c15983}
+
+\item 
+\hypertarget{database_8h_a60aaba6a0b250ca29291fc030d4c4d7b}{}\hyperlink{struct__elem__}{elem} $\ast$ {\bfseries get\+\_\+elem\+\_\+\+D\+B} (\hyperlink{struct__elem__}{elem} $\ast$e, char $\ast$key)\label{database_8h_a60aaba6a0b250ca29291fc030d4c4d7b}
+
+\item 
+\hypertarget{database_8h_a8b7d035ed71daede4cc9e83cdaed4d40}{}\hyperlink{struct__elem__}{elem} $\ast$ {\bfseries get\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B} (\hyperlink{struct__list__}{list} $\ast$l, char $\ast$key)\label{database_8h_a8b7d035ed71daede4cc9e83cdaed4d40}
+
+\item 
+\hypertarget{database_8h_ac3a6c2e8d890cd7204b9e7bb977b5fd9}{}bool {\bfseries check\+\_\+shelf\+\_\+used\+\_\+in\+\_\+tree} (\hyperlink{struct__tree__}{tree} $\ast$t, char $\ast$key)\label{database_8h_ac3a6c2e8d890cd7204b9e7bb977b5fd9}
+
+\item 
+\hypertarget{database_8h_a8299ce9f0ccb4e1d078aed6dd298f9df}{}bool {\bfseries check\+\_\+shelf\+\_\+used} (\hyperlink{struct__node__}{node} $\ast$$\ast$n, char $\ast$key)\label{database_8h_a8299ce9f0ccb4e1d078aed6dd298f9df}
+
+\item 
+\hypertarget{database_8h_a25c33e70c652217a7261ab1f11c3169c}{}bool {\bfseries check\+\_\+used\+\_\+by\+\_\+ware} (\hyperlink{struct__tree__}{tree} $\ast$t, void $\ast$key, char $\ast$shelfloc)\label{database_8h_a25c33e70c652217a7261ab1f11c3169c}
+
+\item 
+\hypertarget{database_8h_aed6b06f097bebd16c58552955649a70b}{}\hyperlink{struct__ware__}{ware} $\ast$ {\bfseries ware\+\_\+exists} (\hyperlink{struct__tree__}{tree} $\ast$t, char $\ast$ware\+\_\+name)\label{database_8h_aed6b06f097bebd16c58552955649a70b}
+
+\item 
+\hypertarget{database_8h_a1410d44edf09cb7475621d935669d95b}{}\hyperlink{struct__ware__}{ware} $\ast$ {\bfseries get\+\_\+ware\+\_\+at} (\hyperlink{struct__tree__}{tree} $\ast$t, int index)\label{database_8h_a1410d44edf09cb7475621d935669d95b}
+
+\item 
+\hypertarget{database_8h_ace923370a8cb1735563785528311d1d7}{}\hyperlink{struct__ware__}{ware} $\ast$ {\bfseries get\+\_\+ware\+\_\+at\+\_\+aux} (\hyperlink{struct__node__}{node} $\ast$n, int index, int $\ast$acc)\label{database_8h_ace923370a8cb1735563785528311d1d7}
+
+\item 
+\hypertarget{database_8h_af53f1a6c911e24009af3a7545d891432}{}bool {\bfseries shelf\+\_\+ok} (\hyperlink{struct__tree__}{tree} $\ast$t, \hyperlink{struct__ware__}{ware} $\ast$w, char $\ast$ware\+\_\+shelf)\label{database_8h_af53f1a6c911e24009af3a7545d891432}
+
+\item 
+\hypertarget{database_8h_affda6d46c57c3975399778ead7deaadc}{}void {\bfseries insert\+\_\+ware} (\hyperlink{struct__tree__}{tree} $\ast$t, \hyperlink{struct__ware__}{ware} $\ast$w, char $\ast$ware\+\_\+name, char $\ast$ware\+\_\+desc, int ware\+\_\+price, char $\ast$ware\+\_\+shelf, int ware\+\_\+amount)\label{database_8h_affda6d46c57c3975399778ead7deaadc}
+
+\item 
+\hypertarget{database_8h_aa83430de3c9922346bb8d5a1825ba6a7}{}char $\ast$ {\bfseries get\+\_\+ware\+\_\+name} (\hyperlink{struct__ware__}{ware} $\ast$w)\label{database_8h_aa83430de3c9922346bb8d5a1825ba6a7}
+
+\item 
+\hypertarget{database_8h_a6762f4739dbe6a4c97a3265a09533d8d}{}char $\ast$ {\bfseries get\+\_\+ware\+\_\+desc} (\hyperlink{struct__ware__}{ware} $\ast$w)\label{database_8h_a6762f4739dbe6a4c97a3265a09533d8d}
+
+\item 
+\hypertarget{database_8h_a552bba4e069745499194dccbb312be4f}{}int {\bfseries get\+\_\+ware\+\_\+price} (\hyperlink{struct__ware__}{ware} $\ast$w)\label{database_8h_a552bba4e069745499194dccbb312be4f}
+
+\item 
+\hypertarget{database_8h_a2d313b557e2967c68e99c8ef9b8040dc}{}\hyperlink{struct__list__}{list} $\ast$ {\bfseries get\+\_\+list} (\hyperlink{struct__ware__}{ware} $\ast$w)\label{database_8h_a2d313b557e2967c68e99c8ef9b8040dc}
+
+\item 
+\hypertarget{database_8h_a3c1ae5da603c858e7b02b2f55d2395d9}{}\hyperlink{struct__elem__}{elem} $\ast$ {\bfseries get\+\_\+first\+\_\+shelf} (\hyperlink{struct__ware__}{ware} $\ast$w)\label{database_8h_a3c1ae5da603c858e7b02b2f55d2395d9}
+
+\item 
+\hypertarget{database_8h_adf490f83e6db04cdb9760d6138243fea}{}\hyperlink{struct__elem__}{elem} $\ast$ {\bfseries get\+\_\+next\+\_\+shelf} (\hyperlink{struct__elem__}{elem} $\ast$e)\label{database_8h_adf490f83e6db04cdb9760d6138243fea}
+
+\item 
+\hypertarget{database_8h_ab0dc5f5806ea5efa89a58361e9949a53}{}char $\ast$ {\bfseries get\+\_\+shelf\+\_\+loc} (\hyperlink{struct__elem__}{elem} $\ast$e)\label{database_8h_ab0dc5f5806ea5efa89a58361e9949a53}
+
+\item 
+\hypertarget{database_8h_aa90f68401cbcf192c577633ee528604b}{}int {\bfseries get\+\_\+shelf\+\_\+amount} (\hyperlink{struct__elem__}{elem} $\ast$e)\label{database_8h_aa90f68401cbcf192c577633ee528604b}
+
+\item 
+\hypertarget{database_8h_af054897db94a93232af8c509ca4024fa}{}\hyperlink{struct__ware__}{ware} $\ast$ {\bfseries get\+\_\+ware} (\hyperlink{struct__node__}{node} $\ast$n)\label{database_8h_af054897db94a93232af8c509ca4024fa}
+
+\item 
+\hypertarget{database_8h_ae647744481eadf8e34c3a6bde0d7d39e}{}void {\bfseries destroy\+\_\+warehouse} (\hyperlink{struct__tree__}{tree} $\ast$t)\label{database_8h_ae647744481eadf8e34c3a6bde0d7d39e}
+
+\item 
+\hypertarget{database_8h_adcc0d88af0462696307fcd87799250c9}{}void {\bfseries destroy\+\_\+warehouse\+\_\+subtree} (\hyperlink{struct__node__}{node} $\ast$$\ast$n)\label{database_8h_adcc0d88af0462696307fcd87799250c9}
+
+\item 
+\hypertarget{database_8h_ac34394faa32d49c9c3247b1530d950ef}{}void {\bfseries destroy\+\_\+string} (char $\ast$c)\label{database_8h_ac34394faa32d49c9c3247b1530d950ef}
+
+\item 
+\hypertarget{database_8h_aa13fc22099f331e621cda37b531aa04e}{}void {\bfseries destroy\+\_\+list\+\_\+\+D\+B} (\hyperlink{struct__list__}{list} $\ast$l)\label{database_8h_aa13fc22099f331e621cda37b531aa04e}
+
+\item 
+\hypertarget{database_8h_ab40083b42cbd639bae1460d5effa62f3}{}void {\bfseries destroy\+\_\+ware} (\hyperlink{struct__ware__}{ware} $\ast$w)\label{database_8h_ab40083b42cbd639bae1460d5effa62f3}
+
+\item 
+\hypertarget{database_8h_a26c2388500810f9bafef96571b038acb}{}void {\bfseries destroy\+\_\+node\+\_\+\+D\+B} (\hyperlink{struct__node__}{node} $\ast$n)\label{database_8h_a26c2388500810f9bafef96571b038acb}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header file for the database. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Ghandahari and Tim Svensson 
+\end{DoxyAuthor}

@@ -18,7 +18,7 @@
 #define ElementOrShelfOf(SHELF) (ElementOf(SHELF) == NULL || SHELF == NULL)
 #define check_shelf_used_ASSERT(NODE) ware *emptylistptr =(ware*)((*NODE)->content); \
   assert((emptylistptr || emptylistptr->shelves || emptylistptr->shelves->first))
-
+ 
 
 
 
@@ -99,7 +99,7 @@ bool check_shelf_used(node **n, char *key)
 
   node **current = n;
   
-  if((*current))
+  if(*current)
     {
       ware *c =(ware*)((*current)->content);
       bool eleminlist = find_elem_in_list_DB(c->shelves, key);
@@ -115,15 +115,15 @@ bool check_shelf_used(node **n, char *key)
 
 bool check_shelf_used_in_tree(tree *t, char *key)
 {
-  assert(t == NULL); 
+  assert(t); 
   return  check_shelf_used(&(t->root), key);
 }
 
 
 
-void incr_shelf_and_tot(list *l, void *elembox, int incr)
+void incr_shelf_and_tot(list *l, char *key, int incr)
 {
-  elem *e = get_elem_in_list(l, elembox);
+  elem *e = get_elem_in_list_DB(l, key);
   shelf *s = (shelf*)e->box;
 
   incr_shelf(s, incr);
@@ -141,13 +141,13 @@ void incr_shelf(shelf *s, int incr)
 
 
 
-bool check_used_by_ware(tree *t, void *key, void *shelfloc)
+bool check_used_by_ware(tree *t, void *key, char *shelfloc)
 {
   node *mynode = get_node_in_tree(t, key);
 
   ware *myitem = (ware*)mynode->content;
 
-  return find_elem_in_list(myitem->shelves, shelfloc);
+  return find_elem_in_list_DB(myitem->shelves, shelfloc);
 }
 
 bool find_elem_in_list_DB(list *l, char *key)
@@ -168,10 +168,10 @@ elem * get_elem_in_list_DB(list *l, char *key)
 elem * get_elem_DB(elem *e, char *key)
 {
   elem *current = e;
-  shelf *s = (shelf*)current->box;
   
   while (current)
     {
+      shelf *s = (shelf*)current->box;
       int action = key_compare(s->location, key);
       
       if (Equal) return current;
@@ -260,20 +260,19 @@ void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice
       bool shelfexists = find_elem_in_list_DB(w->shelves, shelfloc);
       log_info("insert_ware", shelfexists, "%d");
 
-      if(shelfexists)
-	{
-	  elem *e = get_elem_in_list_DB(w->shelves, shelfloc);
-	  log_info("add_ware", e, "%p");
-	  
-	  incr_shelf_and_tot(w->shelves, e->box, shelfamount);       
-	}
+      if(shelfexists) incr_shelf_and_tot(w->shelves, shelfloc, shelfamount);
+      
       if(!shelfexists)
 	{
 	  elem *e = create_elem();
 	  log_info("add_ware", e, "%p");
 
+	  shelf *s = (shelf*)e->box;
+	  s->location = shelfloc;
+	  s->amount = shelfamount;
+
 	  insert_elem_in_list(w->shelves, e);
-	  incr_shelf_and_tot(w->shelves, e->box, shelfamount);       
+	  incr_shelf_and_tot(w->shelves, shelfloc, shelfamount);       
 	}
     }
   else
@@ -365,9 +364,83 @@ int get_shelf_amount(elem *e)
 }
 
 
+
+void destroy_warehouse_subtree(node **n)
+{
+  if(!(*n)) return;
+
+  node **temp_left = &((*n)->left);
+  node **temp_right = &((*n)->right);
+
+
+ 
+  destroy_node_DB(*n);
+  destroy_warehouse_subtree(temp_left);
+  destroy_warehouse_subtree(temp_right); 
+}
+
+
+
 void destroy_warehouse(tree *t)
 {
-  //TODO implement everything
-  if(t) return;
+  assert(t);
+  
+  destroy_warehouse_subtree(&(t->root));
+  free(t);
+}
 
+
+
+void destroy_list_DB(list *l)
+{
+  elem *temp = l->first;
+
+  if(temp)
+    {
+      shelf *s = (shelf*)temp->box;
+      char *t1 = s->location;
+      elem *free_temp = temp;
+
+      temp = temp->next;
+      
+      destroy_string(t1);
+      free(temp->box);
+      free(free_temp);
+    }
+  free(l->stuff);
+  free(l);
+}
+
+
+void destroy_string(char *c)
+{
+  char *temp = c;
+
+  while(temp)
+    {
+      char *free_temp = temp;
+      temp = temp + 1;
+      free(free_temp);
+    }
+  free(temp);
+}
+
+
+
+void destroy_ware(ware *w)
+{
+  destroy_string(w->name);
+  destroy_string(w->desc);
+  free(w);
+}
+
+
+
+void destroy_node_DB(node *n)
+{
+  ware *w = (ware*)n->content;
+  destroy_list_DB(w->shelves);
+  destroy_ware(w);
+  destroy_string(n->key);
+  free(n);
 }

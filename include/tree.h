@@ -1,3 +1,11 @@
+/**
+ * @file tree.h
+ * @author Daniel Ghandahari and Tim Svensson
+ * @brief Header file for a general binary search tree
+ *
+ */
+
+
 #ifndef __TREE__
 #define __TREE__
 

@@ -1,5 +1,13 @@
+/**
+ * @file list.h
+ * @author Daniel Ghandahari and Tim Svensson
+ * @brief Header file for a general linked list
+ *
+ */
+
 #ifndef __LIST__
 #define __LIST__
+
 
 typedef struct _list_ list;
 typedef struct _elem_ elem;
@@ -35,5 +43,8 @@ elem * get_last_elem(list *l);
 void rem_elem_in_list(list *l, void *elembox);
 
 void  rem_elem(elem *e, void *elembox);
+
+
+
 
 #endif
