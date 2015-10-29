@@ -80,7 +80,16 @@ bool check_shelf_used(node **n, char *key);
  */
 bool check_used_by_ware(tree *t, void *key, char *shelfloc);
 
+//======
+// tree
+//======
 
+tree *create_new_tree();
+void destroy_warehouse(tree *t);
+
+//======
+// ware
+//======
 
 
 /**
@@ -111,6 +120,9 @@ void insert_ware(tree *t, ware *w, char *ware_name, char *ware_desc, int ware_pr
 /**
  * @brief returns a pointer to a wares name
  */
+
+ware *get_ware_at(tree *t, int index);
+ware *get_ware(node *n);
 char *get_ware_name(ware *w);
 
 /**
@@ -122,6 +134,11 @@ char *get_ware_desc(ware *w);
  * @brief returns wares price
  */
 int get_ware_price(ware *w);
+int get_ware_price(ware *w);
+
+//======
+// list
+//======
 
 /**
  * @brief returns a pointer to a wares list
@@ -137,11 +154,20 @@ elem *get_first_shelf(ware *w);
  * @brief returns a pointer to next element
  */
 elem *get_next_shelf(elem *e);
+int   get_num_shelves(ware *w);
+
+//=======
+// shelf
+//=======
 
 /**
  * @brief returns a pointer to an elements shelflocation
  */
 char *get_shelf_loc(elem *e);
+
+char *get_shelf_loc_at(ware *w, int index);
+
+void remove_shelf_at(tree *t, ware *w, int index);
 
 /**
  * @brief returns amount of a ware on a shelflocation

@@ -189,7 +189,7 @@ ware *ware_exists(tree *t, char *warename)
   log_info("ware_exists", warename, "%p");
   log_info("ware_exists", warename, "%s");
 
-  node *n = get_node_in_tree(t, warename); //warename skickas in som om det vore en 'key'.
+  node *n = get_node_in_tree(t, warename); //TODO fix warename skickas in som om det vore en 'key'.
   log_info("ware_exists", n, "%p");
 
   if(!n) return NULL;
@@ -307,62 +307,75 @@ void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice
     }
 }
 
-ware *get_ware(node *n)
+ware *get_ware(node *n) { return (ware *)get_content(n); }
+
+char *get_ware_name(ware *w) { return w->name; }
+char *get_ware_desc(ware *w) { return w->desc; }
+int   get_ware_price(ware *w) { return w->price; }
+
+list *get_list(ware *w) { return w->shelves; }
+
+elem *get_first_shelf(ware *w) { return w->shelves->first; }
+elem *get_next_shelf(elem *e) { return e->next; }
+char *get_shelf_loc(elem *e) { return ((shelf*)e->box)->location; }
+int   get_shelf_amount(elem *e) { return ((shelf*)e->box)->amount; }
+
+// ===== ===== ===== =====
+//           Tim
+// ===== ===== ===== =====
+
+int get_num_shelves(ware *w)
 {
-  return (ware *)get_content(n);
+  elem *shelf = get_first_shelf(w);
+  assert(shelf);
+
+  int num_of_shelves = 0;
+
+  while(shelf)
+    {
+      num_of_shelves++;
+      get_next_shelf(shelf);
+    }
+
+  return num_of_shelves;
 }
 
-char *get_ware_name(ware *w)
+void remove_shelf_at(tree *t, ware *w, int index)
 {
-  return w->name;
-}
+  elem *shelf = get_first_shelf(w);
+  assert(w);  
 
-char *get_ware_desc(ware *w)
-{
-  return w->desc;
-}
+  for(int i = 0; i < index-1 && shelf; i++)
+    {
+      shelf = get_next_shelf(shelf);
+    }
 
-int get_ware_price(ware *w)
-{
-  return w->price;
-}
+  elem *tmp = get_next_shelf(shelf);
+  shelf->next = tmp->next;
 
+  if(tmp->box) free(tmp->box);
+  free(tmp);
 
-
-list *get_list(ware *w)
-{
-  return w->shelves;
-}
-
-
-elem *get_first_shelf(ware *w)
-{
-  return w->shelves->first;
-}
-
-
-elem *get_next_shelf(elem *e)
-{
-  return e->next;
-}
-
-
-char *get_shelf_loc(elem *e)
-{
-  shelf *s = (shelf*)e->box;
-  return s->location;
-}
-
-
-
-int get_shelf_amount(elem *e)
-{
-  shelf *s = (shelf*)e->box;
-  return s->amount;
+  //TODO använder ware_name som key. FIX IT!
+  if(!get_first_shelf(w)) rem_node_in_tree(t, get_ware_name(w));
 
 }
 
+char *get_shelf_loc_at(ware *w, int index)
+{
+  elem *shelf = get_first_shelf(w);
+  int current_index = 0;
+  assert(shelf);
+  
+  while(current_index < index)
+    {
+      shelf = get_next_shelf(shelf);
+      if(!shelf) break;
+      current_index++;
+    }
 
+  return get_shelf_loc(shelf);
+}
 
 
 void destroy_warehouse_subtree(node **n)

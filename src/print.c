@@ -1,6 +1,4 @@
 #include <print.h>
-#include <database.h>
-#include <dbg.h>
 
 #define LINE_LENGTH 25
 #define print_delimiter print_line(LINE_LENGTH, '=')
@@ -66,7 +64,7 @@ void print_menu()
 
 // ware
 
-void print_ware_shelves(ware *w)
+void print_shelves(ware *w)
 {
   print_delimiter;
   
@@ -92,7 +90,7 @@ void print_ware(ware *w)
   printf("%-18s%s\n", "Ware description", get_ware_desc(w));
   printf("%-18s%i\n", "Ware price", get_ware_price(w));
 
-  print_ware_shelves(w);
+  print_shelves(w);
 }
 
 
@@ -159,7 +157,7 @@ void print_index_name(int index, char *ware_name)
   printf("%-6i %s\n", index + 1, ware_name);
 }
 
-void print_p_wh_menu()
+void print_warehouse_menu()
 {
   printf("Choose a ware 1 - 20\n");
   printf("[P]rint next page\n");

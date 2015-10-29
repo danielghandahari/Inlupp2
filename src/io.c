@@ -112,6 +112,7 @@ void add_ware(tree *t)
 
 void remove_ware(tree *t)
 {
+  log_info("remove_ware", t, "%p");
   print_remove_header();
 
   //TODO
@@ -119,12 +120,40 @@ void remove_ware(tree *t)
   int index = print_warehouse(t);
 
   ware *w = get_ware_at(t, index);
-  print_ware(w);
+  int num_shelves = get_num_shelves(w);
 
-  //get shelf to remove
-  //remove shelf
-  //print result
+  log_info("remove_ware", index, "%d");
+  log_info("remove_ware", num_shelves, "%d");
 
+  printf("The ware %s has the associated shelf/shelves:\n\n", get_ware_name(w));
+  
+  int input = 0;
+
+  do
+    {
+      log_info("remove_ware", w, "%p");
+
+      print_shelves(w);
+      //TODO make simpler, similar to how print_warehouse get's it's index, try to combine
+      user_input_int(&input, "To remove a shelf, input it's assosiated number or\ninput 0 to exit.");
+      
+      if(input > 0 && input < num_shelves)
+	{
+	  printf("Shelf %s removed\n", get_shelf_loc_at(w, input - 1));
+	  remove_shelf_at(t, w, input - 1);
+
+	  num_shelves = get_num_shelves(w);
+	  if(num_shelves < 1)
+	    {
+	      printf("All shelves removed from warehouse");
+	      break;
+	    }
+	}
+      else
+	{
+	  print_incorrect_input();
+	}
+    } while(input != 0);
 }
 
 
@@ -199,7 +228,7 @@ int print_warehouse(tree *t)
   if(!w) print_end_of_warehouse();
 
  incorrect_input:
-  print_p_wh_menu();
+  print_warehouse_menu();
 
   char input[STREAM_LENGTH] = {'\0'};
   read_string(input);
