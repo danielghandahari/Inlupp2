@@ -39,93 +39,90 @@ Header file for the database.
 \hypertarget{database_8h_a79fbc839f4a039d9d697983fc81b25d4}{}\hyperlink{struct__ware__}{ware} $\ast$ \hyperlink{database_8h_a79fbc839f4a039d9d697983fc81b25d4}{create\+\_\+ware} ()\label{database_8h_a79fbc839f4a039d9d697983fc81b25d4}
 
 \begin{DoxyCompactList}\small\item\em returns a pointer to a ware, allocated on the heap \end{DoxyCompactList}\item 
-\hypertarget{database_8h_a0f5ec43acbc37a734278834db4864232}{}void {\bfseries incr\+\_\+shelf\+\_\+and\+\_\+tot} (\hyperlink{struct__list__}{list} $\ast$l, char $\ast$key, int incr)\label{database_8h_a0f5ec43acbc37a734278834db4864232}
+\hypertarget{database_8h_a0f5ec43acbc37a734278834db4864232}{}void \hyperlink{database_8h_a0f5ec43acbc37a734278834db4864232}{incr\+\_\+shelf\+\_\+and\+\_\+tot} (\hyperlink{struct__list__}{list} $\ast$l, char $\ast$key, int incr)\label{database_8h_a0f5ec43acbc37a734278834db4864232}
 
-\item 
-\hypertarget{database_8h_ae6dc8ad8f534a5c519397faeff3e6b67}{}void {\bfseries incr\+\_\+shelf} (\hyperlink{struct__shelf__}{shelf} $\ast$s, int incr)\label{database_8h_ae6dc8ad8f534a5c519397faeff3e6b67}
+\begin{DoxyCompactList}\small\item\em increments shelf, pointed by s, with incr. Increments total amonut of shelfs, pointed by l-\/$>$shelves \end{DoxyCompactList}\item 
+\hypertarget{database_8h_ae6dc8ad8f534a5c519397faeff3e6b67}{}void \hyperlink{database_8h_ae6dc8ad8f534a5c519397faeff3e6b67}{incr\+\_\+shelf} (\hyperlink{struct__shelf__}{shelf} $\ast$s, int incr)\label{database_8h_ae6dc8ad8f534a5c519397faeff3e6b67}
 
-\item 
-\hypertarget{database_8h_aa62fe85ee665d081a7efda7a3c62e9af}{}bool {\bfseries find\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B} (\hyperlink{struct__list__}{list} $\ast$l, char $\ast$key)\label{database_8h_aa62fe85ee665d081a7efda7a3c62e9af}
+\begin{DoxyCompactList}\small\item\em increments shelf, pointed by s, with incr \end{DoxyCompactList}\item 
+\hypertarget{database_8h_aa62fe85ee665d081a7efda7a3c62e9af}{}bool \hyperlink{database_8h_aa62fe85ee665d081a7efda7a3c62e9af}{find\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B} (\hyperlink{struct__list__}{list} $\ast$l, char $\ast$key)\label{database_8h_aa62fe85ee665d081a7efda7a3c62e9af}
 
-\item 
-\hypertarget{database_8h_a256d4a5b4910c04b7a289f3009c15983}{}bool {\bfseries find\+\_\+elem\+\_\+\+D\+B} (\hyperlink{struct__elem__}{elem} $\ast$e, char $\ast$key)\label{database_8h_a256d4a5b4910c04b7a289f3009c15983}
+\begin{DoxyCompactList}\small\item\em returns true if shelflocation key exists in the list pointed by l \end{DoxyCompactList}\item 
+\hypertarget{database_8h_a256d4a5b4910c04b7a289f3009c15983}{}bool \hyperlink{database_8h_a256d4a5b4910c04b7a289f3009c15983}{find\+\_\+elem\+\_\+\+D\+B} (\hyperlink{struct__elem__}{elem} $\ast$e, char $\ast$key)\label{database_8h_a256d4a5b4910c04b7a289f3009c15983}
 
-\item 
-\hypertarget{database_8h_a60aaba6a0b250ca29291fc030d4c4d7b}{}\hyperlink{struct__elem__}{elem} $\ast$ {\bfseries get\+\_\+elem\+\_\+\+D\+B} (\hyperlink{struct__elem__}{elem} $\ast$e, char $\ast$key)\label{database_8h_a60aaba6a0b250ca29291fc030d4c4d7b}
+\begin{DoxyCompactList}\small\item\em returns true if shelflocation key exists in the list where e is pointing to the first element \end{DoxyCompactList}\item 
+\hypertarget{database_8h_a60aaba6a0b250ca29291fc030d4c4d7b}{}\hyperlink{struct__elem__}{elem} $\ast$ \hyperlink{database_8h_a60aaba6a0b250ca29291fc030d4c4d7b}{get\+\_\+elem\+\_\+\+D\+B} (\hyperlink{struct__elem__}{elem} $\ast$e, char $\ast$key)\label{database_8h_a60aaba6a0b250ca29291fc030d4c4d7b}
 
-\item 
-\hypertarget{database_8h_a8b7d035ed71daede4cc9e83cdaed4d40}{}\hyperlink{struct__elem__}{elem} $\ast$ {\bfseries get\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B} (\hyperlink{struct__list__}{list} $\ast$l, char $\ast$key)\label{database_8h_a8b7d035ed71daede4cc9e83cdaed4d40}
+\begin{DoxyCompactList}\small\item\em returns element where key is its shelflocation \end{DoxyCompactList}\item 
+\hypertarget{database_8h_a8b7d035ed71daede4cc9e83cdaed4d40}{}\hyperlink{struct__elem__}{elem} $\ast$ \hyperlink{database_8h_a8b7d035ed71daede4cc9e83cdaed4d40}{get\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B} (\hyperlink{struct__list__}{list} $\ast$l, char $\ast$key)\label{database_8h_a8b7d035ed71daede4cc9e83cdaed4d40}
 
-\item 
-\hypertarget{database_8h_ac3a6c2e8d890cd7204b9e7bb977b5fd9}{}bool {\bfseries check\+\_\+shelf\+\_\+used\+\_\+in\+\_\+tree} (\hyperlink{struct__tree__}{tree} $\ast$t, char $\ast$key)\label{database_8h_ac3a6c2e8d890cd7204b9e7bb977b5fd9}
+\begin{DoxyCompactList}\small\item\em returns element from list, pointed by l, where key is its shelflocation \end{DoxyCompactList}\item 
+\hypertarget{database_8h_ac3a6c2e8d890cd7204b9e7bb977b5fd9}{}bool \hyperlink{database_8h_ac3a6c2e8d890cd7204b9e7bb977b5fd9}{check\+\_\+shelf\+\_\+used\+\_\+in\+\_\+tree} (\hyperlink{struct__tree__}{tree} $\ast$t, char $\ast$key)\label{database_8h_ac3a6c2e8d890cd7204b9e7bb977b5fd9}
 
-\item 
-\hypertarget{database_8h_a8299ce9f0ccb4e1d078aed6dd298f9df}{}bool {\bfseries check\+\_\+shelf\+\_\+used} (\hyperlink{struct__node__}{node} $\ast$$\ast$n, char $\ast$key)\label{database_8h_a8299ce9f0ccb4e1d078aed6dd298f9df}
+\begin{DoxyCompactList}\small\item\em returns true if key is in tree, pointed by t \end{DoxyCompactList}\item 
+\hypertarget{database_8h_a8299ce9f0ccb4e1d078aed6dd298f9df}{}bool \hyperlink{database_8h_a8299ce9f0ccb4e1d078aed6dd298f9df}{check\+\_\+shelf\+\_\+used} (\hyperlink{struct__node__}{node} $\ast$$\ast$n, char $\ast$key)\label{database_8h_a8299ce9f0ccb4e1d078aed6dd298f9df}
 
-\item 
-\hypertarget{database_8h_a25c33e70c652217a7261ab1f11c3169c}{}bool {\bfseries check\+\_\+used\+\_\+by\+\_\+ware} (\hyperlink{struct__tree__}{tree} $\ast$t, void $\ast$key, char $\ast$shelfloc)\label{database_8h_a25c33e70c652217a7261ab1f11c3169c}
+\begin{DoxyCompactList}\small\item\em returns true if key is in subtree, pointed by n \end{DoxyCompactList}\item 
+\hypertarget{database_8h_a25c33e70c652217a7261ab1f11c3169c}{}bool \hyperlink{database_8h_a25c33e70c652217a7261ab1f11c3169c}{check\+\_\+used\+\_\+by\+\_\+ware} (\hyperlink{struct__tree__}{tree} $\ast$t, void $\ast$key, char $\ast$shelfloc)\label{database_8h_a25c33e70c652217a7261ab1f11c3169c}
 
-\item 
-\hypertarget{database_8h_aed6b06f097bebd16c58552955649a70b}{}\hyperlink{struct__ware__}{ware} $\ast$ {\bfseries ware\+\_\+exists} (\hyperlink{struct__tree__}{tree} $\ast$t, char $\ast$ware\+\_\+name)\label{database_8h_aed6b06f097bebd16c58552955649a70b}
+\begin{DoxyCompactList}\small\item\em returns true if shelflocation is used by a ware, where key is pointing to wares name, in the tree, where t points to the tree. shelfloc points to the shelflocation \end{DoxyCompactList}\item 
+\hypertarget{database_8h_aed6b06f097bebd16c58552955649a70b}{}\hyperlink{struct__ware__}{ware} $\ast$ \hyperlink{database_8h_aed6b06f097bebd16c58552955649a70b}{ware\+\_\+exists} (\hyperlink{struct__tree__}{tree} $\ast$t, char $\ast$ware\+\_\+name)\label{database_8h_aed6b06f097bebd16c58552955649a70b}
 
-\item 
-\hypertarget{database_8h_a1410d44edf09cb7475621d935669d95b}{}\hyperlink{struct__ware__}{ware} $\ast$ {\bfseries get\+\_\+ware\+\_\+at} (\hyperlink{struct__tree__}{tree} $\ast$t, int index)\label{database_8h_a1410d44edf09cb7475621d935669d95b}
+\begin{DoxyCompactList}\small\item\em returns pointer to a ware if that ware exists in the tree \end{DoxyCompactList}\item 
+\hypertarget{database_8h_a1410d44edf09cb7475621d935669d95b}{}\hyperlink{struct__ware__}{ware} $\ast$ \hyperlink{database_8h_a1410d44edf09cb7475621d935669d95b}{get\+\_\+ware\+\_\+at} (\hyperlink{struct__tree__}{tree} $\ast$t, int index)\label{database_8h_a1410d44edf09cb7475621d935669d95b}
 
-\item 
-\hypertarget{database_8h_ace923370a8cb1735563785528311d1d7}{}\hyperlink{struct__ware__}{ware} $\ast$ {\bfseries get\+\_\+ware\+\_\+at\+\_\+aux} (\hyperlink{struct__node__}{node} $\ast$n, int index, int $\ast$acc)\label{database_8h_ace923370a8cb1735563785528311d1d7}
+\begin{DoxyCompactList}\small\item\em returns pointer to a ware at index index \end{DoxyCompactList}\item 
+\hypertarget{database_8h_ace923370a8cb1735563785528311d1d7}{}\hyperlink{struct__ware__}{ware} $\ast$ \hyperlink{database_8h_ace923370a8cb1735563785528311d1d7}{get\+\_\+ware\+\_\+at\+\_\+aux} (\hyperlink{struct__node__}{node} $\ast$n, int index, int $\ast$acc)\label{database_8h_ace923370a8cb1735563785528311d1d7}
 
-\item 
-\hypertarget{database_8h_af53f1a6c911e24009af3a7545d891432}{}bool {\bfseries shelf\+\_\+ok} (\hyperlink{struct__tree__}{tree} $\ast$t, \hyperlink{struct__ware__}{ware} $\ast$w, char $\ast$ware\+\_\+shelf)\label{database_8h_af53f1a6c911e24009af3a7545d891432}
+\begin{DoxyCompactList}\small\item\em returns pointer to a ware at index index. acc is an accumilator \end{DoxyCompactList}\item 
+\hypertarget{database_8h_af53f1a6c911e24009af3a7545d891432}{}bool \hyperlink{database_8h_af53f1a6c911e24009af3a7545d891432}{shelf\+\_\+ok} (\hyperlink{struct__tree__}{tree} $\ast$t, \hyperlink{struct__ware__}{ware} $\ast$w, char $\ast$ware\+\_\+shelf)\label{database_8h_af53f1a6c911e24009af3a7545d891432}
 
-\item 
-\hypertarget{database_8h_affda6d46c57c3975399778ead7deaadc}{}void {\bfseries insert\+\_\+ware} (\hyperlink{struct__tree__}{tree} $\ast$t, \hyperlink{struct__ware__}{ware} $\ast$w, char $\ast$ware\+\_\+name, char $\ast$ware\+\_\+desc, int ware\+\_\+price, char $\ast$ware\+\_\+shelf, int ware\+\_\+amount)\label{database_8h_affda6d46c57c3975399778ead7deaadc}
+\begin{DoxyCompactList}\small\item\em checks is a ware is in the list w-\/$>$shelves. otherwise checks the tree, pointed by t, if the shelf is used \end{DoxyCompactList}\item 
+\hypertarget{database_8h_affda6d46c57c3975399778ead7deaadc}{}void \hyperlink{database_8h_affda6d46c57c3975399778ead7deaadc}{insert\+\_\+ware} (\hyperlink{struct__tree__}{tree} $\ast$t, \hyperlink{struct__ware__}{ware} $\ast$w, char $\ast$ware\+\_\+name, char $\ast$ware\+\_\+desc, int ware\+\_\+price, char $\ast$ware\+\_\+shelf, int ware\+\_\+amount)\label{database_8h_affda6d46c57c3975399778ead7deaadc}
 
-\item 
-\hypertarget{database_8h_aa83430de3c9922346bb8d5a1825ba6a7}{}char $\ast$ {\bfseries get\+\_\+ware\+\_\+name} (\hyperlink{struct__ware__}{ware} $\ast$w)\label{database_8h_aa83430de3c9922346bb8d5a1825ba6a7}
+\begin{DoxyCompactList}\small\item\em if w points to an existing ware, creates a shelf for it or increments its existing shelf. otherwise creates a ware with the given parameters \end{DoxyCompactList}\item 
+\hypertarget{database_8h_aa83430de3c9922346bb8d5a1825ba6a7}{}char $\ast$ \hyperlink{database_8h_aa83430de3c9922346bb8d5a1825ba6a7}{get\+\_\+ware\+\_\+name} (\hyperlink{struct__ware__}{ware} $\ast$w)\label{database_8h_aa83430de3c9922346bb8d5a1825ba6a7}
 
-\item 
-\hypertarget{database_8h_a6762f4739dbe6a4c97a3265a09533d8d}{}char $\ast$ {\bfseries get\+\_\+ware\+\_\+desc} (\hyperlink{struct__ware__}{ware} $\ast$w)\label{database_8h_a6762f4739dbe6a4c97a3265a09533d8d}
+\begin{DoxyCompactList}\small\item\em returns a pointer to a wares name \end{DoxyCompactList}\item 
+\hypertarget{database_8h_a6762f4739dbe6a4c97a3265a09533d8d}{}char $\ast$ \hyperlink{database_8h_a6762f4739dbe6a4c97a3265a09533d8d}{get\+\_\+ware\+\_\+desc} (\hyperlink{struct__ware__}{ware} $\ast$w)\label{database_8h_a6762f4739dbe6a4c97a3265a09533d8d}
 
-\item 
-\hypertarget{database_8h_a552bba4e069745499194dccbb312be4f}{}int {\bfseries get\+\_\+ware\+\_\+price} (\hyperlink{struct__ware__}{ware} $\ast$w)\label{database_8h_a552bba4e069745499194dccbb312be4f}
+\begin{DoxyCompactList}\small\item\em returns a pointer to a wares description \end{DoxyCompactList}\item 
+\hypertarget{database_8h_a552bba4e069745499194dccbb312be4f}{}int \hyperlink{database_8h_a552bba4e069745499194dccbb312be4f}{get\+\_\+ware\+\_\+price} (\hyperlink{struct__ware__}{ware} $\ast$w)\label{database_8h_a552bba4e069745499194dccbb312be4f}
 
-\item 
-\hypertarget{database_8h_a2d313b557e2967c68e99c8ef9b8040dc}{}\hyperlink{struct__list__}{list} $\ast$ {\bfseries get\+\_\+list} (\hyperlink{struct__ware__}{ware} $\ast$w)\label{database_8h_a2d313b557e2967c68e99c8ef9b8040dc}
+\begin{DoxyCompactList}\small\item\em returns wares price \end{DoxyCompactList}\item 
+\hypertarget{database_8h_a2d313b557e2967c68e99c8ef9b8040dc}{}\hyperlink{struct__list__}{list} $\ast$ \hyperlink{database_8h_a2d313b557e2967c68e99c8ef9b8040dc}{get\+\_\+list} (\hyperlink{struct__ware__}{ware} $\ast$w)\label{database_8h_a2d313b557e2967c68e99c8ef9b8040dc}
 
-\item 
-\hypertarget{database_8h_a3c1ae5da603c858e7b02b2f55d2395d9}{}\hyperlink{struct__elem__}{elem} $\ast$ {\bfseries get\+\_\+first\+\_\+shelf} (\hyperlink{struct__ware__}{ware} $\ast$w)\label{database_8h_a3c1ae5da603c858e7b02b2f55d2395d9}
+\begin{DoxyCompactList}\small\item\em returns a pointer to a wares list \end{DoxyCompactList}\item 
+\hypertarget{database_8h_a3c1ae5da603c858e7b02b2f55d2395d9}{}\hyperlink{struct__elem__}{elem} $\ast$ \hyperlink{database_8h_a3c1ae5da603c858e7b02b2f55d2395d9}{get\+\_\+first\+\_\+shelf} (\hyperlink{struct__ware__}{ware} $\ast$w)\label{database_8h_a3c1ae5da603c858e7b02b2f55d2395d9}
 
-\item 
-\hypertarget{database_8h_adf490f83e6db04cdb9760d6138243fea}{}\hyperlink{struct__elem__}{elem} $\ast$ {\bfseries get\+\_\+next\+\_\+shelf} (\hyperlink{struct__elem__}{elem} $\ast$e)\label{database_8h_adf490f83e6db04cdb9760d6138243fea}
+\begin{DoxyCompactList}\small\item\em returns a pointer to a wares lists first element \end{DoxyCompactList}\item 
+\hypertarget{database_8h_adf490f83e6db04cdb9760d6138243fea}{}\hyperlink{struct__elem__}{elem} $\ast$ \hyperlink{database_8h_adf490f83e6db04cdb9760d6138243fea}{get\+\_\+next\+\_\+shelf} (\hyperlink{struct__elem__}{elem} $\ast$e)\label{database_8h_adf490f83e6db04cdb9760d6138243fea}
 
-\item 
-\hypertarget{database_8h_ab0dc5f5806ea5efa89a58361e9949a53}{}char $\ast$ {\bfseries get\+\_\+shelf\+\_\+loc} (\hyperlink{struct__elem__}{elem} $\ast$e)\label{database_8h_ab0dc5f5806ea5efa89a58361e9949a53}
+\begin{DoxyCompactList}\small\item\em returns a pointer to next element \end{DoxyCompactList}\item 
+\hypertarget{database_8h_ab0dc5f5806ea5efa89a58361e9949a53}{}char $\ast$ \hyperlink{database_8h_ab0dc5f5806ea5efa89a58361e9949a53}{get\+\_\+shelf\+\_\+loc} (\hyperlink{struct__elem__}{elem} $\ast$e)\label{database_8h_ab0dc5f5806ea5efa89a58361e9949a53}
 
-\item 
-\hypertarget{database_8h_aa90f68401cbcf192c577633ee528604b}{}int {\bfseries get\+\_\+shelf\+\_\+amount} (\hyperlink{struct__elem__}{elem} $\ast$e)\label{database_8h_aa90f68401cbcf192c577633ee528604b}
+\begin{DoxyCompactList}\small\item\em returns a pointer to an elements shelflocation \end{DoxyCompactList}\item 
+\hypertarget{database_8h_aa90f68401cbcf192c577633ee528604b}{}int \hyperlink{database_8h_aa90f68401cbcf192c577633ee528604b}{get\+\_\+shelf\+\_\+amount} (\hyperlink{struct__elem__}{elem} $\ast$e)\label{database_8h_aa90f68401cbcf192c577633ee528604b}
 
-\item 
-\hypertarget{database_8h_af054897db94a93232af8c509ca4024fa}{}\hyperlink{struct__ware__}{ware} $\ast$ {\bfseries get\+\_\+ware} (\hyperlink{struct__node__}{node} $\ast$n)\label{database_8h_af054897db94a93232af8c509ca4024fa}
+\begin{DoxyCompactList}\small\item\em returns amount of a ware on a shelflocation \end{DoxyCompactList}\item 
+\hypertarget{database_8h_af054897db94a93232af8c509ca4024fa}{}\hyperlink{struct__ware__}{ware} $\ast$ \hyperlink{database_8h_af054897db94a93232af8c509ca4024fa}{get\+\_\+ware} (\hyperlink{struct__node__}{node} $\ast$n)\label{database_8h_af054897db94a93232af8c509ca4024fa}
 
-\item 
-\hypertarget{database_8h_ae647744481eadf8e34c3a6bde0d7d39e}{}void {\bfseries destroy\+\_\+warehouse} (\hyperlink{struct__tree__}{tree} $\ast$t)\label{database_8h_ae647744481eadf8e34c3a6bde0d7d39e}
+\begin{DoxyCompactList}\small\item\em returns a pointer to a ware \end{DoxyCompactList}\item 
+\hypertarget{database_8h_ae647744481eadf8e34c3a6bde0d7d39e}{}void \hyperlink{database_8h_ae647744481eadf8e34c3a6bde0d7d39e}{destroy\+\_\+warehouse} (\hyperlink{struct__tree__}{tree} $\ast$t)\label{database_8h_ae647744481eadf8e34c3a6bde0d7d39e}
 
-\item 
-\hypertarget{database_8h_adcc0d88af0462696307fcd87799250c9}{}void {\bfseries destroy\+\_\+warehouse\+\_\+subtree} (\hyperlink{struct__node__}{node} $\ast$$\ast$n)\label{database_8h_adcc0d88af0462696307fcd87799250c9}
+\begin{DoxyCompactList}\small\item\em frees all allocated memory in tree, pointed by t \end{DoxyCompactList}\item 
+\hypertarget{database_8h_adcc0d88af0462696307fcd87799250c9}{}void \hyperlink{database_8h_adcc0d88af0462696307fcd87799250c9}{destroy\+\_\+warehouse\+\_\+subtree} (\hyperlink{struct__node__}{node} $\ast$$\ast$n)\label{database_8h_adcc0d88af0462696307fcd87799250c9}
 
-\item 
-\hypertarget{database_8h_ac34394faa32d49c9c3247b1530d950ef}{}void {\bfseries destroy\+\_\+string} (char $\ast$c)\label{database_8h_ac34394faa32d49c9c3247b1530d950ef}
+\begin{DoxyCompactList}\small\item\em frees all allocated memory pointed in subtree, pointed by n \end{DoxyCompactList}\item 
+\hypertarget{database_8h_aa13fc22099f331e621cda37b531aa04e}{}void \hyperlink{database_8h_aa13fc22099f331e621cda37b531aa04e}{destroy\+\_\+list\+\_\+\+D\+B} (\hyperlink{struct__list__}{list} $\ast$l)\label{database_8h_aa13fc22099f331e621cda37b531aa04e}
 
-\item 
-\hypertarget{database_8h_aa13fc22099f331e621cda37b531aa04e}{}void {\bfseries destroy\+\_\+list\+\_\+\+D\+B} (\hyperlink{struct__list__}{list} $\ast$l)\label{database_8h_aa13fc22099f331e621cda37b531aa04e}
+\begin{DoxyCompactList}\small\item\em frees all allocated memory in list, pointed by l \end{DoxyCompactList}\item 
+\hypertarget{database_8h_ab40083b42cbd639bae1460d5effa62f3}{}void \hyperlink{database_8h_ab40083b42cbd639bae1460d5effa62f3}{destroy\+\_\+ware} (\hyperlink{struct__ware__}{ware} $\ast$w)\label{database_8h_ab40083b42cbd639bae1460d5effa62f3}
 
-\item 
-\hypertarget{database_8h_ab40083b42cbd639bae1460d5effa62f3}{}void {\bfseries destroy\+\_\+ware} (\hyperlink{struct__ware__}{ware} $\ast$w)\label{database_8h_ab40083b42cbd639bae1460d5effa62f3}
+\begin{DoxyCompactList}\small\item\em frees all allocated memory in ware, pointed w \end{DoxyCompactList}\item 
+\hypertarget{database_8h_a26c2388500810f9bafef96571b038acb}{}void \hyperlink{database_8h_a26c2388500810f9bafef96571b038acb}{destroy\+\_\+node\+\_\+\+D\+B} (\hyperlink{struct__node__}{node} $\ast$n)\label{database_8h_a26c2388500810f9bafef96571b038acb}
 
-\item 
-\hypertarget{database_8h_a26c2388500810f9bafef96571b038acb}{}void {\bfseries destroy\+\_\+node\+\_\+\+D\+B} (\hyperlink{struct__node__}{node} $\ast$n)\label{database_8h_a26c2388500810f9bafef96571b038acb}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em frees all allocated memory in node, pointed by n \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}

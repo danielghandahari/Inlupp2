@@ -133,91 +133,116 @@ Functions</h2></td></tr>
 <tr class="memdesc:a79fbc839f4a039d9d697983fc81b25d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a pointer to a ware, allocated on the heap <br /></td></tr>
 <tr class="separator:a79fbc839f4a039d9d697983fc81b25d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f5ec43acbc37a734278834db4864232"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f5ec43acbc37a734278834db4864232"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>incr_shelf_and_tot</b> (<a class="el" href="struct__list__.html">list</a> *l, char *key, int incr)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a0f5ec43acbc37a734278834db4864232">incr_shelf_and_tot</a> (<a class="el" href="struct__list__.html">list</a> *l, char *key, int incr)</td></tr>
+<tr class="memdesc:a0f5ec43acbc37a734278834db4864232"><td class="mdescLeft">&#160;</td><td class="mdescRight">increments shelf, pointed by s, with incr. Increments total amonut of shelfs, pointed by l-&gt;shelves <br /></td></tr>
 <tr class="separator:a0f5ec43acbc37a734278834db4864232"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6dc8ad8f534a5c519397faeff3e6b67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6dc8ad8f534a5c519397faeff3e6b67"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>incr_shelf</b> (<a class="el" href="struct__shelf__.html">shelf</a> *s, int incr)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#ae6dc8ad8f534a5c519397faeff3e6b67">incr_shelf</a> (<a class="el" href="struct__shelf__.html">shelf</a> *s, int incr)</td></tr>
+<tr class="memdesc:ae6dc8ad8f534a5c519397faeff3e6b67"><td class="mdescLeft">&#160;</td><td class="mdescRight">increments shelf, pointed by s, with incr <br /></td></tr>
 <tr class="separator:ae6dc8ad8f534a5c519397faeff3e6b67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa62fe85ee665d081a7efda7a3c62e9af"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa62fe85ee665d081a7efda7a3c62e9af"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>find_elem_in_list_DB</b> (<a class="el" href="struct__list__.html">list</a> *l, char *key)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#aa62fe85ee665d081a7efda7a3c62e9af">find_elem_in_list_DB</a> (<a class="el" href="struct__list__.html">list</a> *l, char *key)</td></tr>
+<tr class="memdesc:aa62fe85ee665d081a7efda7a3c62e9af"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns true if shelflocation key exists in the list pointed by l <br /></td></tr>
 <tr class="separator:aa62fe85ee665d081a7efda7a3c62e9af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a256d4a5b4910c04b7a289f3009c15983"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a256d4a5b4910c04b7a289f3009c15983"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>find_elem_DB</b> (<a class="el" href="struct__elem__.html">elem</a> *e, char *key)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a256d4a5b4910c04b7a289f3009c15983">find_elem_DB</a> (<a class="el" href="struct__elem__.html">elem</a> *e, char *key)</td></tr>
+<tr class="memdesc:a256d4a5b4910c04b7a289f3009c15983"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns true if shelflocation key exists in the list where e is pointing to the first element <br /></td></tr>
 <tr class="separator:a256d4a5b4910c04b7a289f3009c15983"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60aaba6a0b250ca29291fc030d4c4d7b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60aaba6a0b250ca29291fc030d4c4d7b"></a>
-<a class="el" href="struct__elem__.html">elem</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_elem_DB</b> (<a class="el" href="struct__elem__.html">elem</a> *e, char *key)</td></tr>
+<a class="el" href="struct__elem__.html">elem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a60aaba6a0b250ca29291fc030d4c4d7b">get_elem_DB</a> (<a class="el" href="struct__elem__.html">elem</a> *e, char *key)</td></tr>
+<tr class="memdesc:a60aaba6a0b250ca29291fc030d4c4d7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns element where key is its shelflocation <br /></td></tr>
 <tr class="separator:a60aaba6a0b250ca29291fc030d4c4d7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b7d035ed71daede4cc9e83cdaed4d40"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b7d035ed71daede4cc9e83cdaed4d40"></a>
-<a class="el" href="struct__elem__.html">elem</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_elem_in_list_DB</b> (<a class="el" href="struct__list__.html">list</a> *l, char *key)</td></tr>
+<a class="el" href="struct__elem__.html">elem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a8b7d035ed71daede4cc9e83cdaed4d40">get_elem_in_list_DB</a> (<a class="el" href="struct__list__.html">list</a> *l, char *key)</td></tr>
+<tr class="memdesc:a8b7d035ed71daede4cc9e83cdaed4d40"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns element from list, pointed by l, where key is its shelflocation <br /></td></tr>
 <tr class="separator:a8b7d035ed71daede4cc9e83cdaed4d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3a6c2e8d890cd7204b9e7bb977b5fd9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac3a6c2e8d890cd7204b9e7bb977b5fd9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>check_shelf_used_in_tree</b> (<a class="el" href="struct__tree__.html">tree</a> *t, char *key)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#ac3a6c2e8d890cd7204b9e7bb977b5fd9">check_shelf_used_in_tree</a> (<a class="el" href="struct__tree__.html">tree</a> *t, char *key)</td></tr>
+<tr class="memdesc:ac3a6c2e8d890cd7204b9e7bb977b5fd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns true if key is in tree, pointed by t <br /></td></tr>
 <tr class="separator:ac3a6c2e8d890cd7204b9e7bb977b5fd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8299ce9f0ccb4e1d078aed6dd298f9df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8299ce9f0ccb4e1d078aed6dd298f9df"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>check_shelf_used</b> (<a class="el" href="struct__node__.html">node</a> **n, char *key)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a8299ce9f0ccb4e1d078aed6dd298f9df">check_shelf_used</a> (<a class="el" href="struct__node__.html">node</a> **n, char *key)</td></tr>
+<tr class="memdesc:a8299ce9f0ccb4e1d078aed6dd298f9df"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns true if key is in subtree, pointed by n <br /></td></tr>
 <tr class="separator:a8299ce9f0ccb4e1d078aed6dd298f9df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25c33e70c652217a7261ab1f11c3169c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a25c33e70c652217a7261ab1f11c3169c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>check_used_by_ware</b> (<a class="el" href="struct__tree__.html">tree</a> *t, void *key, char *shelfloc)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a25c33e70c652217a7261ab1f11c3169c">check_used_by_ware</a> (<a class="el" href="struct__tree__.html">tree</a> *t, void *key, char *shelfloc)</td></tr>
+<tr class="memdesc:a25c33e70c652217a7261ab1f11c3169c"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns true if shelflocation is used by a ware, where key is pointing to wares name, in the tree, where t points to the tree. shelfloc points to the shelflocation <br /></td></tr>
 <tr class="separator:a25c33e70c652217a7261ab1f11c3169c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed6b06f097bebd16c58552955649a70b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed6b06f097bebd16c58552955649a70b"></a>
-<a class="el" href="struct__ware__.html">ware</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>ware_exists</b> (<a class="el" href="struct__tree__.html">tree</a> *t, char *ware_name)</td></tr>
+<a class="el" href="struct__ware__.html">ware</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#aed6b06f097bebd16c58552955649a70b">ware_exists</a> (<a class="el" href="struct__tree__.html">tree</a> *t, char *ware_name)</td></tr>
+<tr class="memdesc:aed6b06f097bebd16c58552955649a70b"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns pointer to a ware if that ware exists in the tree <br /></td></tr>
 <tr class="separator:aed6b06f097bebd16c58552955649a70b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1410d44edf09cb7475621d935669d95b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1410d44edf09cb7475621d935669d95b"></a>
-<a class="el" href="struct__ware__.html">ware</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_ware_at</b> (<a class="el" href="struct__tree__.html">tree</a> *t, int index)</td></tr>
+<a class="el" href="struct__ware__.html">ware</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a1410d44edf09cb7475621d935669d95b">get_ware_at</a> (<a class="el" href="struct__tree__.html">tree</a> *t, int index)</td></tr>
+<tr class="memdesc:a1410d44edf09cb7475621d935669d95b"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns pointer to a ware at index index <br /></td></tr>
 <tr class="separator:a1410d44edf09cb7475621d935669d95b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace923370a8cb1735563785528311d1d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace923370a8cb1735563785528311d1d7"></a>
-<a class="el" href="struct__ware__.html">ware</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_ware_at_aux</b> (<a class="el" href="struct__node__.html">node</a> *n, int index, int *acc)</td></tr>
+<a class="el" href="struct__ware__.html">ware</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#ace923370a8cb1735563785528311d1d7">get_ware_at_aux</a> (<a class="el" href="struct__node__.html">node</a> *n, int index, int *acc)</td></tr>
+<tr class="memdesc:ace923370a8cb1735563785528311d1d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns pointer to a ware at index index. acc is an accumilator <br /></td></tr>
 <tr class="separator:ace923370a8cb1735563785528311d1d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af53f1a6c911e24009af3a7545d891432"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af53f1a6c911e24009af3a7545d891432"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>shelf_ok</b> (<a class="el" href="struct__tree__.html">tree</a> *t, <a class="el" href="struct__ware__.html">ware</a> *w, char *ware_shelf)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#af53f1a6c911e24009af3a7545d891432">shelf_ok</a> (<a class="el" href="struct__tree__.html">tree</a> *t, <a class="el" href="struct__ware__.html">ware</a> *w, char *ware_shelf)</td></tr>
+<tr class="memdesc:af53f1a6c911e24009af3a7545d891432"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks is a ware is in the list w-&gt;shelves. otherwise checks the tree, pointed by t, if the shelf is used <br /></td></tr>
 <tr class="separator:af53f1a6c911e24009af3a7545d891432"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affda6d46c57c3975399778ead7deaadc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affda6d46c57c3975399778ead7deaadc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_ware</b> (<a class="el" href="struct__tree__.html">tree</a> *t, <a class="el" href="struct__ware__.html">ware</a> *w, char *ware_name, char *ware_desc, int ware_price, char *ware_shelf, int ware_amount)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#affda6d46c57c3975399778ead7deaadc">insert_ware</a> (<a class="el" href="struct__tree__.html">tree</a> *t, <a class="el" href="struct__ware__.html">ware</a> *w, char *ware_name, char *ware_desc, int ware_price, char *ware_shelf, int ware_amount)</td></tr>
+<tr class="memdesc:affda6d46c57c3975399778ead7deaadc"><td class="mdescLeft">&#160;</td><td class="mdescRight">if w points to an existing ware, creates a shelf for it or increments its existing shelf. otherwise creates a ware with the given parameters <br /></td></tr>
 <tr class="separator:affda6d46c57c3975399778ead7deaadc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa83430de3c9922346bb8d5a1825ba6a7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa83430de3c9922346bb8d5a1825ba6a7"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>get_ware_name</b> (<a class="el" href="struct__ware__.html">ware</a> *w)</td></tr>
+char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#aa83430de3c9922346bb8d5a1825ba6a7">get_ware_name</a> (<a class="el" href="struct__ware__.html">ware</a> *w)</td></tr>
+<tr class="memdesc:aa83430de3c9922346bb8d5a1825ba6a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a pointer to a wares name <br /></td></tr>
 <tr class="separator:aa83430de3c9922346bb8d5a1825ba6a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6762f4739dbe6a4c97a3265a09533d8d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6762f4739dbe6a4c97a3265a09533d8d"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>get_ware_desc</b> (<a class="el" href="struct__ware__.html">ware</a> *w)</td></tr>
+char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a6762f4739dbe6a4c97a3265a09533d8d">get_ware_desc</a> (<a class="el" href="struct__ware__.html">ware</a> *w)</td></tr>
+<tr class="memdesc:a6762f4739dbe6a4c97a3265a09533d8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a pointer to a wares description <br /></td></tr>
 <tr class="separator:a6762f4739dbe6a4c97a3265a09533d8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a552bba4e069745499194dccbb312be4f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a552bba4e069745499194dccbb312be4f"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>get_ware_price</b> (<a class="el" href="struct__ware__.html">ware</a> *w)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a552bba4e069745499194dccbb312be4f">get_ware_price</a> (<a class="el" href="struct__ware__.html">ware</a> *w)</td></tr>
+<tr class="memdesc:a552bba4e069745499194dccbb312be4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns wares price <br /></td></tr>
 <tr class="separator:a552bba4e069745499194dccbb312be4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d313b557e2967c68e99c8ef9b8040dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d313b557e2967c68e99c8ef9b8040dc"></a>
-<a class="el" href="struct__list__.html">list</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_list</b> (<a class="el" href="struct__ware__.html">ware</a> *w)</td></tr>
+<a class="el" href="struct__list__.html">list</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a2d313b557e2967c68e99c8ef9b8040dc">get_list</a> (<a class="el" href="struct__ware__.html">ware</a> *w)</td></tr>
+<tr class="memdesc:a2d313b557e2967c68e99c8ef9b8040dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a pointer to a wares list <br /></td></tr>
 <tr class="separator:a2d313b557e2967c68e99c8ef9b8040dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c1ae5da603c858e7b02b2f55d2395d9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c1ae5da603c858e7b02b2f55d2395d9"></a>
-<a class="el" href="struct__elem__.html">elem</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_first_shelf</b> (<a class="el" href="struct__ware__.html">ware</a> *w)</td></tr>
+<a class="el" href="struct__elem__.html">elem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a3c1ae5da603c858e7b02b2f55d2395d9">get_first_shelf</a> (<a class="el" href="struct__ware__.html">ware</a> *w)</td></tr>
+<tr class="memdesc:a3c1ae5da603c858e7b02b2f55d2395d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a pointer to a wares lists first element <br /></td></tr>
 <tr class="separator:a3c1ae5da603c858e7b02b2f55d2395d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf490f83e6db04cdb9760d6138243fea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf490f83e6db04cdb9760d6138243fea"></a>
-<a class="el" href="struct__elem__.html">elem</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_next_shelf</b> (<a class="el" href="struct__elem__.html">elem</a> *e)</td></tr>
+<a class="el" href="struct__elem__.html">elem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#adf490f83e6db04cdb9760d6138243fea">get_next_shelf</a> (<a class="el" href="struct__elem__.html">elem</a> *e)</td></tr>
+<tr class="memdesc:adf490f83e6db04cdb9760d6138243fea"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a pointer to next element <br /></td></tr>
 <tr class="separator:adf490f83e6db04cdb9760d6138243fea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0dc5f5806ea5efa89a58361e9949a53"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0dc5f5806ea5efa89a58361e9949a53"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>get_shelf_loc</b> (<a class="el" href="struct__elem__.html">elem</a> *e)</td></tr>
+char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#ab0dc5f5806ea5efa89a58361e9949a53">get_shelf_loc</a> (<a class="el" href="struct__elem__.html">elem</a> *e)</td></tr>
+<tr class="memdesc:ab0dc5f5806ea5efa89a58361e9949a53"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a pointer to an elements shelflocation <br /></td></tr>
 <tr class="separator:ab0dc5f5806ea5efa89a58361e9949a53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa90f68401cbcf192c577633ee528604b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa90f68401cbcf192c577633ee528604b"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>get_shelf_amount</b> (<a class="el" href="struct__elem__.html">elem</a> *e)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#aa90f68401cbcf192c577633ee528604b">get_shelf_amount</a> (<a class="el" href="struct__elem__.html">elem</a> *e)</td></tr>
+<tr class="memdesc:aa90f68401cbcf192c577633ee528604b"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns amount of a ware on a shelflocation <br /></td></tr>
 <tr class="separator:aa90f68401cbcf192c577633ee528604b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af054897db94a93232af8c509ca4024fa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af054897db94a93232af8c509ca4024fa"></a>
-<a class="el" href="struct__ware__.html">ware</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_ware</b> (<a class="el" href="struct__node__.html">node</a> *n)</td></tr>
+<a class="el" href="struct__ware__.html">ware</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#af054897db94a93232af8c509ca4024fa">get_ware</a> (<a class="el" href="struct__node__.html">node</a> *n)</td></tr>
+<tr class="memdesc:af054897db94a93232af8c509ca4024fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a pointer to a ware <br /></td></tr>
 <tr class="separator:af054897db94a93232af8c509ca4024fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae647744481eadf8e34c3a6bde0d7d39e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae647744481eadf8e34c3a6bde0d7d39e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>destroy_warehouse</b> (<a class="el" href="struct__tree__.html">tree</a> *t)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#ae647744481eadf8e34c3a6bde0d7d39e">destroy_warehouse</a> (<a class="el" href="struct__tree__.html">tree</a> *t)</td></tr>
+<tr class="memdesc:ae647744481eadf8e34c3a6bde0d7d39e"><td class="mdescLeft">&#160;</td><td class="mdescRight">frees all allocated memory in tree, pointed by t <br /></td></tr>
 <tr class="separator:ae647744481eadf8e34c3a6bde0d7d39e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcc0d88af0462696307fcd87799250c9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adcc0d88af0462696307fcd87799250c9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>destroy_warehouse_subtree</b> (<a class="el" href="struct__node__.html">node</a> **n)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#adcc0d88af0462696307fcd87799250c9">destroy_warehouse_subtree</a> (<a class="el" href="struct__node__.html">node</a> **n)</td></tr>
+<tr class="memdesc:adcc0d88af0462696307fcd87799250c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">frees all allocated memory pointed in subtree, pointed by n <br /></td></tr>
 <tr class="separator:adcc0d88af0462696307fcd87799250c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac34394faa32d49c9c3247b1530d950ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac34394faa32d49c9c3247b1530d950ef"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>destroy_string</b> (char *c)</td></tr>
-<tr class="separator:ac34394faa32d49c9c3247b1530d950ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa13fc22099f331e621cda37b531aa04e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa13fc22099f331e621cda37b531aa04e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>destroy_list_DB</b> (<a class="el" href="struct__list__.html">list</a> *l)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#aa13fc22099f331e621cda37b531aa04e">destroy_list_DB</a> (<a class="el" href="struct__list__.html">list</a> *l)</td></tr>
+<tr class="memdesc:aa13fc22099f331e621cda37b531aa04e"><td class="mdescLeft">&#160;</td><td class="mdescRight">frees all allocated memory in list, pointed by l <br /></td></tr>
 <tr class="separator:aa13fc22099f331e621cda37b531aa04e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab40083b42cbd639bae1460d5effa62f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab40083b42cbd639bae1460d5effa62f3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>destroy_ware</b> (<a class="el" href="struct__ware__.html">ware</a> *w)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#ab40083b42cbd639bae1460d5effa62f3">destroy_ware</a> (<a class="el" href="struct__ware__.html">ware</a> *w)</td></tr>
+<tr class="memdesc:ab40083b42cbd639bae1460d5effa62f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">frees all allocated memory in ware, pointed w <br /></td></tr>
 <tr class="separator:ab40083b42cbd639bae1460d5effa62f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26c2388500810f9bafef96571b038acb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26c2388500810f9bafef96571b038acb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>destroy_node_DB</b> (<a class="el" href="struct__node__.html">node</a> *n)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a26c2388500810f9bafef96571b038acb">destroy_node_DB</a> (<a class="el" href="struct__node__.html">node</a> *n)</td></tr>
+<tr class="memdesc:a26c2388500810f9bafef96571b038acb"><td class="mdescLeft">&#160;</td><td class="mdescRight">frees all allocated memory in node, pointed by n <br /></td></tr>
 <tr class="separator:a26c2388500810f9bafef96571b038acb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>

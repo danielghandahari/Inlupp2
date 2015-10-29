@@ -32,17 +32,8 @@ int elem_compare(void *e1, void *e2);
 
 void insert_elem_in_list(list *l, elem *e);
 
-elem * get_last_elem(list *l);
+elem * get_last_elem(elem **e);
 
-
-
-
-//FÖR REMOVE_ITEM
-
-
-void rem_elem_in_list(list *l, void *elembox);
-
-void  rem_elem(elem *e, void *elembox);
 
 
 

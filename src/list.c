@@ -53,26 +53,6 @@ elem * get_elem(elem *e, void *elembox)
 
 
 
-
-
-
-/*void rem_elem_in_list(list *l, void *elembox)
-{
-  rem_elem(l->first, elembox);
-}*/
-
-
-//GÖR KLART EFTER DU GJORT TIMS FUNKTIONER
-
-/*void rem_elem(elem *e, void *elembox)
-{
-  elem *temp = get_elem(e, elembox);
-    
-  }*/
-
-
-
-
 void insert_elem_in_list(list *l, elem *e)
 {
   if(l->first == NULL)
@@ -91,16 +71,14 @@ void insert_elem_in_list(list *l, elem *e)
 
 
 
-elem * get_last_elem(list *l)
+elem * get_last_elem(elem **e)
 {
-  elem *temp = l->first;
+  elem *temp = *e;
 
-  while(!temp)
+  while(temp)
     {
       temp = temp->next;
     }
   return temp;
 }
-
-
 

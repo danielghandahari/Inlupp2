@@ -144,7 +144,6 @@ void incr_shelf(shelf *s, int incr)
 bool check_used_by_ware(tree *t, void *key, char *shelfloc)
 {
   node *mynode = get_node_in_tree(t, key);
-
   ware *myitem = (ware*)mynode->content;
 
   return find_elem_in_list_DB(myitem->shelves, shelfloc);
@@ -365,6 +364,7 @@ int get_shelf_amount(elem *e)
 
 
 
+
 void destroy_warehouse_subtree(node **n)
 {
   if(!(*n)) return;
@@ -403,7 +403,7 @@ void destroy_list_DB(list *l)
 
       temp = temp->next;
       
-      destroy_string(t1);
+      free(t1);
       free(temp->box);
       free(free_temp);
     }
@@ -412,25 +412,11 @@ void destroy_list_DB(list *l)
 }
 
 
-void destroy_string(char *c)
-{
-  char *temp = c;
-
-  while(temp)
-    {
-      char *free_temp = temp;
-      temp = temp + 1;
-      free(free_temp);
-    }
-  free(temp);
-}
-
-
 
 void destroy_ware(ware *w)
 {
-  destroy_string(w->name);
-  destroy_string(w->desc);
+  free(w->name);
+  free(w->desc);
   free(w);
 }
 
@@ -441,6 +427,50 @@ void destroy_node_DB(node *n)
   ware *w = (ware*)n->content;
   destroy_list_DB(w->shelves);
   destroy_ware(w);
-  destroy_string(n->key);
+  free(n->key);
   free(n);
+}
+
+
+
+void rem_elem_in_list(list *l, void *elembox)
+{
+  assert(l);
+
+  rem_elem(&(l->first), elembox);
+
+  if(l->first == l->last) l->last = NULL;
+  
+}
+
+
+//GÖR KLART EFTER DU GJORT TIMS FUNKTIONER
+
+void rem_elem(elem **e, void *elembox)
+{
+  if(!(*e)) return;
+
+
+  elem *temp_last = get_last_elem(e);
+  if((*e) == temp_last)
+    {
+      shelf *s = (shelf*)(*e)->box;
+      free(s->location);
+      free(s);
+      *e = NULL;
+    }
+
+  if(*e)
+    {
+      elem *temp = get_elem(*e, elembox);
+
+      e = &temp;
+
+      *e = temp->next;
+
+      shelf *s = (shelf*)temp->box;
+      free(s->location);
+      free(s);
+      free(temp);
+    }
 }
