@@ -207,16 +207,22 @@ ware *get_ware_at_aux(node *n, int index, int *acc)
   log_info("get_ware_at_aux", *acc, "%d");
   log_info("get_ware_at_aux", index, "%d");
 
-  if(*acc > index) return NULL; //might cause logical faults
+  //if(*acc > index) return NULL; //might cause logical faults
 
-  if(n->left) get_ware_at_aux(n->left, index, acc);
+  ware *ret_val = NULL;
+
+  if(n->left) ret_val = get_ware_at_aux(n->left, index, acc);
   
+  if(ret_val) goto done;
+
   if(index == *acc) return get_ware(n);
   else ++(*acc);
 
-  if(n->right) get_ware_at_aux(n->right, index, acc);
+  if(n->right) ret_val = get_ware_at_aux(n->right, index, acc);
 
-  return NULL;
+
+ done:
+  return ret_val;
 }
 
 ware *get_ware_at(tree *t, int index)

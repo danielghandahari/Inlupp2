@@ -96,6 +96,7 @@ void add_ware(tree *t)
       read_price(&ware_price);
     }
   
+  //check for used shelf
   char ware_shelf[STREAM_LENGTH] = {'\0'};
   read_shelf(ware_shelf);
 
