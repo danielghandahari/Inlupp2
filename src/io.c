@@ -189,7 +189,7 @@ void edit_ware(tree *t)
 	case 'n':
 	case 'N':
 	  {
-	    char *name = {'\0'};
+	    char *name = "\0";
 	    read_name(name);
 	  }
 	  //send to database
@@ -198,7 +198,7 @@ void edit_ware(tree *t)
 	case 'd':
 	case 'D':
 	  {
-	    char *description = {'\0'};
+	    char *description = "\0";
 	    read_description(description);
 	  }
 	  //send to database
@@ -216,7 +216,7 @@ void edit_ware(tree *t)
 	case 's':
 	case 'S':
 	  {
-	    char *shelf = {'\0'};
+	    char *shelf = "\0";
 	    read_shelf(shelf);
 	  }
 	  //send to database
@@ -225,7 +225,7 @@ void edit_ware(tree *t)
 	case 'a':
 	case 'A':
 	  {
-	    char *shelf = {'\0'};
+	    char *shelf = "\0";
 	    read_shelf(shelf);	  	  
 	    int amount = -1;
 	    read_amount(&amount);
@@ -268,6 +268,7 @@ int get_ware_index(tree *t)
 
   log_info("get_ware_index", w, "%p");
   
+  
   if(!w)
     {
       print_warehouse_empty();
@@ -275,12 +276,14 @@ int get_ware_index(tree *t)
     }
 
  print_next_page:
-  while(w)
+  while(w && (index % PRINT_TILL_CHECK) < PRINT_TILL_CHECK)
     {
       print_index_name(index, get_ware_name(w));
       ++index;
       
       w = get_ware_at(t, index);
+      log_info("get_ware_index", w, "%p");
+      log_info("get_ware_index", index, "%d");
     }
 
   if(!w) print_end_of_warehouse();
@@ -321,6 +324,7 @@ int get_ware_index(tree *t)
 	    {
 	      int final = i - 1 + 20 * page;
 	      print_ware(get_ware_at(t, final));
+	      log_info("get_ware_index", final, "%d");	      
 	      return final;
 	    }
 	}
@@ -336,7 +340,7 @@ void print_warehouse(tree *t)
 {
   int index = get_ware_index(t);
 
-  print_ware(get_ware_at(t, index));
+  if(index > -1) print_ware(get_ware_at(t, index));
 }
 
 

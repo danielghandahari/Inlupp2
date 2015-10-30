@@ -67,7 +67,7 @@ bool check_node_exists_in_tree(tree *t, void *key)
 			 
 void append_node(node **n, node *mynode)
 {
-  log_info("append_node", n, "%p");
+  log_info("append_node", *n, "%p");
   log_info("append_node", mynode, "%p");
 
   assert(mynode != NULL);

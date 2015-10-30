@@ -11,15 +11,14 @@
 #include <list_secret.h>
 #include <dbg.h>
 #include <string.h>
-
-
+#include <ctype.h>
 #define Equal action == 0
 #define ElementOf(SHELF) &(SHELF)
 #define ElementOrShelfOf(SHELF) (ElementOf(SHELF) == NULL || SHELF == NULL)
 #define check_shelf_used_ASSERT(NODE) ware *emptylistptr =(ware*)((*NODE)->content); \
   assert((emptylistptr || emptylistptr->shelves || emptylistptr->shelves->first))
  
-
+char * make_key(char *ware_name); //TODO, lägg alla funktioner som behövs här 
 
 
 //ICKE-GENERELLA STRUCTAR FÖR TREE.C
@@ -146,6 +145,7 @@ void incr_shelf_and_tot(list *l, char *key, int incr)
 
 void incr_shelf(shelf *s, int incr)
 {
+  log_info("incr_shelf", s->amount, "%d");
   s->amount += incr;
 }
 
@@ -203,7 +203,9 @@ ware *ware_exists(tree *t, char *warename)
   log_info("ware_exists", warename, "%p");
   log_info("ware_exists", warename, "%s");
 
-  node *n = get_node_in_tree(t, warename); //TODO fix warename skickas in som om det vore en 'key'.
+  char *key  = make_key(warename);
+  
+  node *n = get_node_in_tree(t, key); //TODO fix warename skickas in som om det vore en 'key'.
   log_info("ware_exists", n, "%p");
 
   if(!n) return NULL;
@@ -289,14 +291,19 @@ void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice
 
       if(shelfexists) incr_shelf_and_tot(w->shelves, shelfloc, shelfamount);
       
-      else if(!shelfexists)
+      else
 	{
 	  elem *e = create_elem();
-	  log_info("add_ware", e, "%p");
+	  log_info("insert_ware", e, "%p");
 
-	  shelf *s = (shelf*)e->box;
+	  shelf *s = create_shelf();
+	  log_info("insert_ware", s, "%p");
+	  
+	  e->box = s;
+
+	  log_info("insert_ware", e->box, "%p");
 	  s->location = shelfloc;
-	  s->amount = shelfamount;
+	  s->amount = 0;
 
 	  insert_elem_in_list(w->shelves, e);
 	  incr_shelf_and_tot(w->shelves, shelfloc, shelfamount);       
@@ -314,7 +321,7 @@ void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice
       log_info("insert_ware", l, "%p");
       log_info("insert_ware", e, "%p");
 
-      n->key = strdup(warename); //TODO generate key
+      n->key = make_key(warename);
       n->content = w;
 
       w->name = strdup(warename);
@@ -382,8 +389,9 @@ void remove_shelf_at(tree *t, ware *w, int index)
   elem *tmp = get_next_shelf(shelf);
   rem_elem(&tmp, tmp->box);
 
-  //TODO använder ware_name som key. FIX IT!
-  if(!get_first_shelf(w)) rem_node_in_tree(t, get_ware_name(w));
+  char *key = make_key(get_ware_name(w));
+  
+  if(!get_first_shelf(w)) rem_node_in_tree(t, key);
 
 }
 
@@ -522,9 +530,16 @@ void rem_elem(elem **e, void *elembox)
 
 
 
-char * make_key(char *ware_name) //alllcera på heapen
+char * make_key(char *ware_name) 
 {
-  return ware_name;
+  char *new_key = strdup(ware_name);
+
+  for(int i = 0; i < (int)strlen(ware_name); i++)
+    {
+      new_key[i] = toupper(ware_name[i]);
+    }
+  return new_key;
+  
 }
 
 

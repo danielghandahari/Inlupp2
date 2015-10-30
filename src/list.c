@@ -1,3 +1,4 @@
+#include <dbg.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
@@ -63,10 +64,17 @@ void insert_elem_in_list(list *l, elem *e)
     }
   else
     {
-      l->last->next = e;
+      elem *old_last = l->last;
+
+      log_info("insert_elem_in_list", old_last, "%p");
+      
+      old_last->next = e;
       l->last = e;
       e->next = NULL;
-    }  
+    }
+
+  log_info("insert_elem_in_list", l->first, "%p");
+  log_info("insert_elem_in_list", l->last, "%p");
 }
 
 

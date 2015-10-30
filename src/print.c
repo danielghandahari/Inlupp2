@@ -72,7 +72,7 @@ void print_shelves(ware *w)
 
     while(e)
     {
-      log_info("print_ware_shelves", e, "%p");
+      log_info("print_shelves", e, "%p");
 
       printf("%-4s%i\n", get_shelf_loc(e), get_shelf_amount(e));
       e = get_next_shelf(e);
