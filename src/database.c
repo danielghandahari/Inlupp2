@@ -95,14 +95,19 @@ int elem_compare(void *e1, void *e2)
 
 bool check_shelf_used(node **n, char *key)
 {
-  check_shelf_used_ASSERT(n);
+  //  check_shelf_used_ASSERT(n);
 
   node **current = n;
   
   if(*current)
     {
+      log_info("check_shelf_used", current, "%p");
+
       ware *c =(ware*)((*current)->content);
+      log_info("check_shelf_used", c, "%p");
+
       bool eleminlist = find_elem_in_list_DB(c->shelves, key);
+      log_info("check_shelf_used", eleminlist, "%d");
 
       if (eleminlist) return true;
       
@@ -124,12 +129,17 @@ bool check_shelf_used_in_tree(tree *t, char *key)
 void incr_shelf_and_tot(list *l, char *key, int incr)
 {
   elem *e = get_elem_in_list_DB(l, key);
+  log_info("incr_shelf_and_tot", e, "%p");
+
   shelf *s = (shelf*)e->box;
+  log_info("incr_shelf_and_tot", s, "%p");
 
   incr_shelf(s, incr);
+  log_info("incr_shelf_and_tot", s->amount, "%d");
 
-  int *totalamount  = (int*)l->stuff;
-  (*totalamount) += incr;
+  //TODO make it work
+  //  int *totalamount  = (int*)l->stuff;
+  //  (*totalamount) += incr;
 }
 
 
@@ -172,8 +182,12 @@ elem * get_elem_DB(elem *e, char *key)
     {
       shelf *s = (shelf*)current->box;
       int action = key_compare(s->location, key);
+
+      log_info("get_elem_DB", current, "%p");
+      log_info("get_elem_DB", s, "%p");
+      log_info("get_elem_DB", action, "%d");
       
-      if (Equal) return current;
+      if (action == 0) return current;
       current = current->next;
     }
 
@@ -246,9 +260,17 @@ ware *get_ware_at(tree *t, int index)
 
 bool shelf_ok(tree *t, ware *w, char *shelfloc)
 {
-  if(w) return find_elem_in_list_DB(w->shelves, shelfloc); 
+  log_info("shelf_ok", t, "%p");
+  log_info("shelf_ok", w, "%p");
+  log_info("shelf_ok", shelfloc, "%s");
+  log_info("shelf_ok", shelfloc, "%p");
 
-  else return check_shelf_used_in_tree(t, shelfloc);
+  if(w)
+    {
+      if(find_elem_in_list_DB(w->shelves, shelfloc)) return true;
+    }
+
+  return !check_shelf_used_in_tree(t, shelfloc);
 }
 
 void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice, char *shelfloc, int shelfamount)
@@ -267,7 +289,7 @@ void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice
 
       if(shelfexists) incr_shelf_and_tot(w->shelves, shelfloc, shelfamount);
       
-      if(!shelfexists)
+      else if(!shelfexists)
 	{
 	  elem *e = create_elem();
 	  log_info("add_ware", e, "%p");

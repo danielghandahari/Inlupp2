@@ -3,6 +3,7 @@
 #include <io.h>
 #include <ctype.h>
 
+int get_ware_index(tree *t);
 
 
 char get_menu_choice(char *prompt)
@@ -96,9 +97,13 @@ void add_ware(tree *t)
       read_price(&ware_price);
     }
   
-  //check for used shelf
+  //TODO check for used shelf
   char ware_shelf[STREAM_LENGTH] = {'\0'};
-  read_shelf(ware_shelf);
+  do
+    {
+      read_shelf(ware_shelf);
+    } while(!shelf_ok(t, w, ware_shelf));
+  
 
   int ware_amount;
   read_amount(&ware_amount);  
@@ -118,7 +123,7 @@ void remove_ware(tree *t)
 
   //TODO
 
-  int index = print_warehouse(t);
+  int index = get_ware_index(t);
 
   ware *w = get_ware_at(t, index);
   int num_shelves = get_num_shelves(w);
@@ -135,7 +140,7 @@ void remove_ware(tree *t)
       log_info("remove_ware", w, "%p");
 
       print_shelves(w);
-      //TODO make simpler, similar to how print_warehouse get's it's index, try to combine
+      //TODO make simpler, similar to how get_ware_index get's it's index, try to combine
       user_input_int(&input, "To remove a shelf, input it's assosiated number or\ninput 0 to exit.");
       
       if(input > 0 && input < num_shelves)
@@ -158,31 +163,76 @@ void remove_ware(tree *t)
 }
 
 
-
+//TODO fix output
 void edit_ware(tree *t)
 {
   print_edit_header();
 
-  //TODO
+  int index = -1;
+  index = get_ware_index(t);
 
-  int index = print_warehouse(t);
+ again:
 
   ware *w = get_ware_at(t, index);
   print_ware(w);
 
-  
-  
-  
-  //again:
-
-  //print ware
-  //get ware based on index
   //get attribute to edit
-  //input new value of attribute
+  char input = {'\0'};
+  read_char(&input);
 
-  //check: edit another attribute?
-  //if yes: goto again
-  //else: exit
+  //input new value of attribute
+  switch(input)
+    {
+      //name
+    case 'n':
+    case 'N':
+      char *name = {'\0'};
+      read_name(name);
+      //send to database
+      goto again;
+      break;
+
+      //description
+    case 'd':
+    case 'D':
+      char *description = {'\0'};
+      read_description(description);
+      //send to database
+      goto again;
+      break;
+
+      //price
+    case 'p':
+    case 'P':
+      int price = -1;
+      read_price(price);
+      //send to database
+      goto again;
+      break;
+
+      //shelf
+    case 's':
+    case 'S':
+      char *shelf = {'\0'};
+      read_shelf(shelf
+      break;
+
+      //amount
+    case 'a':
+    case 'A':
+
+      break;
+
+    case 'x':
+    case 'X':
+      goto exit;
+      break;
+
+    default:
+      print_incorrect_input();
+    }
+
+ exit:
 }
 
 
@@ -199,17 +249,17 @@ bool is_string_digit(const char *s)
 
 #define PRINT_TILL_CHECK 20
 
-int print_warehouse(tree *t)
+int get_ware_index(tree *t)
 {
   print_warehouse_header();
 
-  log_info("print_warehouse", t, "%p");
+  log_info("get_ware_index", t, "%p");
 
   int index = 0;
   int page = 0;
   ware *w = get_ware_at(t, index);
 
-  log_info("print_warehouse", w, "%p");
+  log_info("get_ware_index", w, "%p");
   
   if(!w)
     {
@@ -239,8 +289,16 @@ int print_warehouse(tree *t)
     {
     case 'p':
     case 'P':
-      ++page;
-      goto print_next_page;
+      if(w)
+	{
+	  ++page;
+	  goto print_next_page;
+	}
+      else
+	{
+	  printf("End of wareohuse\n");
+	  goto exit;
+	}
       break;
 
     case 'x':
@@ -267,8 +325,15 @@ int print_warehouse(tree *t)
   return -1;
 }
 
+void print_warehouse(tree *t)
+{
+  int index = get_ware_index(t);
+
+  print_ware(get_ware_at(t, index));
+}
 
 
+//TODO fix this shit
 void pack_trolley(tree *t)
 {
   print_trolley_header();
@@ -277,19 +342,21 @@ void pack_trolley(tree *t)
 
   do
     {
-      int index = print_warehouse(t);
+      int index = get_ware_index(t);
 
       ware *w = get_ware_at(t, index);
-      print_ware(w); //stuff
 
-      //get amount to pack
+      int amount = -1;
+      //TODO make macro to ease reading
+      user_input_int(&amount, "How many of '%s' would you like to take?\n", get_ware_name(w));
 
-      //pack another ware?
+      //print_trolly_current
+
       again = false;
 
     } while(again);
 
-  //print trolley
+  //print trolley_final
 }
 
 

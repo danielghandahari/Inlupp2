@@ -134,7 +134,6 @@ char *get_ware_desc(ware *w);
  * @brief returns wares price
  */
 int get_ware_price(ware *w);
-int get_ware_price(ware *w);
 
 //======
 // list
