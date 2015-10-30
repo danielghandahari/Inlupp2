@@ -1,5 +1,5 @@
-\hypertarget{database_8h}{}\section{Documents/\+I\+O\+O\+P\+M/\+Inlupp2/include/database.h File Reference}
-\label{database_8h}\index{Documents/\+I\+O\+O\+P\+M/\+Inlupp2/include/database.\+h@{Documents/\+I\+O\+O\+P\+M/\+Inlupp2/include/database.\+h}}
+\hypertarget{database_8h}{}\section{I\+O\+O\+P\+M/\+Inlupp2/include/database.h File Reference}
+\label{database_8h}\index{I\+O\+O\+P\+M/\+Inlupp2/include/database.\+h@{I\+O\+O\+P\+M/\+Inlupp2/include/database.\+h}}
 
 
 Header file for the database.  
@@ -122,7 +122,13 @@ Header file for the database.
 \begin{DoxyCompactList}\small\item\em frees all allocated memory in ware, pointed w \end{DoxyCompactList}\item 
 \hypertarget{database_8h_a26c2388500810f9bafef96571b038acb}{}void \hyperlink{database_8h_a26c2388500810f9bafef96571b038acb}{destroy\+\_\+node\+\_\+\+D\+B} (\hyperlink{struct__node__}{node} $\ast$n)\label{database_8h_a26c2388500810f9bafef96571b038acb}
 
-\begin{DoxyCompactList}\small\item\em frees all allocated memory in node, pointed by n \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em frees all allocated memory in node, pointed by n \end{DoxyCompactList}\item 
+\hypertarget{database_8h_a3b7bac2354df34fb952560966d44b38d}{}void \hyperlink{database_8h_a3b7bac2354df34fb952560966d44b38d}{rem\+\_\+elem} (\hyperlink{struct__elem__}{elem} $\ast$$\ast$e, void $\ast$elembox)\label{database_8h_a3b7bac2354df34fb952560966d44b38d}
+
+\begin{DoxyCompactList}\small\item\em removes element from a list searching from element pointed by $\ast$e \end{DoxyCompactList}\item 
+\hypertarget{database_8h_a97d1c6038d1f972d1c16c4e4c8fc6b39}{}void \hyperlink{database_8h_a97d1c6038d1f972d1c16c4e4c8fc6b39}{rem\+\_\+elem\+\_\+in\+\_\+list} (\hyperlink{struct__list__}{list} $\ast$l, void $\ast$elembox)\label{database_8h_a97d1c6038d1f972d1c16c4e4c8fc6b39}
+
+\begin{DoxyCompactList}\small\item\em removes element from list, pointed by l \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}

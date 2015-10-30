@@ -420,6 +420,12 @@ void destroy_ware(ware *w)
   free(w);
 }
 
+void destroy_only_node(node *n)
+{
+  free(n->key);
+  free(n->content);
+  free(n);
+}
 
 
 void destroy_node_DB(node *n)
@@ -474,3 +480,122 @@ void rem_elem(elem **e, void *elembox)
       free(temp);
     }
 }
+
+
+
+char * make_key(char *ware_name) //alllcera på heapen
+{
+  return ware_name;
+}
+
+
+
+
+void edit_name(tree *t, char *old_key, char *new_name)
+{
+  char *my_new_name = strdup(new_name);
+
+  node *n = get_node_in_tree(t, old_key);
+
+  ware *w = (ware*)n->content;
+
+  free(w->name);
+  
+  w->name = my_new_name;
+
+  char *new_key = make_key(my_new_name);
+
+  node *new_node = calloc(1, sizeof(node));
+
+  new_node->key = new_key;
+  new_node->content = w;
+  new_node->left = NULL;
+  new_node->right = NULL;
+  
+  rem_node_in_tree(t, old_key);
+
+  append_node_in_tree(t, new_node);  
+  
+}
+
+
+void edit_desc(tree *t, char *key, char *new_desc)
+{
+  char *my_new_desc = strdup(new_desc);
+
+  node *n = get_node_in_tree(t, key);
+
+  ware *w = (ware*)n->content;
+
+  free(w->desc);
+
+  w->desc = my_new_desc;
+}
+
+
+
+void edit_price(tree *t, char *key, int new_price)
+{
+  node *n = get_node_in_tree(t, key);
+
+  ware *w = (ware*)n->content;
+  
+  w->price = new_price;
+  
+}
+
+void edit_shelf_location(tree *t, char *key, char *old_shelf, char *new_shelf)
+{
+  char *my_new_shelf = strdup(new_shelf);
+
+  node *n = get_node_in_tree(t, key);
+
+  ware *w = (ware*)n->content;
+
+  elem *e = get_elem_in_list_DB(w->shelves, old_shelf);
+
+  shelf *s = (shelf*)e->box;
+
+  free(s->location);
+
+  s->location = my_new_shelf;
+}
+
+
+void edit_shelf_amount(tree *t, char *key, char *old_shelf, int new_amount)
+{
+  node *n = get_node_in_tree(t, key);
+
+  ware *w = (ware*)n->content;
+
+  elem *e = get_elem_in_list_DB(w->shelves, old_shelf);
+
+  shelf *s = (shelf*)e->box;
+
+  s->amount = new_amount;
+}
+
+
+void free_key_in_node(node *n)
+{
+  free(n->key);
+}
+
+
+
+void free_list_in_node(node *n)
+{
+  ware *w = (ware*)n->content;
+  destroy_list_DB(w->shelves);
+}
+
+
+
+void free_ware_in_node(node *n)
+{
+  ware *w = (ware*)n->content;
+  destroy_ware(w);
+}
+
+
+

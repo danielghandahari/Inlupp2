@@ -140,6 +140,9 @@ void edit_ware(tree *t)
   ware *w = get_ware_at(t, index);
   print_ware(w);
 
+  
+  
+  
   //again:
 
   //print ware

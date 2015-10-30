@@ -179,6 +179,7 @@ void destroy_ware(ware *w);
  */
 void destroy_node_DB(node *n);
 
+void destroy_only_node(node *n);
 
 /**
  * @brief removes element from a list searching from element pointed by *e
@@ -189,5 +190,53 @@ void rem_elem(elem **e, void *elembox);
  * @brief removes element from list, pointed by l
  */
 void rem_elem_in_list(list *l, void *elembox);
+
+
+
+
+/**
+ * @brief replacing wares name with a new name, pointed by new_name. generates a new key for the node with the key pointed by old_key. The node is in the tree, pointed by t
+ */
+void edit_name(tree *t, char *old_key, char *new_name);
+
+/**
+ * @brief replacing wares description with a new description, pointed by new_desc. The node, with the key, pointed by key, is in the tree, pointed by t
+ */
+void edit_desc(tree *t, char *key, char *new_desc);
+
+/**
+ * @brief replacing wares description with a new price, new_price. The node, with the key, pointed by key, is in the tree, pointed by t
+ */
+void edit_price(tree *t, char *key, int new_price);
+
+/**
+ * @brief replacing wares, lists shelf location with a new shelf location, pointed by, new_shelf. The node, with the key, pointed by key, is in the tree, pointed by t. old_shelf is used to find the right element in the list
+ */
+void edit_shelf_location(tree *t, char *key, char *old_shelf, char *new_shelf);
+
+/**
+ * @brief replacing wares, lists shelf amount with a new shelf amount, new_amount. The node, with the key, pointed by key, is in the tree, pointed by t. old_shelf is used to find the right element in the list
+ */
+void edit_shelf_amount(tree *t, char *key, char *old_shelf, int new_amount);
+
+/**
+ * @brief copy information from fields in node, pointed by from, to node, pointed by to
+ */
+void copy_node_DB(node *from, node *to);
+
+/**
+ * @brief frees ware in node, pointed by n
+ */
+void free_ware_in_node(node *n);
+
+/**
+ * @brief frees wares list in node, pointed by n
+ */
+void free_list_in_node(node *n);
+
+/**
+ * @brief frees key in node, pointed by n
+ */
+void free_key_in_node(node *n);
 
 #endif

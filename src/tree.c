@@ -13,9 +13,6 @@
 #define Right action < 0
 #define PtrToLeftNode(NODE) &((*NODE)->left)
 #define PtrToRightNode(NODE) &((*NODE)->right)
-#define NodeIsLeaf(NODE) !((*NODE)->left) && !((*NODE)->right)
-#define NodeOneChild(NODE) (((*NODE)->left) && !((*NODE)->right)) || (!((*NODE)->left) && ((*NODE)->right)) 
-#define NodeTwoChild(NODE) ((*NODE)->left) && ((*NODE)->right)
 
 
 
@@ -151,18 +148,22 @@ void del_node_one_child(node **n)
 void del_node_two_child(node **n)
 {
   node **mtol = find_max_to_left(n);
-
+  
   copy_node(*mtol, *n);
-
+  
   rem_node(mtol, (*mtol)->key);
+
 }
 
 
 
 void copy_node(node *from, node *to)
 {
-  to->key = (from)->key;
-  to->content = (from)->content;
+  to->key = from->key;
+  to->content = from->content;
+
+  from->content = NULL;
+
 }
 
 
@@ -183,6 +184,11 @@ void rem_node_in_tree(tree *t, void *key)
 {
   rem_node(&(t->root), key);
 }  
+
+
+#define NodeIsLeaf(NODE) !((*NODE)->left) && !((*NODE)->right)
+#define NodeOneChild(NODE) (((*NODE)->left) && !((*NODE)->right)) || (!((*NODE)->left) && ((*NODE)->right)) 
+#define NodeTwoChild(NODE) ((*NODE)->left) && ((*NODE)->right)
 
 
 void rem_node(node **n, void *key)
@@ -206,3 +212,6 @@ node *get_root(tree *t)
 {
   return t->root;
 }
+
+
+
