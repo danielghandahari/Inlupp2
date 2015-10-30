@@ -599,3 +599,92 @@ void free_ware_in_node(node *n)
 
 
 
+
+
+void del_node_zero_child(node **n)
+{
+  free(*n);
+  *n = NULL;
+}
+
+void del_node_one_child(node **n)
+{
+  if((*n)->right == NULL)
+    {
+      node *temp = (*n)->left;
+      free(*n);
+      *n = temp;
+      return;
+    }
+
+    if((*n)->left == NULL)
+    {
+      node *temp = (*n)->right;
+      free(*n);
+      *n = temp;
+      return;
+    }
+    else assert(false);
+}
+
+void del_node_two_child(node **n)
+{
+  node **mtol = find_max_to_left(n);
+  
+  copy_node(*mtol, *n);
+  
+  rem_node(mtol, (*mtol)->key);
+
+}
+
+
+
+void copy_node(node *from, node *to)
+{
+  free_list_in_node(to);
+  free_ware_in_node(to);
+  free_key_in_node(to);
+
+
+  to->key = from->key;
+  to->content = from->content;
+
+  from->content = NULL;
+
+}
+
+
+
+node **find_max_to_left(node **n)
+{
+  node **temp = &((*n)->left);
+
+  while((*temp)->right) (*temp) = (*temp)->right;
+    
+  return temp;
+}
+
+
+
+
+void rem_node_in_tree(tree *t, void *key)
+{
+  rem_node(&(t->root), key);
+}  
+
+
+#define NodeIsLeaf(NODE) !((*NODE)->left) && !((*NODE)->right)
+#define NodeOneChild(NODE) (((*NODE)->left) && !((*NODE)->right)) || (!((*NODE)->left) && ((*NODE)->right)) 
+#define NodeTwoChild(NODE) ((*NODE)->left) && ((*NODE)->right)
+
+
+void rem_node(node **n, void *key)
+{
+  node *temp = get_node(n, key);
+  node **dptr = &temp;
+
+  if(NodeIsLeaf(dptr)) del_node_zero_child(dptr);
+  if(NodeOneChild(dptr)) del_node_one_child(dptr);
+  if(NodeTwoChild(dptr)) del_node_two_child(dptr);
+}
+

@@ -239,4 +239,27 @@ void free_list_in_node(node *n);
  */
 void free_key_in_node(node *n);
 
+
+
+
+void del_node_zero_child(node **n);
+
+void del_node_one_child(node **n);
+
+void del_node_two_child(node **n);
+
+void copy_node(node *from, node *to);
+
+
+
+void rem_node_in_tree(tree *t, void *key);
+
+void rem_node(node **n, void *key);
+
+node **find_max_to_left(node **n);
+
+
+
+
+
 #endif
