@@ -171,68 +171,75 @@ void edit_ware(tree *t)
   int index = -1;
   index = get_ware_index(t);
 
- again:
+  bool again = true;
 
-  ware *w = get_ware_at(t, index);
-  print_ware(w);
-
-  //get attribute to edit
-  char input = {'\0'};
-  read_char(&input);
-
-  //input new value of attribute
-  switch(input)
+  do
     {
-      //name
-    case 'n':
-    case 'N':
-      char *name = {'\0'};
-      read_name(name);
-      //send to database
-      goto again;
-      break;
+      ware *w = get_ware_at(t, index);
+      print_ware(w);
 
-      //description
-    case 'd':
-    case 'D':
-      char *description = {'\0'};
-      read_description(description);
-      //send to database
-      goto again;
-      break;
+      //get attribute to edit
+      char input = {'\0'};
+      read_char(&input);
 
-      //price
-    case 'p':
-    case 'P':
-      int price = -1;
-      read_price(price);
-      //send to database
-      goto again;
-      break;
+      //input new value of attribute
+      //TODO move to separet function
+      switch(input)
+	{
+	case 'n':
+	case 'N':
+	  {
+	    char *name = {'\0'};
+	    read_name(name);
+	  }
+	  //send to database
+	  break;
 
-      //shelf
-    case 's':
-    case 'S':
-      char *shelf = {'\0'};
-      read_shelf(shelf
-      break;
+	case 'd':
+	case 'D':
+	  {
+	    char *description = {'\0'};
+	    read_description(description);
+	  }
+	  //send to database
+	  break;
 
-      //amount
-    case 'a':
-    case 'A':
+	case 'p':
+	case 'P':	  
+	  {
+	    int price = -1;
+	    read_price(&price);
+	  }
+	  //send to database
+	  break;
 
-      break;
+	case 's':
+	case 'S':
+	  {
+	    char *shelf = {'\0'};
+	    read_shelf(shelf);
+	  }
+	  //send to database
+	  break;
 
-    case 'x':
-    case 'X':
-      goto exit;
-      break;
+	case 'a':
+	case 'A':
+	  {
+	    char *shelf = {'\0'};
+	    read_shelf(shelf);	  	  
+	    int amount = -1;
+	    read_amount(&amount);
+	  }
+	  //send to database
+	  break;
 
-    default:
-      print_incorrect_input();
-    }
+	case 'x':
+	case 'X': again = false; break;
 
- exit:
+	default: print_incorrect_input();
+	}
+
+    } while(again);
 }
 
 
@@ -343,12 +350,11 @@ void pack_trolley(tree *t)
   do
     {
       int index = get_ware_index(t);
-
       ware *w = get_ware_at(t, index);
-
+      print_ware(w);
       int amount = -1;
       //TODO make macro to ease reading
-      user_input_int(&amount, "How many of '%s' would you like to take?\n", get_ware_name(w));
+      user_input_int(&amount, "How many items would you like to take?\n");
 
       //print_trolly_current
 

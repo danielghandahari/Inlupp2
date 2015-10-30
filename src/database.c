@@ -373,16 +373,14 @@ void remove_shelf_at(tree *t, ware *w, int index)
   elem *shelf = get_first_shelf(w);
   assert(w);  
 
-  for(int i = 0; i < index-1 && shelf; i++)
+  for(int i = 0; i < index-1; i++)
     {
       shelf = get_next_shelf(shelf);
+      if(!shelf) return;
     }
 
   elem *tmp = get_next_shelf(shelf);
-  shelf->next = tmp->next;
-
-  if(tmp->box) free(tmp->box);
-  free(tmp);
+  rem_elem(&tmp, tmp->box);
 
   //TODO använder ware_name som key. FIX IT!
   if(!get_first_shelf(w)) rem_node_in_tree(t, get_ware_name(w));
