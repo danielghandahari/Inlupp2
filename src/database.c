@@ -742,9 +742,9 @@ void rem_node_in_tree(tree *t, void *key)
 }  
 
 
-#define NodeIsLeaf(NODE) !((*NODE)->left) && !((*NODE)->right)
-#define NodeOneChild(NODE) (((*NODE)->left) && !((*NODE)->right)) || (!((*NODE)->left) && ((*NODE)->right)) 
-#define NodeTwoChild(NODE) ((*NODE)->left) && ((*NODE)->right)
+#define NodeIsLeaf(NODE) !(NODE->left) && !(NODE->right)
+#define NodeOneChild(NODE) ((NODE->left) && !(NODE->right)) || (!(NODE->left) && (NODE->right)) 
+#define NodeTwoChild(NODE) (NODE->left) && (NODE->right)
 
 
 void rem_node(node **n, void *key)
@@ -752,8 +752,8 @@ void rem_node(node **n, void *key)
   node *temp = get_node(n, key);
   node **dptr = &temp;
 
-  if(NodeIsLeaf(dptr)) del_node_zero_child(dptr);
-  if(NodeOneChild(dptr)) del_node_one_child(dptr);
-  if(NodeTwoChild(dptr)) del_node_two_child(dptr);
+  if(NodeIsLeaf(temp)) del_node_zero_child(dptr);
+  if(NodeOneChild(temp)) del_node_one_child(dptr);
+  if(NodeTwoChild(temp)) del_node_two_child(dptr);
 }
 
