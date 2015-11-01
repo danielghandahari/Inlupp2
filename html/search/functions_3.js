@@ -1,16 +1,8 @@
 var searchData=
 [
-  ['get_5felem_5fdb',['get_elem_DB',['../database_8h.html#a60aaba6a0b250ca29291fc030d4c4d7b',1,'database.c']]],
-  ['get_5felem_5fin_5flist_5fdb',['get_elem_in_list_DB',['../database_8h.html#a8b7d035ed71daede4cc9e83cdaed4d40',1,'database.c']]],
-  ['get_5ffirst_5fshelf',['get_first_shelf',['../database_8h.html#a3c1ae5da603c858e7b02b2f55d2395d9',1,'database.c']]],
-  ['get_5flist',['get_list',['../database_8h.html#a2d313b557e2967c68e99c8ef9b8040dc',1,'database.c']]],
-  ['get_5fnext_5fshelf',['get_next_shelf',['../database_8h.html#adf490f83e6db04cdb9760d6138243fea',1,'database.c']]],
-  ['get_5fshelf_5famount',['get_shelf_amount',['../database_8h.html#aa90f68401cbcf192c577633ee528604b',1,'database.c']]],
-  ['get_5fshelf_5floc',['get_shelf_loc',['../database_8h.html#ab0dc5f5806ea5efa89a58361e9949a53',1,'database.c']]],
-  ['get_5fware',['get_ware',['../database_8h.html#af054897db94a93232af8c509ca4024fa',1,'database.c']]],
-  ['get_5fware_5fat',['get_ware_at',['../database_8h.html#a1410d44edf09cb7475621d935669d95b',1,'database.c']]],
-  ['get_5fware_5fat_5faux',['get_ware_at_aux',['../database_8h.html#ace923370a8cb1735563785528311d1d7',1,'database.c']]],
-  ['get_5fware_5fdesc',['get_ware_desc',['../database_8h.html#a6762f4739dbe6a4c97a3265a09533d8d',1,'database.c']]],
-  ['get_5fware_5fname',['get_ware_name',['../database_8h.html#aa83430de3c9922346bb8d5a1825ba6a7',1,'database.c']]],
-  ['get_5fware_5fprice',['get_ware_price',['../database_8h.html#a552bba4e069745499194dccbb312be4f',1,'database.c']]]
+  ['find_5felem_5fdb',['find_elem_DB',['../database_8h.html#a256d4a5b4910c04b7a289f3009c15983',1,'database.c']]],
+  ['find_5felem_5fin_5flist_5fdb',['find_elem_in_list_DB',['../database_8h.html#aa62fe85ee665d081a7efda7a3c62e9af',1,'database.c']]],
+  ['free_5fkey_5fin_5fnode',['free_key_in_node',['../database_8h.html#a7e823105b6629ab40afe8b29ae88b41a',1,'database.c']]],
+  ['free_5flist_5fin_5fnode',['free_list_in_node',['../database_8h.html#a95c346f4461b4435c484aa663d419a82',1,'database.c']]],
+  ['free_5fware_5fin_5fnode',['free_ware_in_node',['../database_8h.html#a65cd10d9c6100759eb6052aa57cb76ff',1,'database.c']]]
 ];

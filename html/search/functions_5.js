@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['rem_5felem',['rem_elem',['../database_8h.html#a3b7bac2354df34fb952560966d44b38d',1,'database.c']]],
-  ['rem_5felem_5fin_5flist',['rem_elem_in_list',['../database_8h.html#a97d1c6038d1f972d1c16c4e4c8fc6b39',1,'database.c']]]
+  ['incr_5fshelf',['incr_shelf',['../database_8h.html#ae6dc8ad8f534a5c519397faeff3e6b67',1,'database.c']]],
+  ['incr_5fshelf_5fand_5ftot',['incr_shelf_and_tot',['../database_8h.html#a0f5ec43acbc37a734278834db4864232',1,'database.c']]],
+  ['insert_5fware',['insert_ware',['../database_8h.html#affda6d46c57c3975399778ead7deaadc',1,'database.c']]]
 ];

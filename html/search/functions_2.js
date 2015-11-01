@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['find_5felem_5fdb',['find_elem_DB',['../database_8h.html#a256d4a5b4910c04b7a289f3009c15983',1,'database.c']]],
-  ['find_5felem_5fin_5flist_5fdb',['find_elem_in_list_DB',['../database_8h.html#aa62fe85ee665d081a7efda7a3c62e9af',1,'database.c']]]
+  ['edit_5fdesc',['edit_desc',['../database_8h.html#a98a91802b8368d400323491bf72f2a31',1,'database.c']]],
+  ['edit_5fname',['edit_name',['../database_8h.html#a91af791ab4edb7eb68fb4b4a9ee425c3',1,'database.c']]],
+  ['edit_5fprice',['edit_price',['../database_8h.html#a4b87c433ffe57f0ccd8d7872f606de72',1,'database.c']]],
+  ['edit_5fshelf_5famount',['edit_shelf_amount',['../database_8h.html#a61f4f4c2a5b69babfe3bfd540277bead',1,'database.c']]],
+  ['edit_5fshelf_5flocation',['edit_shelf_location',['../database_8h.html#a0aae5dc8fb6ae89bd6776c3478ce5868',1,'database.c']]]
 ];

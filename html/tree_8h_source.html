@@ -135,35 +135,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">// bool find_elem_in_list(list *l, void *boxwithkey)     finns i add</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">void</span> del_node_zero_child(<a class="code" href="struct__node__.html">node</a> **n);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> del_node_one_child(<a class="code" href="struct__node__.html">node</a> **n);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">void</span> del_node_two_child(<a class="code" href="struct__node__.html">node</a> **n);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">bool</span> check_elems_left();</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keywordtype">void</span> copy_node(<a class="code" href="struct__node__.html">node</a> *from, <a class="code" href="struct__node__.html">node</a> *to);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keywordtype">void</span> *get_content(<a class="code" href="struct__node__.html">node</a> *n);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keywordtype">void</span> rem_node_in_tree(<a class="code" href="struct__tree__.html">tree</a> *t, <span class="keywordtype">void</span> *key);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">void</span> rem_node(<a class="code" href="struct__node__.html">node</a> **n, <span class="keywordtype">void</span> *key);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<a class="code" href="struct__node__.html">node</a> **find_max_to_left(<a class="code" href="struct__node__.html">node</a> **n);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">void</span> remove_elem_in_tree(<a class="code" href="struct__tree__.html">tree</a> *t, <span class="keywordtype">void</span> *key);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keywordtype">void</span> remove_elem(<a class="code" href="struct__node__.html">node</a> **n, <span class="keywordtype">void</span> *key);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordtype">bool</span> check_elems_left();</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keywordtype">void</span> *get_content(<a class="code" href="struct__node__.html">node</a> *n);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<a class="code" href="struct__node__.html">node</a> *get_root(<a class="code" href="struct__tree__.html">tree</a> *t);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<a class="code" href="struct__node__.html">node</a> *get_root(<a class="code" href="struct__tree__.html">tree</a> *t);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="struct__tree___html"><div class="ttname"><a href="struct__tree__.html">_tree_</a></div><div class="ttdoc">Type for general tree. </div><div class="ttdef"><b>Definition:</b> tree_secret.h:15</div></div>
 <div class="ttc" id="struct__node___html"><div class="ttname"><a href="struct__node__.html">_node_</a></div><div class="ttdoc">Type for general node. </div><div class="ttdef"><b>Definition:</b> tree_secret.h:24</div></div>
 </div><!-- fragment --></div><!-- contents -->

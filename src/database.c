@@ -303,10 +303,10 @@ void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice
 
 	  log_info("insert_ware", e->box, "%p");
 	  s->location = shelfloc;
-	  s->amount = 0;
+	  s->amount = shelfamount;
 
 	  insert_elem_in_list(w->shelves, e);
-	  incr_shelf_and_tot(w->shelves, shelfloc, shelfamount);       
+	  //incr_shelf_and_tot(w->shelves, shelfloc, shelfamount);       
 	}
     }
   else
@@ -545,10 +545,12 @@ char * make_key(char *ware_name)
 
 
 
-void edit_name(tree *t, char *old_key, char *new_name)
+void edit_name(tree *t, char *old_name, char *new_name)
 {
   char *my_new_name = strdup(new_name);
 
+  char *old_key = make_key(old_name);
+  
   node *n = get_node_in_tree(t, old_key);
 
   ware *w = (ware*)n->content;
@@ -573,9 +575,11 @@ void edit_name(tree *t, char *old_key, char *new_name)
 }
 
 
-void edit_desc(tree *t, char *key, char *new_desc)
+void edit_desc(tree *t, char *name, char *new_desc)
 {
   char *my_new_desc = strdup(new_desc);
+
+  char *key = make_key(name);
 
   node *n = get_node_in_tree(t, key);
 
@@ -588,8 +592,10 @@ void edit_desc(tree *t, char *key, char *new_desc)
 
 
 
-void edit_price(tree *t, char *key, int new_price)
+void edit_price(tree *t, char *name, int new_price)
 {
+  char *key = make_key(name);
+  
   node *n = get_node_in_tree(t, key);
 
   ware *w = (ware*)n->content;
@@ -598,9 +604,11 @@ void edit_price(tree *t, char *key, int new_price)
   
 }
 
-void edit_shelf_location(tree *t, char *key, char *old_shelf, char *new_shelf)
+void edit_shelf_location(tree *t, char *name, char *old_shelf, char *new_shelf)
 {
   char *my_new_shelf = strdup(new_shelf);
+
+  char *key =  make_key(name);
 
   node *n = get_node_in_tree(t, key);
 
@@ -616,8 +624,10 @@ void edit_shelf_location(tree *t, char *key, char *old_shelf, char *new_shelf)
 }
 
 
-void edit_shelf_amount(tree *t, char *key, char *old_shelf, int new_amount)
+void edit_shelf_amount(tree *t, char *name, char *old_shelf, int new_amount)
 {
+  char *key = make_key(name);
+
   node *n = get_node_in_tree(t, key);
 
   ware *w = (ware*)n->content;
