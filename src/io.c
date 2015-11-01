@@ -124,7 +124,6 @@ void remove_ware(tree *t)
   //TODO
 
   int index = get_ware_index(t);
-
   ware *w = get_ware_at(t, index);
   int num_shelves = get_num_shelves(w);
 
@@ -291,7 +290,7 @@ int get_ware_index(tree *t)
  incorrect_input:
   print_warehouse_menu();
 
-  char input[STREAM_LENGTH] = {'\0'};
+  char input[STREAM_LENGTH] = "\0";
   read_string(input);
 
   //TODO move to different fuction
