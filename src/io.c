@@ -186,18 +186,18 @@ void edit_ware(tree *t)
 	case 'n':
 	case 'N':
 	  {
-	    char *name = "\0";
+	    char name[STREAM_LENGTH] = {'\0'};
 	    read_name(name);
-	    edit_name(t, w->name, name);
+	    edit_name(t, get_ware_name(w), name);
 	  }
 	  break;
 
 	case 'd':
 	case 'D':
 	  {
-	    char *description = "\0";
+	    char description[STREAM_LENGTH] = {'\0'};
 	    read_description(description);
-	    edit_desc(t, w->name, description);
+	    edit_desc(t, get_ware_name(w), description);
 	  }
 	  break;
 
@@ -206,31 +206,41 @@ void edit_ware(tree *t)
 	  {
 	    int price = -1;
 	    read_price(&price);
-	    edit_price(t, w->name, price);
+	    edit_price(t, get_ware_name(w), price);
 	  }
 	  break;
 
 	case 's':
 	case 'S':
 	  {
-	    char *location = "\0";
-	    read_shelf(location);
-	    edit_shelf_location(t, w->name, location);
+	    char old_location[STREAM_LENGTH] = {'\0'};
+	    do
+	      {
+		read_shelf(old_location);
+	      } while(!shelf_ok(t, w, old_location));
+
+	    char new_location[STREAM_LENGTH] = {'\0'};
+	    do
+	      {
+		read_shelf(new_location);
+	      } while(shelf_ok(t, w, old_location));
+
+	    edit_shelf_location(t, get_ware_name(w), old_location, new_location);
 	  }
 	  break;
 
 	case 'a':
 	case 'A':
 	  {
-	    char *location = "\0";
+	    char location[STREAM_LENGTH] = {'\0'};
 	    do
 	      {
 		read_shelf(location);
-	      } while (!shelf_ok(t, w, location))
+	      } while (!shelf_ok(t, w, location));
 	    int amount = -1;
 	    read_amount(&amount);
 
-	    edit_shelf_amount(t, w->name, location, amount);
+	    edit_shelf_amount(t, get_ware_name(w), location, amount);
 	  }
 	  break;
 
