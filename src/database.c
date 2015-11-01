@@ -302,8 +302,9 @@ void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice
 	  e->box = s;
 
 	  log_info("insert_ware", e->box, "%p");
-	  s->location = shelfloc;
-	  s->amount = shelfamount;
+
+	  s->location = strdup(shelfloc);
+	  s->amount = 0;
 
 	  insert_elem_in_list(w->shelves, e);
 	  //incr_shelf_and_tot(w->shelves, shelfloc, shelfamount);       
@@ -315,29 +316,33 @@ void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice
       ware *w = create_ware();
       list *l = create_list();
       elem *e = create_elem();
+      shelf *s = create_shelf();
 
       log_info("insert_ware", n, "%p");
       log_info("insert_ware", w, "%p");
       log_info("insert_ware", l, "%p");
       log_info("insert_ware", e, "%p");
+      log_info("insert_ware", s, "%p");
 
-      n->key = make_key(warename);
-      n->content = w;
+      //shelf
+      s->location = strdup(shelfloc);
+      s->amount = shelfamount;
 
+      //elem
+      e->box = s;
+      insert_elem_in_list(l, e);
+
+      //ware
       w->name = strdup(warename);
       w->desc = strdup(waredesc);
       w->price = wareprice;
       w->shelves = l;
 
-      insert_elem_in_list(l, e);
+      //node
+      n->key = make_key(warename);
+      n->content = w;
 
-      shelf *s = create_shelf();
-      log_info("insert_ware", s, "%p");
-      e->box = s;
-
-      s->location = strdup(shelfloc);
-      s->amount = shelfamount;
-
+      //tree
       append_node_in_tree(t, n);
     }
 }

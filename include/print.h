@@ -14,6 +14,10 @@ void print_choice();
 void print_menu();
 
 void print_add_header();
+void print_new_ware();
+void print_add_or_update_shelf();
+void print_ware_added();
+
 void print_ware(ware *w);
 void print_shelves(ware *w);
 

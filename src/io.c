@@ -78,7 +78,7 @@ void add_ware(tree *t)
   read_name(ware_name);
   log_info("add_ware", ware_name, "%s");
 
-  void *w = ware_exists(t, ware_name);
+  ware *w = ware_exists(t, ware_name);
   log_info("add_ware", w, "%p");
 
   char ware_description[STREAM_LENGTH] = {'\0'};
@@ -86,18 +86,17 @@ void add_ware(tree *t)
   
   if(w)
     {
-      printf("\nWare already exists in warehouse\n\n");
+      print_add_or_update_shelf();
       print_ware(w);
     }
   else
     {
-      printf("\nNew ware\n\n");
+      print_new_ware();
 
       read_description(ware_description);      
       read_price(&ware_price);
     }
   
-  //TODO check for used shelf
   char ware_shelf[STREAM_LENGTH] = {'\0'};
   do
     {
@@ -110,8 +109,7 @@ void add_ware(tree *t)
 
   insert_ware(t, w, ware_name, ware_description, ware_price, ware_shelf, ware_amount);
 
-  //TODO move to print.c
-  printf("\nWare added to warehouse\n\n");
+  print_ware_added();
 }
 
 
@@ -190,8 +188,8 @@ void edit_ware(tree *t)
 	  {
 	    char *name = "\0";
 	    read_name(name);
+	    edit_name(t, w->name, name);
 	  }
-	  //send to database
 	  break;
 
 	case 'd':
@@ -199,8 +197,8 @@ void edit_ware(tree *t)
 	  {
 	    char *description = "\0";
 	    read_description(description);
+	    edit_desc(t, w->name, description);
 	  }
-	  //send to database
 	  break;
 
 	case 'p':
@@ -208,28 +206,32 @@ void edit_ware(tree *t)
 	  {
 	    int price = -1;
 	    read_price(&price);
+	    edit_price(t, w->name, price);
 	  }
-	  //send to database
 	  break;
 
 	case 's':
 	case 'S':
 	  {
-	    char *shelf = "\0";
-	    read_shelf(shelf);
+	    char *location = "\0";
+	    read_shelf(location);
+	    edit_shelf_location(t, w->name, location);
 	  }
-	  //send to database
 	  break;
 
 	case 'a':
 	case 'A':
 	  {
-	    char *shelf = "\0";
-	    read_shelf(shelf);	  	  
+	    char *location = "\0";
+	    do
+	      {
+		read_shelf(location);
+	      } while (!shelf_ok(t, w, location))
 	    int amount = -1;
 	    read_amount(&amount);
+
+	    edit_shelf_amount(t, w->name, location, amount);
 	  }
-	  //send to database
 	  break;
 
 	case 'x':
@@ -275,6 +277,9 @@ int get_ware_index(tree *t)
     }
 
  print_next_page:
+  //TODO move to print.c
+  printf("Index || Ware\n");
+
   while(w && (index % PRINT_TILL_CHECK) < PRINT_TILL_CHECK)
     {
       print_index_name(index, get_ware_name(w));
@@ -291,6 +296,7 @@ int get_ware_index(tree *t)
   print_warehouse_menu();
 
   char input[STREAM_LENGTH] = "\0";
+  print_choice();
   read_string(input);
 
   //TODO move to different fuction
@@ -298,32 +304,22 @@ int get_ware_index(tree *t)
     {
     case 'p':
     case 'P':
-      if(w)
-	{
-	  ++page;
-	  goto print_next_page;
-	}
-      else
-	{
-	  printf("End of wareohuse\n");
-	  goto exit;
-	}
+      ++page;
+      goto print_next_page;
       break;
 
     case 'x':
     case 'X':
-      return -1;
+      goto exit;
       break;
 
     default:
       if(is_string_digit(input))
 	{
 	  int i = atoi(input);
-	  if(0 < i && i <= PRINT_TILL_CHECK)
+	  if(0 < i && i <= index % PRINT_TILL_CHECK)
 	    {
 	      int final = i - 1 + 20 * page;
-	      print_ware(get_ware_at(t, final));
-	      log_info("get_ware_index", final, "%d");	      
 	      return final;
 	    }
 	}
@@ -339,7 +335,10 @@ void print_warehouse(tree *t)
 {
   int index = get_ware_index(t);
 
-  if(index > -1) print_ware(get_ware_at(t, index));
+  if(index > -1)
+    {
+      print_ware(get_ware_at(t, index));
+    }
 }
 
 

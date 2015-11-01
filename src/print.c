@@ -48,7 +48,7 @@ void print_menu()
 {
   printf("\n");
   print_delimiter;
-  print_centered("Welcome to warehouse 2.0", LINE_LENGTH);
+  print_centered("Warehouse 2.0", LINE_LENGTH);
   print_delimiter;
   printf("\n");
 
@@ -66,16 +66,14 @@ void print_menu()
 
 void print_shelves(ware *w)
 {
-  print_delimiter;
-  
-  elem *e = get_first_shelf(w);
+  printf("\n"); 
+  printf("Shelf || Amount\n");
 
-    while(e)
+  for(elem *e = get_first_shelf(w); e != NULL; e = get_next_shelf(e))
     {
       log_info("print_shelves", e, "%p");
 
-      printf("%-4s%i\n", get_shelf_loc(e), get_shelf_amount(e));
-      e = get_next_shelf(e);
+      printf("%-5s -- %i\n", get_shelf_loc(e), get_shelf_amount(e));
     }
   
   printf("\n");
@@ -85,10 +83,10 @@ void print_ware(ware *w)
 {
   print_delimiter;
   printf("\n");
-
-  printf("%-18s%s\n", "Ware name", get_ware_name(w));
-  printf("%-18s%s\n", "Ware description", get_ware_desc(w));
-  printf("%-18s%i\n", "Ware price", get_ware_price(w));
+  print_centered("Ware", LINE_LENGTH);
+  printf("%-18s%s\n", "Name", get_ware_name(w));
+  printf("%-18s%s\n", "Description", get_ware_desc(w));
+  printf("%-18s%i\n", "Price", get_ware_price(w));
 
   print_shelves(w);
 }
@@ -103,6 +101,27 @@ void print_add_header()
   print_delimiter;
   print_centered("Add ware", LINE_LENGTH);
   print_delimiter;
+  printf("\n");
+}
+
+void print_add_or_update_shelf()
+{
+  printf("\n");
+  print_centered("Add new- or increase shelf", LINE_LENGTH);
+  printf("\n");
+}
+
+void print_new_ware()
+{
+  printf("\n");
+  print_centered("New ware", LINE_LENGTH);
+  printf("\n");
+}
+
+void print_ware_added()
+{
+  printf("\n");
+  print_centered("Ware added to warehouse", LINE_LENGTH);
   printf("\n");
 }
 
@@ -141,9 +160,8 @@ void print_warehouse_header()
 void print_end_of_warehouse()
 {
   printf("\n");
-  print_delimiter;
-  print_centered("Warehouse empty", LINE_LENGTH);
-  print_delimiter;
+  print_centered("End of warehouse", LINE_LENGTH);
+  printf("\n");
 }
 
 void print_warehouse_empty()
@@ -154,14 +172,14 @@ void print_warehouse_empty()
 
 void print_index_name(int index, char *ware_name)
 {
-  printf("%-6i %s\n", index + 1, ware_name);
+  printf("%-5i -- %s\n", index + 1, ware_name);
 }
 
 void print_warehouse_menu()
 {
-  printf("Choose a ware 1 - 20\n");
+  printf("Input ware index\n");
   printf("[P]rint next page\n");
-  printf("E[X]it warehouse viewer\n");
+  printf("E[X]it warehouse viewer\n\n");
 }
 
 
