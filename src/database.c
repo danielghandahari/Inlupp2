@@ -19,7 +19,8 @@
   assert((emptylistptr || emptylistptr->shelves || emptylistptr->shelves->first))
  
 char * make_key(char *ware_name); //TODO, lägg alla funktioner som behövs här 
-
+bool find_elem_DB(elem *e, char *key);
+void incr_shelf(shelf *s, int incr);
 
 //ICKE-GENERELLA STRUCTAR FÖR TREE.C
 struct _ware_
@@ -553,29 +554,34 @@ char * make_key(char *ware_name)
 void edit_name(tree *t, char *old_name, char *new_name)
 {
   char *my_new_name = strdup(new_name);
-
   char *old_key = make_key(old_name);
-  
   node *n = get_node_in_tree(t, old_key);
-
   ware *w = (ware*)n->content;
 
-  free(w->name);
-  
-  w->name = my_new_name;
-
   char *new_key = make_key(my_new_name);
+  ware *new_ware = NULL;
+  elem *temp = get_first_shelf(w);
 
-  node *new_node = calloc(1, sizeof(node));
-
-  new_node->key = new_key;
-  new_node->content = w;
-  new_node->left = NULL;
-  new_node->right = NULL;
   
+  do
+    {
+      log_info("edit_name", w, "%p");
+      log_info("edit_name", temp, "%p");
+      insert_ware(t, new_ware, new_name, get_ware_desc(w), get_ware_price(w), get_shelf_loc(temp), get_shelf_amount(temp));
+      temp = temp->next;
+      if(!new_ware)
+	{
+	  log_info("edit_node", new_ware, "%p");
+	  node *temp_n = check_node_exists(&(t->root), new_key);
+	  new_ware = get_ware(temp_n);
+	}
+    }while(temp);
+  
+  log_info("edit_name", t, "%p");
+  log_info("edit_name", old_key, "%s");
   rem_node_in_tree(t, old_key);
 
-  append_node_in_tree(t, new_node);  
+  //append_node_in_tree(t, new_node);  
   
 }
 
@@ -749,11 +755,23 @@ void rem_node_in_tree(tree *t, void *key)
 
 void rem_node(node **n, void *key)
 {
+  log_info("rem_node", "balle", "%s");
   node *temp = get_node(n, key);
   node **dptr = &temp;
 
-  if(NodeIsLeaf(temp)) del_node_zero_child(dptr);
-  if(NodeOneChild(temp)) del_node_one_child(dptr);
-  if(NodeTwoChild(temp)) del_node_two_child(dptr);
+  if(temp->left && temp->right)
+    {
+      log_info("rem_node", "twochild", "%s");
+      del_node_two_child(dptr);
+    }
+  else if(temp->left || temp->right)
+    {
+      log_info("rem_node", "onechild", "%s");
+      del_node_one_child(dptr);
+    }
+  else
+    {
+      log_info("rem_node", "zerochild", "%s");
+      del_node_zero_child(dptr);
+    }
 }
-

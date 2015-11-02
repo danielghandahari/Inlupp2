@@ -1,264 +1,96 @@
 [INFO]             read.c:     19   read_stream         buffer              A
-[INFO]             read.c:     19   read_stream         buffer              Tim
-[INFO]             io.c:       79   add_ware            ware_name           Tim
-[INFO]             database.c: 202  ware_exists         t                   0x7fedc8404bc0
-[INFO]             database.c: 203  ware_exists         warename            0x7fff5f421820
-[INFO]             database.c: 204  ware_exists         warename            Tim
-[INFO]             tree.c:     34   check_node_exists   nn                  0x7fedc8404bc0
-[INFO]             tree.c:     35   check_node_exists   key                 0x7fedc8404bd0
+[INFO]             read.c:     19   read_stream         buffer              til
+[INFO]             io.c:       79   add_ware            ware_name           til
+[INFO]             database.c: 202  ware_exists         t                   0x7f9b59c04bc0
+[INFO]             database.c: 203  ware_exists         warename            0x7fff52358810
+[INFO]             database.c: 204  ware_exists         warename            til
+[INFO]             tree.c:     34   check_node_exists   nn                  0x7f9b59c04bc0
+[INFO]             tree.c:     35   check_node_exists   key                 0x7f9b59c04bd0
 [INFO]             database.c: 209  ware_exists         n                   0x0
 [INFO]             io.c:       82   add_ware            w                   0x0
-[INFO]             read.c:     19   read_stream         buffer              cool
-[INFO]             read.c:     19   read_stream         buffer              3
-[INFO]             read.c:     19   read_stream         buffer              A12
-[INFO]             database.c: 265  shelf_ok            t                   0x7fedc8404bc0
+[INFO]             read.c:     19   read_stream         buffer              de
+[INFO]             read.c:     19   read_stream         buffer              12
+[INFO]             read.c:     19   read_stream         buffer              d12
+[INFO]             database.c: 265  shelf_ok            t                   0x7f9b59c04bc0
 [INFO]             database.c: 266  shelf_ok            w                   0x0
-[INFO]             database.c: 267  shelf_ok            shelfloc            A12
-[INFO]             database.c: 268  shelf_ok            shelfloc            0x7fff5f421420
-[INFO]             read.c:     19   read_stream         buffer              44
-[INFO]             database.c: 280  insert_ware         t                   0x7fedc8404bc0
+[INFO]             database.c: 267  shelf_ok            shelfloc            D12
+[INFO]             database.c: 268  shelf_ok            shelfloc            0x7fff52358410
+[INFO]             read.c:     19   read_stream         buffer              3
+[INFO]             database.c: 280  insert_ware         t                   0x7f9b59c04bc0
 [INFO]             database.c: 281  insert_ware         w                   0x0
-[INFO]             database.c: 282  insert_ware         warename            Tim
-[INFO]             database.c: 284  insert_ware         shelfloc            A12
-[INFO]             database.c: 285  insert_ware         shelfamount         44
-[INFO]             database.c: 319  insert_ware         n                   0x7fedc8404be0
-[INFO]             database.c: 320  insert_ware         w                   0x7fedc8404c00
-[INFO]             database.c: 321  insert_ware         l                   0x7fedc8404c20
-[INFO]             database.c: 322  insert_ware         e                   0x7fedc8404c40
-[INFO]             list.c:     76   insert_elem_in_list l->first            0x7fedc8404c40
-[INFO]             list.c:     77   insert_elem_in_list l->last             0x7fedc8404c40
-[INFO]             database.c: 335  insert_ware         s                   0x7fedc8404c80
+[INFO]             database.c: 282  insert_ware         warename            til
+[INFO]             database.c: 284  insert_ware         shelfloc            D12
+[INFO]             database.c: 285  insert_ware         shelfamount         3
+[INFO]             database.c: 321  insert_ware         n                   0x7f9b59c04be0
+[INFO]             database.c: 322  insert_ware         w                   0x7f9b59c04c00
+[INFO]             database.c: 323  insert_ware         l                   0x7f9b59c04c20
+[INFO]             database.c: 324  insert_ware         e                   0x7f9b59c04c40
+[INFO]             database.c: 325  insert_ware         s                   0x7f9b59c04c50
+[INFO]             list.c:     76   insert_elem_in_list l->first            0x7f9b59c04c40
+[INFO]             list.c:     77   insert_elem_in_list l->last             0x7f9b59c04c40
 [INFO]             tree.c:     70   append_node         *n                  0x0
-[INFO]             tree.c:     71   append_node         mynode              0x7fedc8404be0
+[INFO]             tree.c:     71   append_node         mynode              0x7f9b59c04be0
 [INFO]             read.c:     19   read_stream         buffer              e
-[INFO]             io.c:       263  get_ware_index      t                   0x7fedc8404bc0
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
+[INFO]             io.c:       274  get_ware_index      t                   0x7f9b59c04bc0
+[INFO]             database.c: 246  get_ware_at         t                   0x7f9b59c04bc0
 [INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
+[INFO]             database.c: 221  get_ware_at_aux     n                   0x7f9b59c04be0
 [INFO]             database.c: 223  get_ware_at_aux     *acc                0
 [INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             io.c:       269  get_ware_index      w                   0x7fedc8404c00
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
+[INFO]             database.c: 256  get_ware_at         w                   0x7f9b59c04c00
+[INFO]             io.c:       280  get_ware_index      w                   0x7f9b59c04c00
+[INFO]             database.c: 246  get_ware_at         t                   0x7f9b59c04bc0
 [INFO]             database.c: 247  get_ware_at         index               1
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
+[INFO]             database.c: 221  get_ware_at_aux     n                   0x7f9b59c04be0
 [INFO]             database.c: 223  get_ware_at_aux     *acc                0
 [INFO]             database.c: 224  get_ware_at_aux     index               1
 [INFO]             database.c: 256  get_ware_at         w                   0x0
-[INFO]             io.c:       285  get_ware_index      w                   0x0
-[INFO]             io.c:       286  get_ware_index      index               1
+[INFO]             io.c:       299  get_ware_index      w                   0x0
+[INFO]             io.c:       300  get_ware_index      index               1
+[INFO]             read.c:     19   read_stream         buffer              1n
+[INFO]             read.c:     19   read_stream         buffer              1n
 [INFO]             read.c:     19   read_stream         buffer              1
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
+[INFO]             database.c: 246  get_ware_at         t                   0x7f9b59c04bc0
 [INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
+[INFO]             database.c: 221  get_ware_at_aux     n                   0x7f9b59c04be0
 [INFO]             database.c: 223  get_ware_at_aux     *acc                0
 [INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             io.c:       327  get_ware_index      final               0
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              p
-[INFO]             read.c:     19   read_stream         buffer              8
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              p
-[INFO]             read.c:     19   read_stream         buffer              8
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              1
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
-[INFO]             read.c:     19   read_stream         buffer              
-[DEBUG]            read.c:     63   'tmp' is not alphabetic nor numeric
-[INFO]             database.c: 246  get_ware_at         t                   0x7fedc8404bc0
-[INFO]             database.c: 247  get_ware_at         index               0
-[INFO]             database.c: 221  get_ware_at_aux     n                   0x7fedc8404be0
-[INFO]             database.c: 223  get_ware_at_aux     *acc                0
-[INFO]             database.c: 224  get_ware_at_aux     index               0
-[INFO]             database.c: 256  get_ware_at         w                   0x7fedc8404c00
-[INFO]             print.c:    75   print_shelves       e                   0x7fedc8404c40
+[INFO]             database.c: 256  get_ware_at         w                   0x7f9b59c04c00
+[INFO]             print.c:    74   print_shelves       e                   0x7f9b59c04c40
 [INFO]             read.c:     19   read_stream         buffer              n
-[INFO]             read.c:     19   read_stream         buffer              haubir
+[INFO]             read.c:     19   read_stream         buffer              fff
+[INFO]             tree.c:     34   check_node_exists   nn                  0x7f9b59c04bc0
+[INFO]             tree.c:     35   check_node_exists   key                 0x7f9b59c04cb0
+[INFO]             tree.c:     42   check_node_exists   n_key               0x7f9b59c04c90
+[INFO]             database.c: 70   key_compare         str1                TIL
+[INFO]             database.c: 71   key_compare         str2                TIL
+[INFO]             tree.c:     46   check_node_exists   result              0
+[INFO]             database.c: 567  edit_name           w                   0x7f9b59c04c00
+[INFO]             database.c: 568  edit_name           temp                0x7f9b59c04c40
+[INFO]             database.c: 280  insert_ware         t                   0x7f9b59c04bc0
+[INFO]             database.c: 281  insert_ware         w                   0x0
+[INFO]             database.c: 282  insert_ware         warename            fff
+[INFO]             database.c: 284  insert_ware         shelfloc            D12
+[INFO]             database.c: 285  insert_ware         shelfamount         3
+[INFO]             database.c: 321  insert_ware         n                   0x7f9b59c04cd0
+[INFO]             database.c: 322  insert_ware         w                   0x7f9b59c04cf0
+[INFO]             database.c: 323  insert_ware         l                   0x7f9b59c04d10
+[INFO]             database.c: 324  insert_ware         e                   0x7f9b59c04d30
+[INFO]             database.c: 325  insert_ware         s                   0x7f9b59c04d40
+[INFO]             list.c:     76   insert_elem_in_list l->first            0x7f9b59c04d30
+[INFO]             list.c:     77   insert_elem_in_list l->last             0x7f9b59c04d30
+[INFO]             tree.c:     70   append_node         *n                  0x7f9b59c04be0
+[INFO]             tree.c:     71   append_node         mynode              0x7f9b59c04cd0
+[INFO]             database.c: 70   key_compare         str1                TIL
+[INFO]             database.c: 71   key_compare         str2                FFF
+[INFO]             tree.c:     70   append_node         *n                  0x0
+[INFO]             tree.c:     71   append_node         mynode              0x7f9b59c04cd0
+[INFO]             database.c: 573  edit_node           new_ware            0x0
+[INFO]             tree.c:     34   check_node_exists   nn                  0x7f9b59c04bc0
+[INFO]             tree.c:     35   check_node_exists   key                 0x7f9b59c04cc0
+[INFO]             tree.c:     42   check_node_exists   n_key               0x7f9b59c04c90
+[INFO]             database.c: 70   key_compare         str1                TIL
+[INFO]             database.c: 71   key_compare         str2                FFF
+[INFO]             tree.c:     46   check_node_exists   result              14
+[INFO]             tree.c:     34   check_node_exists   nn                  0x7f9b59c04bf8
+[INFO]             tree.c:     35   check_node_exists   key                 0x7f9b59c04cc0

@@ -34,12 +34,6 @@ ware * create_ware();
 void incr_shelf_and_tot(list *l, char *key, int incr);
 
 
-/**
- * @brief increments shelf, pointed by s, with incr
- */
-void incr_shelf(shelf *s, int incr);
-
-
 
 
 /**
