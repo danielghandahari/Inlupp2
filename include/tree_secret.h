@@ -8,14 +8,15 @@
 #ifndef __TREE_SEC__
 #define __TREE_SEC__
 
-
+#include <tree.h>
+ 
 /**
  * @brief Type for general tree
  */
 struct _tree_
 {
   node *root;
-} ;
+};
 
 
 /**

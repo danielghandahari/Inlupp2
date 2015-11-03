@@ -11,6 +11,8 @@
 
 #include <stdbool.h>
 
+
+
 typedef struct _tree_ tree;
 typedef struct _ware_ ware;
 
@@ -20,6 +22,13 @@ typedef struct _list_ list;
 typedef struct _elem_ elem;
 typedef struct _node_ node;
 typedef struct _sum_ sum;
+
+
+/**
+ * @brief returns string ware_name int uppercase letters
+ */
+char * make_key(char *ware_name); 
+
 
 
 /**

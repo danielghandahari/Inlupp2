@@ -9,6 +9,8 @@
 #ifndef __LIST_S__
 #define __LIST_S__
 
+#include <list.h>
+
 /**
  * @brief Type for general list
  */

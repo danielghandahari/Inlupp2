@@ -1,7 +1,7 @@
 IDIR	=../include
 CC	=gcc
 CFLAGS 	=-Wall -std=c11 -ggdb -Wextra -Werror -Wfatal-errors -I$(IDIR)
-CFILE	=database.c io.c list.c main.c menu.c read.c tree.c print.c
+CFILE	=database.c io.c list.c main.c menu.c read.c tree.c print.c trolley.c
 
 OUT	=inlupp2
 
