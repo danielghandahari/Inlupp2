@@ -552,7 +552,30 @@ char * make_key(char *ware_name)
 
 void edit_name(tree *t, char *old_name, char *new_name)
 {
+  char *old_key = make_key(old_name);
+  node *old_node = get_node_in_tree(t, old_key);
+
   char *my_new_name = strdup(new_name);
+  
+  node *n = create_node();
+
+  n->content = old_node->content;
+
+  old_node->content = NULL;
+
+  char *new_key = make_key(new_name);
+
+  n->key = new_key;
+
+  free(((ware*)n->content)->name);
+
+  ((ware*)n->content)->name = my_new_name;
+
+  append_node_in_tree(t, n->key);
+
+  rem_node_in_tree(t, old_node->key);
+  
+  /*  char *my_new_name = strdup(new_name);
   char *old_key = make_key(old_name);
   node *n = get_node_in_tree(t, old_key);
   ware *w = (ware*)n->content;
@@ -583,7 +606,7 @@ void edit_name(tree *t, char *old_name, char *new_name)
   log_info("edit_name", old_key, "%s");
   rem_node_in_tree(t, old_key);
 
-  //append_node_in_tree(t, new_node);  
+  append_node_in_tree(t, new_node);  */
   
 }
 
