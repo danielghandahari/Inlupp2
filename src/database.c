@@ -375,7 +375,7 @@ int get_num_shelves(ware *w)
   while(shelf)
     {
       num_of_shelves++;
-      get_next_shelf(shelf);
+      shelf = get_next_shelf(shelf);
     }
 
   return num_of_shelves;
@@ -567,14 +567,17 @@ void edit_name(tree *t, char *old_name, char *new_name)
     {
       log_info("edit_name", w, "%p");
       log_info("edit_name", temp, "%p");
+
       insert_ware(t, new_ware, new_name, get_ware_desc(w), get_ware_price(w), get_shelf_loc(temp), get_shelf_amount(temp));
-      temp = temp->next;
+
       if(!new_ware)
 	{
 	  log_info("edit_node", new_ware, "%p");
 	  node *temp_n = check_node_exists(&(t->root), new_key);
 	  new_ware = get_ware(temp_n);
 	}
+
+      temp = temp->next;
     }while(temp);
   
   log_info("edit_name", t, "%p");
@@ -679,7 +682,7 @@ void free_ware_in_node(node *n)
 void del_node_zero_child(node **n)
 {
   free(*n);
-  *n = NULL;
+  n = NULL;
 }
 
 void del_node_one_child(node **n)
@@ -692,7 +695,7 @@ void del_node_one_child(node **n)
       return;
     }
 
-    if((*n)->left == NULL)
+  else if((*n)->left == NULL)
     {
       node *temp = (*n)->right;
       free(*n);
@@ -756,22 +759,21 @@ void rem_node_in_tree(tree *t, void *key)
 void rem_node(node **n, void *key)
 {
   log_info("rem_node", "balle", "%s");
-  node *temp = get_node(n, key);
-  node **dptr = &temp;
+  log_info("rem_node", key, "%p");
 
-  if(temp->left && temp->right)
+  if((*n)->left && (*n)->right)
     {
       log_info("rem_node", "twochild", "%s");
-      del_node_two_child(dptr);
+      del_node_two_child(n);
     }
-  else if(temp->left || temp->right)
+  else if((*n)->left || (*n)->right)
     {
       log_info("rem_node", "onechild", "%s");
-      del_node_one_child(dptr);
+      del_node_one_child(n);
     }
   else
     {
       log_info("rem_node", "zerochild", "%s");
-      del_node_zero_child(dptr);
+      del_node_zero_child(n);
     }
 }

@@ -122,7 +122,14 @@ void remove_ware(tree *t)
   //TODO
 
   int index = get_ware_index(t);
-  ware *w = get_ware_at(t, index);
+  ware *w;
+
+  if(index > -1) w = get_ware_at(t, index);
+  else
+    {
+      printf("No wares to remove\n");
+      goto exit;
+    }
   int num_shelves = get_num_shelves(w);
 
   log_info("remove_ware", index, "%d");
@@ -157,6 +164,9 @@ void remove_ware(tree *t)
 	  print_incorrect_input();
 	}
     } while(input != 0);
+
+ exit:
+  return;
 }
 
 

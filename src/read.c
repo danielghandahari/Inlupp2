@@ -21,7 +21,7 @@ bool read_stream(char *string_dest, size_t buffer_size, FILE *input)
   return true;
 
  error:
-  free(buffer);
+  if(buffer) free(buffer);
   return false;
 }
 

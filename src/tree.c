@@ -46,8 +46,8 @@ node * check_node_exists(node **nn, void *key)
   log_info("check_node_exists", result, "%d");
 
   if(result == 0) return n_current;
-  else if(result < 0) return check_node_exists(&(n_current->left), key);
-  else if(result > 0) return check_node_exists(&(n_current->right), key);
+  else if(result > 0) return check_node_exists(&(n_current->left), key);
+  else if(result < 0) return check_node_exists(&(n_current->right), key);
 
   return NULL;
 }
