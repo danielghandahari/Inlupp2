@@ -79,6 +79,25 @@ void print_shelves(ware *w)
   printf("\n");
 }
 
+void print_shelves_numbered(ware *w)
+{
+  printf("\n"); 
+  printf("Shelf || Amount\n");
+
+  int i = 1;
+
+  for(elem *e = get_first_shelf(w); e != NULL; e = get_next_shelf(e))
+    {
+      log_info("print_shelves", e, "%p");
+
+      printf("%i %-5s -- %i\n", i, get_shelf_loc(e), get_shelf_amount(e));
+      i++;
+    }
+  
+  printf("\n");
+}
+
+
 void print_ware(ware *w)
 {
   print_delimiter;

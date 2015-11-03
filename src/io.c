@@ -143,11 +143,11 @@ void remove_ware(tree *t)
     {
       log_info("remove_ware", w, "%p");
 
-      print_shelves(w);
+      print_shelves_numbered(w);
       //TODO make simpler, similar to how get_ware_index get's it's index, try to combine
-      user_input_int(&input, "To remove a shelf, input it's assosiated number or\ninput 0 to exit.");
+      user_input_int(&input, "To remove a shelf, input shelf index\ninput 0 to exit.\n");
       
-      if(input > 0 && input < num_shelves)
+      if(0 < input && input <= num_shelves)
 	{
 	  printf("Shelf %s removed\n", get_shelf_loc_at(w, input - 1));
 	  remove_shelf_at(t, w, input - 1);

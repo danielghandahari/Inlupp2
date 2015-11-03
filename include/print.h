@@ -20,6 +20,7 @@ void print_ware_added();
 
 void print_ware(ware *w);
 void print_shelves(ware *w);
+void print_shelves_numbered(ware *w);
 
 void print_remove_header();
 

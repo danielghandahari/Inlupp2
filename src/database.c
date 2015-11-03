@@ -386,14 +386,13 @@ void remove_shelf_at(tree *t, ware *w, int index)
   elem *shelf = get_first_shelf(w);
   assert(w);  
 
-  for(int i = 0; i < index-1; i++)
+  for(int i = 0; i < index; i++)
     {
       shelf = get_next_shelf(shelf);
       if(!shelf) return;
     }
 
-  elem *tmp = get_next_shelf(shelf);
-  rem_elem(&tmp, tmp->box);
+  rem_elem_in_list(w->shelves, shelf->box);
 
   char *key = make_key(get_ware_name(w));
   
