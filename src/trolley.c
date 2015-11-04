@@ -2,6 +2,44 @@
 #include <database_secret.h>
 #include <trolley_secret.h>
 #include <trolley.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+trolley * create_trolley()
+{
+  trolley *t = calloc(1, sizeof(trolley));
+  return t;
+}
+
+
+bool trolley_is_empty(list *l)
+{
+  return l->first ? false : true;
+}
+
+
+
+
+int get_trolley_price(list *l)
+{
+  return *((int*)l->stuff);
+}
+
+
+void incr_amount(elem *e, int incr)
+{
+  trolley *t = (trolley*)e->box;
+  t->amount += incr;
+}
+
+
+
+void incr_trolley_price(list *l, int incr)
+{
+  int *i = (int*)l->stuff;
+  *i += incr;
+}
+
 
 
 int get_tot(tree *t, char *key)
@@ -36,30 +74,45 @@ int get_amount(list *l, char *key)
 
 
 
-void pack_trolley(tree *t, list *l, char *key, int amount)
+void pack_trolley(list *l, char *key, int amount)
 {
   elem *e = get_elem_in_list_DB(l, key);
 
   if(e)
     {
-      trolley *t = (trolley*)e->box;
-      t->amount += amount;
+      incr_amount(e, amount);
+      incr_trolley_price(l, amount);
     }
   else
     {
-      char *tree_key = make_key(key);
+      elem *new_elem = create_elem();
+      trolley *new_trolley = (trolley*)new_elem->box;
 
-      if(find_node_in_tree(t, tree_key))
-	{
-	  
-	  elem *new_elem = create_elem();
-	  trolley *new_trolley = (trolley*)new_elem->box;
+      new_trolley->key = key;
+      new_trolley->amount = amount;
 
-	  new_trolley->key = key;
-	  new_trolley->amount = amount;
-
-	  insert_elem_in_list(l, new_elem);
-      
-	}
+      insert_elem_in_list(l, new_elem);
     }
+}
+
+
+
+void destroy_trolley(list *l)
+{
+  elem *temp = l->first;
+
+  while(temp)
+    {
+      trolley *s = (trolley*)temp->box;
+      char *t1 = s->key;
+      elem *free_temp = temp;
+
+      temp = temp->next;
+      
+      free(t1);
+      free(temp->box);
+      free(free_temp);
+    }
+  free(l->stuff);
+  free(l);
 }

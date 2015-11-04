@@ -19,7 +19,7 @@
 #define check_shelf_used_ASSERT(NODE) ware *emptylistptr =(ware*)((*NODE)->content); \
   assert((emptylistptr || emptylistptr->shelves || emptylistptr->shelves->first))
  
-char * make_key(char *ware_name); //TODO, lägg alla funktioner som behövs här 
+
 bool find_elem_DB(elem *e, char *key);
 void incr_shelf(shelf *s, int incr);
 
@@ -361,13 +361,14 @@ void remove_shelf_at(tree *t, ware *w, int index)
   elem *shelf = get_first_shelf(w);
   assert(w);  
 
-  for(int i = 0; i < index; i++)
+  for(int i = 0; i < index-1; i++)
     {
       shelf = get_next_shelf(shelf);
       if(!shelf) return;
     }
 
-  rem_elem_in_list(w->shelves, shelf->box);
+  elem *tmp = get_next_shelf(shelf);
+  rem_elem(&tmp, tmp->box);
 
   char *key = make_key(get_ware_name(w));
   
@@ -477,7 +478,7 @@ void rem_elem_in_list(list *l, void *elembox)
 void rem_elem(elem **e, void *elembox)
 {
   assert(*e);
-
+  
   shelf *find_s = (shelf*)elembox;
   shelf *e_s = (shelf*)(*e)->box;
 
@@ -485,6 +486,7 @@ void rem_elem(elem **e, void *elembox)
     {
       elem *e_rem = *e;
       *e = (*e)->next;
+      free(e_s->location);
       free(e_s);
       free(e_rem);
     }

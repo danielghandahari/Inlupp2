@@ -19,6 +19,13 @@ elem * create_elem()
   return e;
 }
 
+elem * get_first_elem(list *l)
+{
+  return l->first;
+}
+
+
+
 list * create_list()
 {
   list *l = (list*) calloc(1, sizeof(list));
