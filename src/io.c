@@ -363,17 +363,24 @@ void print_warehouse(tree *t)
 
 
 //TODO fix this shit
-void pack_trolley(tree *t)
+void pack_trolley_io(tree *t)
 {
   print_trolley_header();
+  //void *trolley;
+
 
   bool again = true;
 
   do
     {
+      //print_trolley
+      //      elem* e = get_first_elem(trolley);
+
       int index = get_ware_index(t);
       ware *w = get_ware_at(t, index);
-      print_ware(w);
+
+      printf("Item: %s", get_ware_name(w));
+
       int amount = -1;
       //TODO make macro to ease reading
       user_input_int(&amount, "How many items would you like to take?\n");

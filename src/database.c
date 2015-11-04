@@ -282,7 +282,7 @@ void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice
 	  log_info("insert_ware", e->box, "%p");
 
 	  s->location = strdup(shelfloc);
-	  s->amount = 0;
+	  s->amount = shelfamount;
 
 	  insert_elem_in_list(w->shelves, e);
 	  //incr_shelf_and_tot(w->shelves, shelfloc, shelfamount);       
@@ -345,8 +345,6 @@ int   get_shelf_amount(elem *e) { return ((shelf*)e->box)->amount; }
 int get_num_shelves(ware *w)
 {
   elem *shelf = get_first_shelf(w);
-  assert(shelf);
-
   int num_of_shelves = 0;
 
   while(shelf)
@@ -419,7 +417,7 @@ void destroy_warehouse(tree *t)
 }
 
 
-
+//TODO this removes the first elem of a list, nothing else
 void destroy_list_DB(list *l)
 {
   elem *temp = l->first;
@@ -474,40 +472,27 @@ void rem_elem_in_list(list *l, void *elembox)
 
   rem_elem(&(l->first), elembox);
 
-  if(l->first == l->last) l->last = NULL;
-  
+  if(l->first == NULL) l->last = NULL;
+  else l->last = get_last_elem(&(l->first));
 }
 
 
-//GÖR KLART EFTER DU GJORT TIMS FUNKTIONER
 
 void rem_elem(elem **e, void *elembox)
 {
-  if(!(*e)) return;
+  assert(*e);
 
+  shelf *find_s = (shelf*)elembox;
+  shelf *e_s = (shelf*)(*e)->box;
 
-  elem *temp_last = get_last_elem(e);
-  if((*e) == temp_last)
+  if(key_compare(find_s->location, e_s->location) == 0)
     {
-      shelf *s = (shelf*)(*e)->box;
-      free(s->location);
-      free(s);
-      *e = NULL;
+      elem *e_rem = *e;
+      *e = (*e)->next;
+      free(e_s);
+      free(e_rem);
     }
-
-  if(*e)
-    {
-      elem *temp = get_elem(*e, elembox);
-
-      e = &temp;
-
-      *e = temp->next;
-
-      shelf *s = (shelf*)temp->box;
-      free(s->location);
-      free(s);
-      free(temp);
-    }
+  else rem_elem(&((*e)->next), elembox);
 }
 
 

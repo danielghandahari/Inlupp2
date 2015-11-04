@@ -5,6 +5,7 @@
 #include <print.h>
 
 #include <database.h>
+#include <trolley.h>
 #include <tree.h>
 #include <list.h>
 
@@ -18,7 +19,7 @@ void add_ware(tree *t);
 void remove_ware(tree *t);
 void edit_ware(tree *t);
 void print_warehouse(tree *t);
-void pack_trolley(tree *t);
+void pack_trolley_io(tree *t);
 void exit_program(bool *exit, tree *t);
 
 #endif
