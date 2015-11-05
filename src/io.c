@@ -1,7 +1,10 @@
+#define _GNU_SOURCE
+
 #define CORRECT_INPUT "AREPCX"
 
 #include <io.h>
 #include <ctype.h>
+#include <string.h>
 
 int get_ware_index(tree *t);
 
@@ -14,74 +17,79 @@ char get_menu_choice(char *prompt)
     {
       printf("%s", prompt);
       print_choice();
-      if(read_char(&c)) break;
+
+      c = read_char();
+      if(c) break;
     }
 
   return c;
 }
 
-void user_input_string(char *dest, const char *m)
+char* user_input_string(const char *m)
 {
-  char tmp[STREAM_LENGTH] = {'\0'};
+  char *s = NULL;
 
-  while(1) //TODO check for invalid input
+  do
     {
       printf("%s", m);
       print_choice();
-      if(read_string(tmp)) break;
-    }
 
-  strcpy(dest, tmp);
+      s = read_string();
+    } while(!s);
+
+  return s;
 }
 
-void user_input_shelf(char *dest, const char *m)
+char *user_input_shelf(const char *m)
 {
-  char tmp[STREAM_LENGTH] = {'\0'};
+  char *s = NULL;
 
-  while(1)
+  do
     {
       printf("%s", m);
       print_choice();
-      if(read_shelf(tmp)) break;
-    }
+      
+      s = read_shelf();
+    } while(!s);
 
-  strcpy(dest, tmp);
+  return s;
 }
 
-void user_input_int(int *dest, const char *m)
+int user_input_int(const char *m)
 {
-  int tmp = -1;
+  int i = -1;
 
-  while(1) //TODO check for invalid input
+  do
     {
       printf("%s", m);
       print_choice();
-      if(read_int(&tmp)) break;
-    }
 
-  *dest = tmp;
+      i = read_int();
+    } while(i < 0);
+
+  return i;
 }
 
 
 
-#define read_name(A) user_input_string(A, "Ware name\n")
-#define read_description(A) user_input_string(A, "Ware description\n")
-#define read_price(A) user_input_int(A, "Ware price\n")
-#define read_shelf(A) user_input_shelf(A, "Ware shelf\n")
-#define read_amount(A) user_input_int(A, "Ware amount\n")
+#define read_name() user_input_string("Ware name\n")
+#define read_description() user_input_string("Ware description\n")
+#define read_price() user_input_int("Ware price\n")
+#define read_shelf() user_input_shelf("Ware shelf\n")
+#define read_amount() user_input_int("Ware amount\n")
 
 void add_ware(tree *t)
 {
   print_add_header();
 
-  char ware_name[STREAM_LENGTH] = {'\0'};
-  read_name(ware_name);
+  char *ware_name = NULL;
+  ware_name = read_name();
   log_info("add_ware", ware_name, "%s");
 
   ware *w = ware_exists(t, ware_name);
   log_info("add_ware", w, "%p");
 
-  char ware_description[STREAM_LENGTH] = {'\0'};
+  char *ware_description = NULL;
   int ware_price = -1;
   
   if(w)
@@ -93,27 +101,31 @@ void add_ware(tree *t)
     {
       print_new_ware();
 
-      read_description(ware_description);      
-      read_price(&ware_price);
+      ware_description = read_description();      
+      ware_price = read_price();
     }
   
-  char ware_shelf[STREAM_LENGTH] = {'\0'};
+  char *ware_shelf = NULL;
   bool shelf_not_ok = false;
   do
     {
       if(shelf_not_ok) printf("Shelf already in use\n");
 
-      read_shelf(ware_shelf);
+      ware_shelf = read_shelf();
       shelf_not_ok = !shelf_ok(t, w, ware_shelf);
     } while(shelf_not_ok);
   
 
   int ware_amount;
-  read_amount(&ware_amount);  
+  ware_amount = read_amount();
 
   insert_ware(t, w, ware_name, ware_description, ware_price, ware_shelf, ware_amount);
 
   print_ware_added();
+
+  if (ware_name) free(ware_name);
+  if (ware_description) free(ware_description);
+  if (ware_shelf) free(ware_shelf);
 }
 
 
@@ -149,7 +161,7 @@ void remove_ware(tree *t)
 
       print_shelves_numbered(w);
       //TODO make simpler, similar to how get_ware_index get's it's index, try to combine
-      user_input_int(&input, "To remove a shelf, input shelf index\ninput 0 to exit.\n");
+      input = user_input_int("To remove a shelf, input shelf index\ninput 0 to exit.\n");
       
       if(0 < input && input <= num_shelves)
 	{
@@ -197,8 +209,8 @@ void edit_ware_aux(tree *t, int index)
 	case 'n':
 	case 'N':
 	  {
-	    char name[STREAM_LENGTH] = {'\0'};
-	    read_name(name);
+	    char *name = NULL;
+	    name = read_name();
 	    edit_name(t, get_ware_name(w), name);
 	  }
 	  break;
@@ -206,8 +218,8 @@ void edit_ware_aux(tree *t, int index)
 	case 'd':
 	case 'D':
 	  {
-	    char description[STREAM_LENGTH] = {'\0'};
-	    read_description(description);
+	    char *description = NULL;
+	    description = read_description();
 	    edit_desc(t, get_ware_name(w), description);
 	  }
 	  break;
@@ -216,7 +228,7 @@ void edit_ware_aux(tree *t, int index)
 	case 'P':	  
 	  {
 	    int price = -1;
-	    read_price(&price);
+	    price = read_price();
 	    edit_price(t, get_ware_name(w), price);
 	  }
 	  break;
@@ -231,18 +243,19 @@ void edit_ware_aux(tree *t, int index)
 	    bool shelf_not_ok = false;
 	    do
 	      {
-		user_input_int(&chosen_shelf, "Index");
+		chosen_shelf = user_input_int("Index");
+
 		shelf_not_ok =
 		  0 <= chosen_shelf &&
 		  chosen_shelf > get_num_shelves(w);
+
 	      } while(shelf_not_ok);
 
 	    printf("New shelf\n");
-	    char new_location[STREAM_LENGTH] = {'\0'};
-
+	    char *new_location = NULL;
 	    do
 	      {
-		user_input_shelf(new_location, "New location\n");
+		new_location = read_shelf();
 
 		shelf_not_ok = !shelf_ok(t, w, new_location);
 	      } while(shelf_not_ok);
@@ -260,11 +273,11 @@ void edit_ware_aux(tree *t, int index)
 	    int chosen_shelf = -1;
 	    do
 	      {
-		user_input_int(&chosen_shelf, "Index");
+		chosen_shelf = user_input_int("Index");
 	      } while(0 <= chosen_shelf && chosen_shelf > get_num_shelves(w));
 
 	    int amount = -1;
-	    read_amount(&amount);
+	    amount = read_amount();
 
 	    edit_shelf_amount(t, get_ware_name(w), get_shelf_loc_at(w, chosen_shelf-1), amount);
 	  }
@@ -312,7 +325,10 @@ int get_ware_index(tree *t)
 
   int index = 0;
   int page = 0;
-  ware *w = get_ware_at(t, index);
+  ware *w = NULL;
+  char *input = NULL;
+  
+  w = get_ware_at(t, index);
   
  print_next_page:  
   if(!w)
@@ -337,12 +353,9 @@ int get_ware_index(tree *t)
       print_end_of_warehouse();
     }
 
-  char input[STREAM_LENGTH] = "\0";
-
  incorrect_input:
-
   print_warehouse_menu();
-  read_string(input);
+  input = user_input_string("");
 
   //TODO move to different fuction
   switch(input[0])
@@ -370,12 +383,14 @@ int get_ware_index(tree *t)
     }
 
  exit:
+  if(input) free(input);
   return -1;
 }
 
 void print_warehouse(tree *t)
 {
-  int index = get_ware_index(t);
+  int index = -1;
+  index = get_ware_index(t);
 
   if(index > -1)
     {
@@ -407,7 +422,7 @@ void pack_trolley_io(tree *t)
       //================
       int amount = -1;
       //TODO make macro to ease reading
-      user_input_int(&amount, "$ How many items would you like to take?\n");
+      amount = user_input_int("How many items would you like to take?\n");
       
       //==================
       pack_trolley(trolley, get_ware_name(w), amount);
@@ -422,7 +437,7 @@ void pack_trolley_io(tree *t)
       
       while(loop)
 	{
-	  read_char(&input);
+	  input = get_menu_choice("");
 	  switch(input)
 	    {
 	    case 'n':

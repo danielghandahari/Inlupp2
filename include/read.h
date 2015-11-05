@@ -12,12 +12,12 @@
 
 #include <unistd.h>
 
-#define STREAM_LENGTH 512
+//#define STREAM_LENGTH 512
 #define STREAM_INPUT stdin
 
-bool read_char(char *char_ptr);
-bool read_string(char *string_ptr);
-bool read_int(int *int_ptr);
-bool read_shelf(char *shelf_ptr);
+char read_char();
+char* read_string();
+int read_int();
+char* read_shelf();
 
 #endif

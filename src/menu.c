@@ -28,7 +28,7 @@ void menu()
   bool exit = false;
   tree *t = create_tree();
 
-  test_tree(t);
+  //test_tree(t);
 
   while(!exit)
     {
@@ -40,7 +40,10 @@ void menu()
 
 void choose_option(bool *exit, tree *t)
 {
-  switch(get_menu_choice())
+  char user_input = '\0';
+  user_input = get_menu_choice();
+
+  switch(user_input)
     {
     case 'a':
     case 'A': add_ware(t); break;
@@ -62,7 +65,4 @@ void choose_option(bool *exit, tree *t)
 
     default: print_incorrect_input();
     }
-
-    
-
 }

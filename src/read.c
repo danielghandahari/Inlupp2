@@ -3,70 +3,70 @@
 #include <read.h>
 
 
+#define read_stdin() read_stream(STREAM_INPUT)
 
-bool read_stream(char *string_dest, size_t buffer_size, FILE *input)
+char* read_stream(FILE *input)
 {
-  char *buffer = (char *)calloc(1, sizeof(char) * buffer_size);
+  char *buffer = NULL;
+  size_t buffer_size = 0;
 
   ssize_t num_of_chars = getline(&buffer, &buffer_size, input);
   
   check_debug(buffer, "'buffer' is NULL pointer");
   check_debug(num_of_chars > 0, "Unable to read stream or empty string");
 
-  buffer[num_of_chars-1] = '\0'; //This removes the '\n' at the end of the buffer
-  strcpy(string_dest, buffer);
-
+  buffer[num_of_chars-1] = '\0';
   log_info("read_stream", buffer, "%s");
-  free(buffer);
-  return true;
+  
+  return buffer;
 
  error:
   if(buffer) free(buffer);
-  return false;
+  return NULL;
 }
 
 
 
-#define read_string_aux(A) read_stream(A, STREAM_LENGTH, STREAM_INPUT)
-
-bool read_string(char *dest)
+char* read_string()
 {
-  char tmp[STREAM_LENGTH] = {'\0'};
-  check_debug(read_string_aux(tmp), "'read_stream' failed");
+  char *s = NULL;
+  s = read_stdin();
 
-  for(int i = 0; tmp[i] != '\0'; ++i)
+  check_debug(s, "'read_stream' failed");
+
+  for(int i = 0; s[i] != '\0'; ++i)
     {
-      if(tmp[i] == '\n')
+      if(s[i] == '\n')
 	{
-	  tmp[i] = '\0';
+	  s[i] = '\0';
 	  break;
 	}
     }
 
-  check_debug(strlen(tmp) >= 1, "'tmp' is an empty string");
-  strcpy(dest, tmp);
-  return true;
+  check_debug(strlen(s) >= 1, "'tmp' is an empty string");
+  return s;
   
  error:
-  return false;
+  return NULL;
 }
 
 
 
-#define read_char_aux(A) read_stream(tmp, 1, STREAM_INPUT)
-
-bool read_char(char *dest)
+char read_char()
 {
-  char tmp[2] = {'\0'};
+  char *tmp = NULL;
+  tmp = read_stdin();
 
-  check_debug(read_char_aux(tmp), "'read_stream' failed");
-  check_debug(isalnum(tmp[0]), "'tmp' is not alphabetic nor numeric");
+  check_debug(tmp, "'read_stream' failed");
+  //  check_debug(tmp[1] == '\0', "'tmp' is a string");
 
-  dest[0] = tmp[0];
-  return true; 
-
+  char c = tmp[0];
+  check_debug(isalnum(c), "'c' is neither letter nor number");
+  
+  free(tmp);
+  return c;
  error:
-  return false;
+  return '\0';
 }
 
 
@@ -86,35 +86,40 @@ bool is_number(char *s)
 
 
 
-bool read_int(int *dest)
+int read_int()
 {
-  char buffer[STREAM_LENGTH];
+  char *tmp = NULL;
+  tmp = read_stdin();
 
-  check_debug(read_string(buffer), "'read_string' failed");
-  check_debug(is_number(buffer), "'is_number' failed");
-  *dest = atoi(buffer);
-  return true;
+  check_debug(tmp, "'read_string' failed");
+  check_debug(is_number(tmp), "'is_number' failed");
+
+  int i = 0;
+  i = atoi(tmp);
+
+  free(tmp);
+  return i;
 
  error:
-  return false;
+  return -1;
 }
 
 
 
-bool read_shelf(char *dest)
+char* read_shelf()
 {
-  char s[STREAM_LENGTH];
+  char *s = NULL;
+  s = read_stdin();
 
-  check_debug(read_string(s), "'read_string' failed");
+  check_debug(s, "'read_string' failed");
   check_debug(strlen(s) > 1, "'s' is to short");
   check_debug(strlen(s) < 4, "'s' is to long");
   check_debug(isalpha(s[0]), "head of 's' is not alphabetic");
   check_debug(is_number(&s[1]), "Tail of 's' is not numeric");
 
   s[0] = toupper(s[0]);
-  strcpy(dest, s);
-  return true;
+  return s;
 
  error:
-  return false;
+  return NULL;
 }

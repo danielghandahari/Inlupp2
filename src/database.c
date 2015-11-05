@@ -198,23 +198,18 @@ ware *ware_exists(tree *t, char *warename)
 ware *get_ware_at_aux(node *n, int index, int *acc)
 {
   log_info("get_ware_at_aux", n, "%p");
-
   log_info("get_ware_at_aux", *acc, "%d");
   log_info("get_ware_at_aux", index, "%d");
-
-  //if(*acc > index) return NULL; //might cause logical faults
 
   ware *ret_val = NULL;
 
   if(n->left) ret_val = get_ware_at_aux(n->left, index, acc);
-  
   if(ret_val) goto done;
 
   if(index == *acc) return get_ware(n);
   else ++(*acc);
 
   if(n->right) ret_val = get_ware_at_aux(n->right, index, acc);
-
 
  done:
   return ret_val;
@@ -228,14 +223,15 @@ ware *get_ware_at(tree *t, int index)
   int *acc = calloc(1, sizeof(int));
   *acc = 0;
   node *root = get_root(t);
+  ware *w = NULL;
 
-  if(!root) return NULL;
+  if(!root) goto exit;
 
-  ware *w = get_ware_at_aux(root, index, acc);
+  w = get_ware_at_aux(root, index, acc);
   log_info("get_ware_at", w, "%p");
 
-  free(acc);
-
+ exit:
+  if(acc) free(acc);
   return w;
 }
 
@@ -259,7 +255,6 @@ void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice
   log_info("insert_ware", t, "%p");
   log_info("insert_ware", w, "%p");
   log_info("insert_ware", warename, "%s");
-
   log_info("insert_ware", shelfloc, "%s");
   log_info("insert_ware", shelfamount, "%d");
 
@@ -359,17 +354,16 @@ int get_num_shelves(ware *w)
 
 void remove_shelf_at(tree *t, ware *w, int index)
 {
-  elem *shelf = get_first_shelf(w);
-  assert(w);  
+  assert(t);
+  assert(w);
+  elem **shelf = &(w->shelves->first);
 
-  for(int i = 0; i < index-1; i++)
+  for(int i = 0; i < index; i++)
     {
-      shelf = get_next_shelf(shelf);
-      if(!shelf) return;
+      shelf = &(*shelf)->next;
     }
 
-  elem *tmp = get_next_shelf(shelf);
-  rem_elem(&tmp, tmp->box);
+  rem_elem_in_list(w->shelves, (*shelf)->box);
 
   char *key = make_key(get_ware_name(w));
   
@@ -394,38 +388,20 @@ char *get_shelf_loc_at(ware *w, int index)
 }
 
 
-void destroy_warehouse_subtree(node **n)
+
+void destroy_shelf(shelf *s)
 {
-  if(!(*n)) return;
-
-  node **temp_left = &((*n)->left);
-  node **temp_right = &((*n)->right);
- 
-  destroy_node_DB(*n);
-  destroy_warehouse_subtree(temp_left);
-  destroy_warehouse_subtree(temp_right); 
+  free(s->location);
+  free(s);
 }
-
-
-
-void destroy_warehouse(tree *t)
-{
-  assert(t);
-  
-  destroy_warehouse_subtree(&(t->root));
-  free(t);
-}
-
-
 
 void destroy_elem(elem *e)
 {
   if(e->next) destroy_elem(e->next);
 
   shelf *s = (shelf*)e->box;
-
-  free(s->location);
-  free(s);
+  destroy_shelf(s);
+  free(e);
 }
 
 void destroy_list_DB(list *l)
@@ -436,10 +412,9 @@ void destroy_list_DB(list *l)
   free(l);
 }
 
-
-
 void destroy_ware(ware *w)
 {
+  destroy_list_DB(w->shelves);
   free(w->name);
   free(w->desc);
   free(w);
@@ -452,15 +427,33 @@ void destroy_only_node(node *n)
   free(n);
 }
 
-
 void destroy_node_DB(node *n)
 {
   ware *w = (ware*)n->content;
-  destroy_list_DB(w->shelves);
+
   destroy_ware(w);
   free(n->key);
   free(n);
 }
+
+void destroy_warehouse_subtree(node **n)
+{
+  if((*n)->left) destroy_warehouse_subtree(&(*n)->left);
+  if((*n)->right) destroy_warehouse_subtree(&(*n)->right);
+ 
+  destroy_node_DB(*n);
+}
+
+void destroy_warehouse(tree *t)
+{
+  assert(t);
+  
+  if(t->root) destroy_warehouse_subtree(&(t->root));
+
+  t->root = NULL;
+  free(t);
+}
+
 
 
 
