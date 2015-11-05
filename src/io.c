@@ -408,14 +408,14 @@ void pack_trolley_io(tree *t)
       int amount = -1;
       //TODO make macro to ease reading
       user_input_int(&amount, "$ How many items would you like to take?\n");
-
+      
       //==================
       pack_trolley(trolley, get_ware_name(w), amount);
       //==================
 
       print_trolley_current(trolley);
     
-      void print_pack_again();
+      print_pack_again();
       
       char input = '\0';
       int loop = 1;
