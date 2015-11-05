@@ -42,7 +42,7 @@ ware * create_ware();
  */
 void incr_shelf_and_tot(list *l, char *key, int incr);
 
-
+void incr_shelf(shelf *s, int incr);
 
 
 /**
@@ -123,6 +123,7 @@ void insert_ware(tree *t, ware *w, char *ware_name, char *ware_desc, int ware_pr
 ware *get_ware_at(tree *t, int index);
 ware *get_ware(node *n);
 char *get_ware_name(ware *w);
+int get_tot_ware(ware *w);
 
 /**
  * @brief returns a pointer to a wares description

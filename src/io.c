@@ -416,19 +416,21 @@ void pack_trolley_io(tree *t)
       int index = get_ware_index(t);
       ware *w = get_ware_at(t, index);
 
-      printf("Item: %s", get_ware_name(w));
-      //=================
       
-      //================
       int amount = -1;
-      //TODO make macro to ease reading
-      amount = user_input_int("How many items would you like to take?\n");
-      
-      //==================
-      pack_trolley(trolley, get_ware_name(w), amount);
-      //==================
 
-      print_trolley_current(trolley);
+      //================
+      print_ware_trolley(w);
+      //================
+      
+      printf("\nHow many %ss would you like to take? $", get_ware_name(w));  
+      amount = user_input_int("");
+      
+
+      pack_trolley(trolley, get_ware_name(w), amount);
+
+
+      print_trolley_current(t, trolley);
     
       print_pack_again();
       

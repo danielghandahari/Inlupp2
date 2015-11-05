@@ -222,7 +222,7 @@ void print_trolley_header()
 }
 
 
-void print_trolley_current(list *l)
+void print_trolley_current(tree *t, list *l)
 {
   if(trolley_is_empty(l)) printf("Your trolley is empty\n");
 
@@ -234,24 +234,24 @@ void print_trolley_current(list *l)
       print_centered("Current Trolley", LINE_LENGTH);
       print_delimiter;
 
+
       printf("\n");
-      printf("\n");
-      print_delimiter;
 
       elem *temp = l->first;
 
       while(temp)
 	{
-	  trolley *t = (trolley*)temp->box;
-	  printf("- %s (%d)", t->key, t->amount);
+	  trolley *trl = (trolley*)temp->box;
+
+	  node *n = get_node_in_tree(t, trl->key);
+	  ware *w = (ware*)n->content;
+
+	  
+	  printf("\n- %s (%d)", w->name, trl->amount);
 
 	  temp = temp->next;
 	}
-
-
-  
-      print_delimiter;
-
+      printf("\n");
     }
   
 }
@@ -259,9 +259,17 @@ void print_trolley_current(list *l)
 
 void print_pack_again()
 {
-  print_delimiter;
-  printf("\n $Pack your trolley again?");
-  print_delimiter;
+  printf("\n $Pack your trolley again? [Y/N]");
+}
+
+
+
+void print_ware_trolley(ware *w)
+{
+  printf("\nName: %s", get_ware_name(w));
+  printf("\nAmount: %d", get_tot_ware(w));
+  printf("\n\n Pick amount(0-%d): ", get_tot_ware(w));
+
 }
 
 

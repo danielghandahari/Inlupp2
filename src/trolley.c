@@ -13,6 +13,7 @@ trolley * create_trolley()
 }
 
 
+
 bool trolley_is_empty(list *l)
 {
   return l->first ? false : true;
@@ -88,8 +89,10 @@ void pack_trolley(list *l, char *ware_name, int amount)
   else
     {
       elem *new_elem = create_elem();
-      trolley *new_trolley = (trolley*)new_elem->box;
+      trolley *new_trolley = create_trolley();
 
+      new_elem->box = new_trolley;
+      
       new_trolley->key = key;
       new_trolley->amount = amount;
 

@@ -21,7 +21,7 @@
  
 
 bool find_elem_DB(elem *e, char *key);
-void incr_shelf(shelf *s, int incr);
+
 
 
 
@@ -114,9 +114,8 @@ void incr_shelf_and_tot(list *l, char *key, int incr)
   incr_shelf(s, incr);
   log_info("incr_shelf_and_tot", s->amount, "%d");
 
-  //TODO make it work
-  //  int *totalamount  = (int*)l->stuff;
-  //  (*totalamount) += incr;
+  int *tot = (int*)l->stuff;
+  *tot += incr;
 }
 
 
@@ -171,7 +170,6 @@ elem * get_elem_DB(elem *e, char *key)
 
   return NULL;
 }
-
 
 
 //TIMS FUNKTIONER
@@ -278,10 +276,13 @@ void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice
 	  log_info("insert_ware", e->box, "%p");
 
 	  s->location = strdup(shelfloc);
-	  s->amount = shelfamount;
+	  s->amount = 0;
+
+	  
 
 	  insert_elem_in_list(w->shelves, e);
-	  //incr_shelf_and_tot(w->shelves, shelfloc, shelfamount);       
+
+	  incr_shelf_and_tot(w->shelves, s->location, shelfamount);       
 	}
     }
   else
@@ -291,13 +292,18 @@ void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice
       list *l = create_list();
       elem *e = create_elem();
       shelf *s = create_shelf();
-
+      int *tot = calloc(1, sizeof(int));
+      
       log_info("insert_ware", n, "%p");
       log_info("insert_ware", w, "%p");
       log_info("insert_ware", l, "%p");
       log_info("insert_ware", e, "%p");
       log_info("insert_ware", s, "%p");
 
+      //list
+      *tot = shelfamount;
+      l->stuff = tot; 
+      
       //shelf
       s->location = strdup(shelfloc);
       s->amount = shelfamount;
@@ -328,6 +334,12 @@ char *get_ware_desc(ware *w) { return w->desc; }
 int   get_ware_price(ware *w) { return w->price; }
 
 list *get_list(ware *w) { return w->shelves; }
+int get_tot_ware(ware *w)
+{
+  list *l = get_list(w);
+  int *tot = (int*)l->stuff;
+  return *tot;
+}
 
 elem *get_first_shelf(ware *w) { return w->shelves->first; }
 elem *get_next_shelf(elem *e) { return e->next; }
