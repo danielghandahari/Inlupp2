@@ -221,6 +221,49 @@ void print_trolley_header()
 }
 
 
+void print_trolley_current(list *l)
+{
+  if(trolley_is_empty(l)) printf("Your trolley is empty\n");
+
+  else
+    {
+      
+      printf("\n");
+      print_delimiter;
+      print_centered("Current Trolley", LINE_LENGTH);
+      print_delimiter;
+
+      printf("\n");
+      printf("\n");
+      print_delimiter;
+
+      elem *temp = l->first;
+
+      while(temp)
+	{
+	  trolley *t = (trolley*)temp->box;
+	  printf("- %s (%d)", t->key, t->amount);
+
+	  temp = temp->next;
+	}
+
+
+  
+      print_delimiter;
+
+    }
+  
+}
+
+
+void print_pack_again()
+{
+  print_delimiter;
+  printf("\n $Pack your trolley again?");
+  print_delimiter;
+}
+
+
 
 // Exit
 

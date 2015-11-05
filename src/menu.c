@@ -40,26 +40,33 @@ void menu()
 
 void choose_option(bool *exit, tree *t)
 {
-  switch(get_menu_choice())
+  int loop = 1;
+  while(loop)
     {
-    case 'a':
-    case 'A': add_ware(t); break;
+      
+      switch(get_menu_choice())
+	{
+	case 'a':
+	case 'A': add_ware(t); break;
 
-    case 'r':
-    case 'R': remove_ware(t); break;
+	case 'r':
+	case 'R': remove_ware(t); break;
 
-    case 'e':
-    case 'E': edit_ware(t); break;
+	case 'e':
+	case 'E': edit_ware(t); break;
 
-    case 'p':
-    case 'P': print_warehouse(t); break;
+	case 'p':
+	case 'P': print_warehouse(t); break;
 
-    case 'c':
-    case 'C': pack_trolley_io(t); break;
+	case 'c':
+	case 'C': pack_trolley_io(t); break;
 
-    case 'x':
-    case 'X': exit_program(exit, t); break;
+	case 'x':
+	case 'X': exit_program(exit, t); break;
 
-    default: printf("Incorrect input\n");
+	default: print_incorrect_input(); continue;
+	}
+
     }
+
 }

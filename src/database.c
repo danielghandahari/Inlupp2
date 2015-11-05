@@ -173,6 +173,7 @@ elem * get_elem_DB(elem *e, char *key)
 }
 
 
+
 //TIMS FUNKTIONER
 
 ware *ware_exists(tree *t, char *warename)

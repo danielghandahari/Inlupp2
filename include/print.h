@@ -4,9 +4,16 @@
 #include <string.h>
 #include <stdio.h>
 #include <database.h>
+#include <database_secret.h>
+#include <trolley.h>
+#include <trolley_secret.h>
 #include <dbg.h>
 
 #define STREAM_LENGTH 512
+
+
+
+
 
 void print_incorrect_input();
 void print_choice();
@@ -33,6 +40,8 @@ void print_index_name(int index, char *ware_name);
 void print_warehouse_menu();
 
 void print_trolley_header();
+void print_trolley_current(list *l);
+void print_pack_again();
 
 void print_exit();
 #endif

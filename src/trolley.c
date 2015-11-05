@@ -3,6 +3,7 @@
 #include <trolley_secret.h>
 #include <trolley.h>
 #include <stdlib.h>
+#include <dbg.h>
 #include <stdbool.h>
 
 trolley * create_trolley()
@@ -74,8 +75,9 @@ int get_amount(list *l, char *key)
 
 
 
-void pack_trolley(list *l, char *key, int amount)
+void pack_trolley(list *l, char *ware_name, int amount)
 {
+  char *key = make_key(ware_name);
   elem *e = get_elem_in_list_DB(l, key);
 
   if(e)
@@ -94,6 +96,36 @@ void pack_trolley(list *l, char *key, int amount)
       insert_elem_in_list(l, new_elem);
     }
 }
+
+
+
+elem * get_elem_trolley(list *l, char *key)
+{
+  return get_elem_trolley_aux(l->first, key);
+}
+
+
+
+elem * get_elem_trolley_aux(elem *e, char *key)
+{
+  elem *current = e;
+  
+  while (current)
+    {
+      trolley *t = (trolley*)current->box;
+      int action = key_compare(t->key, key);
+
+      log_info("get_elem_trolley_aux", current, "%p");
+      log_info("get_elem_trolley_aux", t, "%p");
+      log_info("get_elem_trolley_aux", action, "%d");
+      
+      if (action == 0) return current;
+      current = current->next;
+    }
+
+  return NULL;
+}
+
 
 
 
@@ -116,3 +148,7 @@ void destroy_trolley(list *l)
   free(l->stuff);
   free(l);
 }
+
+
+
+
