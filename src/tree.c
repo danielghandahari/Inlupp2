@@ -131,6 +131,3 @@ node *get_root(tree *t)
 {
   return t->root;
 }
-
-
-

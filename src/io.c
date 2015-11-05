@@ -98,10 +98,14 @@ void add_ware(tree *t)
     }
   
   char ware_shelf[STREAM_LENGTH] = {'\0'};
+  bool shelf_not_ok = false;
   do
     {
+      if(shelf_not_ok) printf("Shelf already in use\n");
+
       read_shelf(ware_shelf);
-    } while(!shelf_ok(t, w, ware_shelf));
+      shelf_not_ok = !shelf_ok(t, w, ware_shelf);
+    } while(shelf_not_ok);
   
 
   int ware_amount;
@@ -170,26 +174,23 @@ void remove_ware(tree *t)
 }
 
 
-//TODO fix output
-void edit_ware(tree *t)
+void edit_ware_aux(tree *t, int index)
 {
-  print_edit_header();
-
-  int index = -1;
-  index = get_ware_index(t);
-
   bool again = true;
 
+  if(index < 0)
+    {
+      return;
+    }
   do
     {
       ware *w = get_ware_at(t, index);
       print_ware(w);
 
-      //get attribute to edit
-      char input = {'\0'};
+      char input = '\0';
+      printf("[N]ame [D]escription\n[P]rice [S]helf [A]mount\nE[X]it\n");
       read_char(&input);
 
-      //input new value of attribute
       //TODO move to separet function
       switch(input)
 	{
@@ -223,34 +224,49 @@ void edit_ware(tree *t)
 	case 's':
 	case 'S':
 	  {
-	    char old_location[STREAM_LENGTH] = {'\0'};
+	    print_shelves_numbered(w);
+
+	    printf("Old shelf\n");
+	    int chosen_shelf = -1;
+	    bool shelf_not_ok = false;
 	    do
 	      {
-		read_shelf(old_location);
-	      } while(!shelf_ok(t, w, old_location));
+		user_input_int(&chosen_shelf, "Index");
+		shelf_not_ok =
+		  0 <= chosen_shelf &&
+		  chosen_shelf > get_num_shelves(w);
+	      } while(shelf_not_ok);
 
+	    printf("New shelf\n");
 	    char new_location[STREAM_LENGTH] = {'\0'};
+
 	    do
 	      {
-		read_shelf(new_location);
-	      } while(shelf_ok(t, w, old_location));
+		user_input_shelf(new_location, "New location\n");
 
-	    edit_shelf_location(t, get_ware_name(w), old_location, new_location);
+		shelf_not_ok = !shelf_ok(t, w, new_location);
+	      } while(shelf_not_ok);
+
+	    edit_shelf_location(t, get_ware_name(w), get_shelf_loc_at(w, chosen_shelf - 1), new_location);
 	  }
 	  break;
 
 	case 'a':
 	case 'A':
 	  {
-	    char location[STREAM_LENGTH] = {'\0'};
+	    print_shelves_numbered(w);
+
+	    printf("Shelf\n");
+	    int chosen_shelf = -1;
 	    do
 	      {
-		read_shelf(location);
-	      } while (!shelf_ok(t, w, location));
+		user_input_int(&chosen_shelf, "Index");
+	      } while(0 <= chosen_shelf && chosen_shelf > get_num_shelves(w));
+
 	    int amount = -1;
 	    read_amount(&amount);
 
-	    edit_shelf_amount(t, get_ware_name(w), location, amount);
+	    edit_shelf_amount(t, get_ware_name(w), get_shelf_loc_at(w, chosen_shelf-1), amount);
 	  }
 	  break;
 
@@ -261,6 +277,17 @@ void edit_ware(tree *t)
 	}
 
     } while(again);
+}
+
+//TODO fix output
+void edit_ware(tree *t)
+{
+  print_edit_header();
+
+  int index = -1;
+  index = get_ware_index(t);
+
+  edit_ware_aux(t, index);
 }
 
 
@@ -286,17 +313,14 @@ int get_ware_index(tree *t)
   int index = 0;
   int page = 0;
   ware *w = get_ware_at(t, index);
-
-  log_info("get_ware_index", w, "%p");
   
-  
+ print_next_page:  
   if(!w)
     {
       print_warehouse_empty();
       goto exit;
     }
 
- print_next_page:
   //TODO move to print.c
   printf("Index || Ware\n");
 
@@ -306,17 +330,18 @@ int get_ware_index(tree *t)
       ++index;
       
       w = get_ware_at(t, index);
-      log_info("get_ware_index", w, "%p");
-      log_info("get_ware_index", index, "%d");
     }
 
-  if(!w) print_end_of_warehouse();
-
- incorrect_input:
-  print_warehouse_menu();
+  if(!w)
+    {
+      print_end_of_warehouse();
+    }
 
   char input[STREAM_LENGTH] = "\0";
-  print_choice();
+
+ incorrect_input:
+
+  print_warehouse_menu();
   read_string(input);
 
   //TODO move to different fuction
@@ -325,13 +350,11 @@ int get_ware_index(tree *t)
     case 'p':
     case 'P':
       ++page;
-      goto print_next_page;
-      break;
+      goto print_next_page; break;
 
     case 'x':
     case 'X':
-      goto exit;
-      break;
+      goto exit; break;
 
     default:
       if(is_string_digit(input))
@@ -343,7 +366,6 @@ int get_ware_index(tree *t)
 	      return final;
 	    }
 	}
-      
       goto incorrect_input;
     }
 

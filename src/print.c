@@ -1,6 +1,6 @@
 #include <print.h>
 
-#define LINE_LENGTH 25
+#define LINE_LENGTH 50
 #define print_delimiter print_line(LINE_LENGTH, '=')
 
 
@@ -44,6 +44,8 @@ void print_choice()
 
 // menu
 
+#define COL_PRINT(A, B) printf("%10s %s", A, B)
+
 void print_menu()
 {
   printf("\n");
@@ -52,28 +54,31 @@ void print_menu()
   print_delimiter;
   printf("\n");
 
-  printf("[A]dd an item\n");
-  printf("[R]emove an item\n");
-  printf("[E]dit an item\n");
-  printf("[P]rint the warehouse\n");
-  printf("Pa[C]k your trolley\n");
-  printf("E[X]it\n\n");
+  COL_PRINT("[A]", "Add an item\n");
+  COL_PRINT("[R]", "Remove an item\n");
+  COL_PRINT("[E]", "Edit an item\n");
+  COL_PRINT("[P]", "Print the warehouse\n");
+  COL_PRINT("[C]", "Pack your trolley\n");
+  COL_PRINT("[X]", "Exit\n\n");
 }
 
 
 
-// ware
+// shelves
 
 void print_shelves(ware *w)
 {
   printf("\n"); 
-  printf("Shelf || Amount\n");
+  print_centered("Shelves", LINE_LENGTH);
 
   for(elem *e = get_first_shelf(w); e != NULL; e = get_next_shelf(e))
     {
-      log_info("print_shelves", e, "%p");
+      char *s_loc = get_shelf_loc(e);
+      int s_amount = get_shelf_amount(e);
 
-      printf("%-5s -- %i\n", get_shelf_loc(e), get_shelf_amount(e));
+      printf("---------------\n");
+      printf("%-10s %s\n", "Location", s_loc);
+      printf("%-10s %d\n", "Amount", s_amount);
     }
   
   printf("\n");
@@ -82,15 +87,16 @@ void print_shelves(ware *w)
 void print_shelves_numbered(ware *w)
 {
   printf("\n"); 
-  printf("Shelf || Amount\n");
-
+  print_centered("Shelves", LINE_LENGTH);
   int i = 1;
 
   for(elem *e = get_first_shelf(w); e != NULL; e = get_next_shelf(e))
     {
-      log_info("print_shelves", e, "%p");
+      char *s_loc = get_shelf_loc(e);
+      int s_amount = get_shelf_amount(e);
 
-      printf("%i %-5s -- %i\n", i, get_shelf_loc(e), get_shelf_amount(e));
+      printf("%-2d %-10s %s\n", i, "Location", s_loc);
+      printf("%-13s %d", "Amount", s_amount);
       i++;
     }
   
@@ -98,9 +104,11 @@ void print_shelves_numbered(ware *w)
 }
 
 
+
+// ware
+
 void print_ware(ware *w)
 {
-  print_delimiter;
   printf("\n");
   print_centered("Ware", LINE_LENGTH);
   printf("%-18s%s\n", "Name", get_ware_name(w));
@@ -126,21 +134,21 @@ void print_add_header()
 void print_add_or_update_shelf()
 {
   printf("\n");
-  print_centered("Add new- or increase shelf", LINE_LENGTH);
+  print_centered("Ware exists in warehouse", LINE_LENGTH);
   printf("\n");
 }
 
 void print_new_ware()
 {
   printf("\n");
-  print_centered("New ware", LINE_LENGTH);
+  print_centered("Ware does not exist in warehouse",LINE_LENGTH);
   printf("\n");
 }
 
 void print_ware_added()
 {
   printf("\n");
-  print_centered("Ware added to warehouse", LINE_LENGTH);
+  print_centered("Done!", LINE_LENGTH);
   printf("\n");
 }
 
@@ -152,7 +160,7 @@ void print_remove_header()
 {
   printf("\n");
   print_delimiter;
-  print_centered("Remove item", LINE_LENGTH);
+  print_centered("Remove shelves and/or a ware", LINE_LENGTH);
   print_delimiter;
 }
 
@@ -164,16 +172,15 @@ void print_edit_header()
 {
   printf("\n");
   print_delimiter;
-  print_centered("Edit item", LINE_LENGTH);
+  print_centered("Edit ware", LINE_LENGTH);
   print_delimiter;
 }
 
 void print_warehouse_header()
 {
   printf("\n");
-  print_delimiter;
-  print_centered("Warehouse", LINE_LENGTH);
-  print_delimiter;
+  print_centered("||== The warehouse ==||", LINE_LENGTH);
+  printf("\n");
 }
 
 void print_end_of_warehouse()
@@ -186,7 +193,7 @@ void print_end_of_warehouse()
 void print_warehouse_empty()
 {
   printf("\n");
-  print_centered("The warehouse is empty", LINE_LENGTH);
+  print_centered("Nothing to show", LINE_LENGTH);
 }
 
 void print_index_name(int index, char *ware_name)
@@ -196,9 +203,9 @@ void print_index_name(int index, char *ware_name)
 
 void print_warehouse_menu()
 {
-  printf("Input ware index\n");
-  printf("[P]rint next page\n");
-  printf("E[X]it warehouse viewer\n\n");
+  COL_PRINT("[n]", "Input ware index\n");
+  COL_PRINT("[P]", "Print next page\n");
+  COL_PRINT("[X]", "Exit warehouse viewer\n");
 }
 
 

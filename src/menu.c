@@ -6,20 +6,21 @@ void choose_option(bool *exit, tree *t);
 
 void test_tree(tree *t)
 {
-  insert_ware(t, NULL, "R", "rbc", 12, "R34", 5);
-  insert_ware(t, ware_exists(t, "R"), "", "", 0, "R14", 50);
-  insert_ware(t, ware_exists(t, "R"), "", "", 0, "R99", 500);
+  insert_ware(t, NULL, "Daim", "Sötsak. Bra i tårta.", 12, "R34", 5);
+  insert_ware(t, ware_exists(t, "Daim"), "", "", 0, "R14", 50);
 
-  insert_ware(t, NULL, "D", "dbc", 42, "A10", 2);
-  insert_ware(t, ware_exists(t, "D"), "", "", 0, "A55", 12);
-  insert_ware(t, ware_exists(t, "D"), "", "", 0, "A55", 12);
-  insert_ware(t, NULL, "A", "abc", 32, "A34", 5);
-  insert_ware(t, NULL, "G", "qweasdc", 12, "G34", 5);
-  insert_ware(t, NULL, "Q", "absdasfc", 12, "Q94", 5);
+  insert_ware(t, NULL, "Banan", "Böjda i Norge.", 42, "A10", 2);
+  insert_ware(t, ware_exists(t, "Banan"), "", "", 0, "A55", 12);
+  insert_ware(t, NULL, "Fucks", "None given.", 32, "A34", 5);
 
-  insert_ware(t, NULL, "T", "Tbc", 12, "T34", 5);
-  insert_ware(t, NULL, "S", "Sbc", 12, "S34", 5);
-  insert_ware(t, NULL, "Z", "Zbc", 12, "Z34", 5);
+  insert_ware(t, NULL, "Annanas", "Perfekt till pizza.", 12, "G34", 5);
+  insert_ware(t, ware_exists(t, "Annanas"), "", "", 0, "R99", 500);
+  insert_ware(t, NULL, "Citron", "Surast i stan.", 12, "Q94", 5);
+
+  insert_ware(t, NULL, "Engelbert", "Ett väldigt roligt namn.", 12, "T34", 5);
+  insert_ware(t, NULL, "Häst", "Fybenta varelser.", 12, "S34", 5);
+  insert_ware(t, ware_exists(t, "Häst"), "", "", 0, "E99", 12);
+  insert_ware(t, NULL, "Gud", "Finns inte på riktigt.", 12, "Z34", 5);
 }
 
 void menu()

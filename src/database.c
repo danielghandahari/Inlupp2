@@ -398,8 +398,6 @@ void destroy_warehouse_subtree(node **n)
 
   node **temp_left = &((*n)->left);
   node **temp_right = &((*n)->right);
-
-
  
   destroy_node_DB(*n);
   destroy_warehouse_subtree(temp_left);
@@ -417,23 +415,21 @@ void destroy_warehouse(tree *t)
 }
 
 
-//TODO this removes the first elem of a list, nothing else
+
+void destroy_elem(elem *e)
+{
+  if(e->next) destroy_elem(e->next);
+
+  shelf *s = (shelf*)e->box;
+
+  free(s->location);
+  free(s);
+}
+
 void destroy_list_DB(list *l)
 {
-  elem *temp = l->first;
+  destroy_elem(l->first);
 
-  if(temp)
-    {
-      shelf *s = (shelf*)temp->box;
-      char *t1 = s->location;
-      elem *free_temp = temp;
-
-      temp = temp->next;
-      
-      free(t1);
-      free(temp->box);
-      free(free_temp);
-    }
   free(l->stuff);
   free(l);
 }
@@ -512,75 +508,34 @@ char * make_key(char *ware_name)
 
 
 
-void edit_name(tree *t, char *old_name, char *new_name)
+void edit_name(tree *t, char *old_name, char *name)
 {
   char *old_key = make_key(old_name);
   node *old_node = get_node_in_tree(t, old_key);
 
-  char *my_new_name = strdup(new_name);
+  node *new_node = create_node();
+  char *new_name = strdup(name);
+  char *new_key = make_key(name);
+  ware* new_w = create_ware();
+
+  memcpy(new_w, old_node->content, sizeof(ware));
+  new_w->name = new_name;
+
+  new_node->content = new_w;
+  new_node->key = new_key;
   
-  node *n = create_node();
+  append_node_in_tree(t, new_node);
 
-  n->content = old_node->content;
-
-  old_node->content = NULL;
-
-  char *new_key = make_key(new_name);
-
-  n->key = new_key;
-
-  free(((ware*)n->content)->name);
-
-  ((ware*)n->content)->name = my_new_name;
-
-  append_node_in_tree(t, n->key);
-
-  rem_node_in_tree(t, old_node->key);
-  
-  /*  char *my_new_name = strdup(new_name);
-  char *old_key = make_key(old_name);
-  node *n = get_node_in_tree(t, old_key);
-  ware *w = (ware*)n->content;
-
-  char *new_key = make_key(my_new_name);
-  ware *new_ware = NULL;
-  elem *temp = get_first_shelf(w);
-
-  
-  do
-    {
-      log_info("edit_name", w, "%p");
-      log_info("edit_name", temp, "%p");
-
-      insert_ware(t, new_ware, new_name, get_ware_desc(w), get_ware_price(w), get_shelf_loc(temp), get_shelf_amount(temp));
-
-      if(!new_ware)
-	{
-	  log_info("edit_node", new_ware, "%p");
-	  node *temp_n = check_node_exists(&(t->root), new_key);
-	  new_ware = get_ware(temp_n);
-	}
-
-      temp = temp->next;
-    }while(temp);
-  
-  log_info("edit_name", t, "%p");
-  log_info("edit_name", old_key, "%s");
   rem_node_in_tree(t, old_key);
-
-  append_node_in_tree(t, new_node);  */
-  
+  free(old_key);
 }
 
 
 void edit_desc(tree *t, char *name, char *new_desc)
 {
   char *my_new_desc = strdup(new_desc);
-
   char *key = make_key(name);
-
   node *n = get_node_in_tree(t, key);
-
   ware *w = (ware*)n->content;
 
   free(w->desc);
@@ -593,9 +548,7 @@ void edit_desc(tree *t, char *name, char *new_desc)
 void edit_price(tree *t, char *name, int new_price)
 {
   char *key = make_key(name);
-  
   node *n = get_node_in_tree(t, key);
-
   ware *w = (ware*)n->content;
   
   w->price = new_price;
@@ -605,19 +558,13 @@ void edit_price(tree *t, char *name, int new_price)
 void edit_shelf_location(tree *t, char *name, char *old_shelf, char *new_shelf)
 {
   char *my_new_shelf = strdup(new_shelf);
-
   char *key =  make_key(name);
-
   node *n = get_node_in_tree(t, key);
-
   ware *w = (ware*)n->content;
-
   elem *e = get_elem_in_list_DB(w->shelves, old_shelf);
-
   shelf *s = (shelf*)e->box;
 
   free(s->location);
-
   s->location = my_new_shelf;
 }
 
@@ -625,13 +572,9 @@ void edit_shelf_location(tree *t, char *name, char *old_shelf, char *new_shelf)
 void edit_shelf_amount(tree *t, char *name, char *old_shelf, int new_amount)
 {
   char *key = make_key(name);
-
   node *n = get_node_in_tree(t, key);
-
   ware *w = (ware*)n->content;
-
   elem *e = get_elem_in_list_DB(w->shelves, old_shelf);
-
   shelf *s = (shelf*)e->box;
 
   s->amount = new_amount;
@@ -666,7 +609,7 @@ void free_ware_in_node(node *n)
 void del_node_zero_child(node **n)
 {
   free(*n);
-  n = NULL;
+  (*n) = NULL;
 }
 
 void del_node_one_child(node **n)
@@ -691,12 +634,12 @@ void del_node_one_child(node **n)
 
 void del_node_two_child(node **n)
 {
-  node **mtol = find_max_to_left(n);
+  node **n_leaf = find_max_to_left(&((*n)->left));
   
-  copy_node(*mtol, *n);
+  memcpy((*n)->content, (*n_leaf)->content, sizeof(ware));
+  (*n)->key = strdup((char*)(*n_leaf)->key);
   
-  rem_node(mtol, (*mtol)->key);
-
+  rem_node(&(*n)->left, (*n_leaf)->key);
 }
 
 
@@ -719,11 +662,9 @@ void copy_node(node *from, node *to)
 
 node **find_max_to_left(node **n)
 {
-  node **temp = &((*n)->left);
+  while((*n)->right) n = &(*n)->right;
 
-  while((*temp)->right) (*temp) = (*temp)->right;
-    
-  return temp;
+  return n;
 }
 
 
@@ -745,19 +686,24 @@ void rem_node(node **n, void *key)
   log_info("rem_node", "balle", "%s");
   log_info("rem_node", key, "%p");
 
-  if((*n)->left && (*n)->right)
-    {
-      log_info("rem_node", "twochild", "%s");
-      del_node_two_child(n);
-    }
-  else if((*n)->left || (*n)->right)
-    {
-      log_info("rem_node", "onechild", "%s");
-      del_node_one_child(n);
-    }
+  if     (key_compare(((*n)->key), key) < 0) rem_node(&(*n)->right, key);
+  else if(key_compare(((*n)->key), key) > 0) rem_node(&(*n)->left, key);
   else
     {
-      log_info("rem_node", "zerochild", "%s");
-      del_node_zero_child(n);
+      if((*n)->left && (*n)->right)
+	{
+	  log_info("rem_node", "twochild", "%s");
+	  del_node_two_child(n);
+	}
+      else if((*n)->left || (*n)->right)
+	{
+	  log_info("rem_node", "onechild", "%s");
+	  del_node_one_child(n);
+	}
+      else
+	{
+	  log_info("rem_node", "zerochild", "%s");
+	  del_node_zero_child(n);
+	}
     }
 }
