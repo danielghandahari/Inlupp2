@@ -154,13 +154,13 @@ void remove_ware(tree *t)
       if(0 < input && input <= num_shelves)
 	{
 	  printf("Shelf %s removed\n", get_shelf_loc_at(w, input - 1));
+	  num_shelves = get_num_shelves(w);
 	  remove_shelf_at(t, w, input - 1);
 
-	  num_shelves = get_num_shelves(w);
-	  if(num_shelves < 1)
+	  if(num_shelves-1 < 1)
 	    {
-	      printf("All shelves removed from warehouse");
-	      break;
+	      printf("All shelves removed from ware.");
+	      goto exit;
 	    }
 	}
       else
@@ -188,7 +188,7 @@ void edit_ware_aux(tree *t, int index)
       print_ware(w);
 
       char input = '\0';
-      printf("[N]ame [D]escription\n[P]rice [S]helf [A]mount\nE[X]it\n");
+      printf("[N]ame [D]escription\n[P]rice [S]helf [A]mount\nE[X]it\n$ ");
       read_char(&input);
 
       //TODO move to separet function
@@ -247,7 +247,7 @@ void edit_ware_aux(tree *t, int index)
 		shelf_not_ok = !shelf_ok(t, w, new_location);
 	      } while(shelf_not_ok);
 
-	    edit_shelf_location(t, get_ware_name(w), get_shelf_loc_at(w, chosen_shelf - 1), new_location);
+	    edit_shelf_location(t, get_ware_name(w), get_shelf_loc_at(w, chosen_shelf - 1), new_location);	     
 	  }
 	  break;
 

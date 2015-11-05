@@ -95,8 +95,9 @@ void print_shelves_numbered(ware *w)
       char *s_loc = get_shelf_loc(e);
       int s_amount = get_shelf_amount(e);
 
+      printf("---------------\n");
       printf("%-2d %-10s %s\n", i, "Location", s_loc);
-      printf("%-13s %d", "Amount", s_amount);
+      printf("%-2s %-10s %d\n", "", "Amount", s_amount);
       i++;
     }
   
