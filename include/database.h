@@ -42,28 +42,41 @@ typedef struct _sum_ sum;
 
 
 /**
- * @brief returns string ware_name int uppercase letters
+ * @brief Converts string into uppercase letters
+ * @param ware_name is string beeing converted to uppercase letters.
+ * @result Returns string in uppercase letters.
  */
 char * make_key(char *ware_name); 
 
 
 
+
 /**
- * @brief returns a pointer to a ware, allocated on the heap
+ * @brief Allocates memory for a ware
+ * @param void
+ * @result Returns pointer to allocated ware
  */
 ware * create_ware();   
 
 
 /**
- * @brief increments shelf, pointed by s, with incr. Increments total amonut of shelfs, pointed by l->shelves
+ * @brief Increments shelf with shelf flocation shelf_loc and total amount of shelves, in list l, with the amount of incr.
+ * @param l points to the linked list containing the shelf
+ * @param shelf_loc is the string for the shelf location
+ * @param incr is the amount to increment the amount of shelf and totalamount of shelves
+ * @result 
  */
-void incr_shelf_and_tot(list *l, char *key, int incr);
+void incr_shelf_and_tot(list *l, char *shelf_loc, int incr);
+
 
 
 
 
 /**
- * @brief returns true if shelflocation key exists in the list pointed by l
+ * @brief Says whether key is in l
+ * @param l is a linked list 
+ * @param string key, that can be in l
+ * @result returns true if key is in l, otherwise false
  */
 bool find_elem_in_list_DB(list *l, char *key);
 
@@ -71,52 +84,78 @@ bool find_elem_in_list_DB(list *l, char *key);
 
 
 /**
- * @brief returns element from list, pointed by l, where key is its shelflocation
+ * @brief Gives the element represented by key, in list l
+ * @param l is a linked list
+ * @param string key, that can be in l
+ * @result returns the element if key is in l, otherwise NULL
  */
 elem * get_elem_in_list_DB(list *l, char *key);
 
 
 /**
- * @brief returns true if key is in tree, pointed by t
+ * @brief Checks whether key is used by any ware in t
+ * @param t is a binary search tree
+ * @param key is a shelf location
+ * @result returns true if key is used by any ware in t, otherwise false
  */
 bool check_shelf_used_in_tree(tree *t, char *key);   
 
-
-
-/**
- * @brief returns true if shelflocation is used by a ware, where key is pointing to wares name, in the tree, where t points to the tree. shelfloc points to the shelflocation
- */
-bool check_used_by_ware(tree *t, void *key, char *shelfloc);
 
 //======
 // ware
 //======
 
 
+
 /**
- * @brief returns pointer to a ware if that ware exists in the tree
+ * @brief checks whether ware_name exists in t
+ * @param t is a binary search tree
+ * @param ware_name represents a ware in a BStree
+ * @result returns the ware if ware_name exists in t, otherwise false
  */
 ware *ware_exists(tree *t, char *ware_name);
 
+
 /**
- * @brief returns pointer to a ware at index index
+ * @brief Gives a ware at index index, in t
+ * @param t is a binary search tree
+ * @param index represents an index for a ware in t
+ * @result returns the ware if valid index is inputed, otherwise NULL
  */
 ware *get_ware_at(tree *t, int index);
 
+
 /**
- * @brief checks is a ware is in the list w->shelves. otherwise checks the tree, pointed by t, if the shelf is used
+ * @brief checks if ware_shelf is in the linked list of w. if not, checks if ware_shelf is in othe other wares linked lists in t
+ * @param t is a binary search tree
+ * @param w represents a ware in t
+ * @param ware_shelf represents the name of a ware
+ * @result returns true
  */
 bool shelf_ok(tree *t, ware *w, char *ware_shelf);
 
+
 /**
- * @brief if w points to an existing ware, creates a shelf for it or increments its existing shelf. otherwise creates a ware with the given parameters
+ * @brief Inserts a ware in t, with parameters ware_name, ware_desc, ware_price, ware_shelf and ware_amount if w is NULL. if w is NULL, a ware with the mentioned parameters is created in t
+ * @param t is a binary search tree
+ * @param w represents a ware in t
+ * @param ware_name represents a wares name
+ * @param ware_desc represents a wqares description
+ * @param ware_price represents a wares price
+ * @param ware_shelf represents a shhelf for a ware
+ * @param ware_amount represents the amount of a shelf
+ * @result void
  */
 void insert_ware(tree *t, ware *w, char *ware_name, char *ware_desc, int ware_price, char *ware_shelf, int ware_amount);
 
-/**
- * @brief returns a pointer to a wares name
- */
 
+
+/**
+ * @brief 
+ * @param 
+ * @param 
+ * @result
+ */
 ware *get_ware_at(tree *t, int index);
 ware *get_ware(node *n);
 char *get_ware_name(ware *w);

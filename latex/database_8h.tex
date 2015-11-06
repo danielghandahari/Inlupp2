@@ -36,9 +36,8 @@ Header file for the database.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{database_8h_adb23ef84e2493670fa12ed2a81da346b}{}char $\ast$ \hyperlink{database_8h_adb23ef84e2493670fa12ed2a81da346b}{make\+\_\+key} (char $\ast$ware\+\_\+name)\label{database_8h_adb23ef84e2493670fa12ed2a81da346b}
-
-\begin{DoxyCompactList}\small\item\em returns string ware\+\_\+name int uppercase letters \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{database_8h_adb23ef84e2493670fa12ed2a81da346b}{make\+\_\+key} (char $\ast$ware\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Converts string into uppercase letters. \end{DoxyCompactList}\item 
 \hypertarget{database_8h_a79fbc839f4a039d9d697983fc81b25d4}{}\hyperlink{struct__ware__}{ware} $\ast$ \hyperlink{database_8h_a79fbc839f4a039d9d697983fc81b25d4}{create\+\_\+ware} ()\label{database_8h_a79fbc839f4a039d9d697983fc81b25d4}
 
 \begin{DoxyCompactList}\small\item\em returns a pointer to a ware, allocated on the heap \end{DoxyCompactList}\item 
@@ -166,4 +165,22 @@ Daniel Ghandahari and Tim Svensson
 
 returns pointer to a ware at index index 
 
-returns a pointer to a wares name 
+returns a pointer to a wares name \hypertarget{database_8h_adb23ef84e2493670fa12ed2a81da346b}{}\index{database.\+h@{database.\+h}!make\+\_\+key@{make\+\_\+key}}
+\index{make\+\_\+key@{make\+\_\+key}!database.\+h@{database.\+h}}
+\subsubsection[{make\+\_\+key(char $\ast$ware\+\_\+name)}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ make\+\_\+key (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ware\+\_\+name}
+\end{DoxyParamCaption}
+)}\label{database_8h_adb23ef84e2493670fa12ed2a81da346b}
+
+
+Converts string into uppercase letters. 
+
+Compares the names of two goods. Mainly used by the binary tree to sort the goods. 
+\begin{DoxyParams}{Parameters}
+{\em ware\+\_\+name} & is string beeing converted to uppercase letters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns string in uppercase letters. 
+\end{DoxyReturn}

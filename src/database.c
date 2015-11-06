@@ -114,9 +114,9 @@ bool check_shelf_used_in_tree(tree *t, char *key)
 
 
 
-void incr_shelf_and_tot(list *l, char *key, int incr)
+void incr_shelf_and_tot(list *l, char *shelf_loc, int incr)
 {
-  elem *e = get_elem_in_list_DB(l, key);
+  elem *e = get_elem_in_list_DB(l, shelf_loc);
   log_info("incr_shelf_and_tot", e, "%p");
 
   shelf *s = (shelf*)e->box;
@@ -138,14 +138,6 @@ void incr_shelf(shelf *s, int incr)
 }
 
 
-
-bool check_used_by_ware(tree *t, void *key, char *shelfloc)
-{
-  node *mynode = get_node_in_tree(t, key);
-  ware *myitem = (ware*)mynode->content;
-
-  return find_elem_in_list_DB(myitem->shelves, shelfloc);
-}
 
 bool find_elem_in_list_DB(list *l, char *key)
 {

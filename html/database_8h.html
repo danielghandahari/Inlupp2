@@ -128,9 +128,8 @@ typedef struct <a class="el" href="struct__sum__.html">_sum_</a>&#160;</td><td c
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:adb23ef84e2493670fa12ed2a81da346b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb23ef84e2493670fa12ed2a81da346b"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#adb23ef84e2493670fa12ed2a81da346b">make_key</a> (char *ware_name)</td></tr>
-<tr class="memdesc:adb23ef84e2493670fa12ed2a81da346b"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns string ware_name int uppercase letters <br /></td></tr>
+<tr class="memitem:adb23ef84e2493670fa12ed2a81da346b"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#adb23ef84e2493670fa12ed2a81da346b">make_key</a> (char *ware_name)</td></tr>
+<tr class="memdesc:adb23ef84e2493670fa12ed2a81da346b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts string into uppercase letters.  <a href="#adb23ef84e2493670fa12ed2a81da346b">More...</a><br /></td></tr>
 <tr class="separator:adb23ef84e2493670fa12ed2a81da346b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79fbc839f4a039d9d697983fc81b25d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79fbc839f4a039d9d697983fc81b25d4"></a>
 <a class="el" href="struct__ware__.html">ware</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a79fbc839f4a039d9d697983fc81b25d4">create_ware</a> ()</td></tr>
@@ -295,6 +294,31 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>rem_node_in_tree</b> 
 
 <p>returns pointer to a ware at index index </p>
 <p>returns a pointer to a wares name </p>
+
+</div>
+</div>
+<a class="anchor" id="adb23ef84e2493670fa12ed2a81da346b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* make_key </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>ware_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts string into uppercase letters. </p>
+<p>Compares the names of two goods. Mainly used by the binary tree to sort the goods. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ware_name</td><td>is string beeing converted to uppercase letters. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns string in uppercase letters. </dd></dl>
 
 </div>
 </div>
