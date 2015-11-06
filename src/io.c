@@ -399,14 +399,16 @@ void print_warehouse(tree *t)
 }
 
 
-//TODO fix this shit
+
 void pack_trolley_io(tree *t)
 {
   //=======================
   list *trolley = create_list();
+  int *tot_stuff = create_tot();
+  trolley->stuff = tot_stuff;
   //========================
   print_trolley_header();
-  //void *trolley;
+  
 
 
   bool again = true;
@@ -416,7 +418,7 @@ void pack_trolley_io(tree *t)
       int index = get_ware_index(t);
       if(index < 0) break;
       ware *w = get_ware_at(t, index);
-
+      
       
       int amount = -1;
 
@@ -439,9 +441,9 @@ void pack_trolley_io(tree *t)
       
       
 
-      pack_trolley(trolley, get_ware_name(w), amount);
+      pack_trolley(t, trolley, get_ware_name(w), amount);
 
-
+      print_current_del();
       print_trolley_current(t, trolley);
     
       print_pack_again();
@@ -466,7 +468,7 @@ void pack_trolley_io(tree *t)
       
 
     } while(again);
-  //print trolley_final
+  print_trolley_final(t, trolley);
 }
 
 

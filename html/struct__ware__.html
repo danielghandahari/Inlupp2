@@ -63,6 +63,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -87,24 +88,82 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">_ware_ Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Type for wares in database.  
+ <a href="struct__ware__.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="database__secret_8h_source.html">database_secret.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a5ac083a645d964373f022d03df4849c8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ac083a645d964373f022d03df4849c8"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
-<tr class="separator:a5ac083a645d964373f022d03df4849c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3aad16fd4bea1b9717f232ea75ad6449"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3aad16fd4bea1b9717f232ea75ad6449"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>desc</b></td></tr>
-<tr class="separator:a3aad16fd4bea1b9717f232ea75ad6449"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef7c2446a93a7dc07f65981daf37fa65"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef7c2446a93a7dc07f65981daf37fa65"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>price</b></td></tr>
-<tr class="separator:aef7c2446a93a7dc07f65981daf37fa65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37ee6cf25bdd3f2b3d456764e1bdc148"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a37ee6cf25bdd3f2b3d456764e1bdc148"></a>
-<a class="el" href="struct__list__.html">list</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>shelves</b></td></tr>
-<tr class="separator:a37ee6cf25bdd3f2b3d456764e1bdc148"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab74e6bf80237ddc4109968cedc58c151"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__ware__.html#ab74e6bf80237ddc4109968cedc58c151">name</a></td></tr>
+<tr class="separator:ab74e6bf80237ddc4109968cedc58c151"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafc566bb08a9f46485e7238669581c2b"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__ware__.html#aafc566bb08a9f46485e7238669581c2b">desc</a></td></tr>
+<tr class="separator:aafc566bb08a9f46485e7238669581c2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dd5ee47dc4a408b73089ec6f8160083"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__ware__.html#a4dd5ee47dc4a408b73089ec6f8160083">price</a></td></tr>
+<tr class="separator:a4dd5ee47dc4a408b73089ec6f8160083"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7a0bcbeb6a9e31386e2793fc11552fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct__list__.html">list</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__ware__.html#ab7a0bcbeb6a9e31386e2793fc11552fb">shelves</a></td></tr>
+<tr class="separator:ab7a0bcbeb6a9e31386e2793fc11552fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this struct was generated from the following file:<ul>
-<li>IOOPM/Inlupp2/src/database.c</li>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Type for wares in database. </p>
+<p>Struct that holds strings name and desc, that holds information about the wares name and description. The struct also holds an int called price, representing a wares price. Struct holds a struct <em>list</em> pointer pointing to a uniq list for a ware. </p><dl class="section see"><dt>See also</dt><dd><em>ware</em> </dd></dl>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a class="anchor" id="aafc566bb08a9f46485e7238669581c2b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">desc</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>description about the goods </p>
+
+</div>
+</div>
+<a class="anchor" id="ab74e6bf80237ddc4109968cedc58c151"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">name</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>the name of the goods </p>
+
+</div>
+</div>
+<a class="anchor" id="a4dd5ee47dc4a408b73089ec6f8160083"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">price</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>the price of this type of goods </p>
+
+</div>
+</div>
+<a class="anchor" id="ab7a0bcbeb6a9e31386e2793fc11552fb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">shelves</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>pointer to a struct _list_for the ware </p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following files:<ul>
+<li>IOOPM/Inlupp2/include/<a class="el" href="database__secret_8h_source.html">database_secret.h</a></li>
+<li>IOOPM/Inlupp2/include/<a class="el" href="database_8h_source.html">database.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

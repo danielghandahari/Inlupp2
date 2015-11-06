@@ -14,6 +14,23 @@
 
 
 typedef struct _tree_ tree;
+
+
+/**
+ * @struct _ware_
+ * Struct that holds strings name and desc, that holds information about the wares name and description. The struct also holds an int called price, representing a wares price. Struct holds a struct _list_ pointer pointing to a uniq list for a ware.
+ * @see _ware_
+ * @var _ware_::name
+ * the name of the goods
+ * @var _ware_::desc
+ * description about the goods
+ * @var _ware_::price
+ * the price of this type of goods
+ * @var _ware_::loc
+ * location of the goods.
+ * @var _ware_::shelves
+ * pointer to a struct _list_for the ware
+ */
 typedef struct _ware_ ware;
 
 typedef struct _shelves_ shelves;
@@ -42,7 +59,7 @@ ware * create_ware();
  */
 void incr_shelf_and_tot(list *l, char *key, int incr);
 
-void incr_shelf(shelf *s, int incr);
+
 
 
 /**
@@ -52,10 +69,6 @@ bool find_elem_in_list_DB(list *l, char *key);
 
 
 
-/**
- * @brief returns element where key is its shelflocation
- */
-elem * get_elem_DB(elem *e, char *key);
 
 /**
  * @brief returns element from list, pointed by l, where key is its shelflocation
@@ -68,23 +81,12 @@ elem * get_elem_in_list_DB(list *l, char *key);
  */
 bool check_shelf_used_in_tree(tree *t, char *key);   
 
-/**
- * @brief returns true if key is in subtree, pointed by n
- */
-bool check_shelf_used(node **n, char *key);  
 
 
 /**
  * @brief returns true if shelflocation is used by a ware, where key is pointing to wares name, in the tree, where t points to the tree. shelfloc points to the shelflocation
  */
 bool check_used_by_ware(tree *t, void *key, char *shelfloc);
-
-//======
-// tree
-//======
-
-tree *create_new_tree();
-void destroy_warehouse(tree *t);
 
 //======
 // ware
@@ -100,11 +102,6 @@ ware *ware_exists(tree *t, char *ware_name);
  * @brief returns pointer to a ware at index index
  */
 ware *get_ware_at(tree *t, int index);
-
-/**
- * @brief returns pointer to a ware at index index. acc is an accumilator 
- */
-ware *get_ware_at_aux(node *n, int index, int *acc);
 
 /**
  * @brief checks is a ware is in the list w->shelves. otherwise checks the tree, pointed by t, if the shelf is used
@@ -184,10 +181,6 @@ ware *get_ware(node *n);
  */
 void destroy_warehouse(tree *t);
 
-/**
- * @brief frees all allocated memory pointed in subtree, pointed by n
- */
-void destroy_warehouse_subtree(node **n);
 
 /**
  * @brief frees all allocated memory in list, pointed by l
@@ -205,11 +198,6 @@ void destroy_ware(ware *w);
 void destroy_node_DB(node *n);
 
 void destroy_only_node(node *n);
-
-/**
- * @brief removes element from a list searching from element pointed by *e
- */
-void rem_elem(elem **e, void *elembox);
 
 /**
  * @brief removes element from list, pointed by l
@@ -244,44 +232,16 @@ void edit_shelf_location(tree *t, char *key, char *old_shelf, char *new_shelf);
  */
 void edit_shelf_amount(tree *t, char *key, char *old_shelf, int new_amount);
 
-/**
- * @brief copy information from fields in node, pointed by from, to node, pointed by to
- */
-void copy_node_DB(node *from, node *to);
-
-/**
- * @brief frees ware in node, pointed by n
- */
-void free_ware_in_node(node *n);
-
-/**
- * @brief frees wares list in node, pointed by n
- */
-void free_list_in_node(node *n);
-
-/**
- * @brief frees key in node, pointed by n
- */
-void free_key_in_node(node *n);
 
 
-
-
-void del_node_zero_child(node **n);
-
-void del_node_one_child(node **n);
-
-void del_node_two_child(node **n);
-
-void copy_node(node *from, node *to);
 
 
 
 void rem_node_in_tree(tree *t, void *key);
 
-void rem_node(node **n, void *key);
 
-node **find_max_to_left(node **n);
+
+
 
 
 

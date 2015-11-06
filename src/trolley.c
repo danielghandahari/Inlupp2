@@ -13,6 +13,12 @@ trolley * create_trolley()
 }
 
 
+int *create_tot()
+{
+  int *i = calloc(1, sizeof(int));
+  return i;
+}
+
 
 bool trolley_is_empty(list *l)
 {
@@ -76,7 +82,7 @@ int get_amount(list *l, char *key)
 
 
 
-void pack_trolley(list *l, char *ware_name, int amount)
+void pack_trolley(tree *t, list *l, char *ware_name, int amount)
 {
   char *key = make_key(ware_name);
   elem *e = get_elem_in_list_DB(l, key);
@@ -84,19 +90,34 @@ void pack_trolley(list *l, char *ware_name, int amount)
   if(e)
     {
       incr_amount(e, amount);
-      incr_trolley_price(l, amount);
+
+      node *n = get_node_in_tree(t, key);
+      ware *w = (ware*)n->content;
+      int tot_price = (w->price) * amount;
+
+
+
+      incr_trolley_price(l, tot_price);
     }
   else
     {
       elem *new_elem = create_elem();
       trolley *new_trolley = create_trolley();
-
+      
       new_elem->box = new_trolley;
       
       new_trolley->key = key;
       new_trolley->amount = amount;
 
       insert_elem_in_list(l, new_elem);
+
+
+      node *n = get_node_in_tree(t, key);
+      ware *w = (ware*)n->content;
+      int tot_price = (w->price) * amount;
+      
+      incr_trolley_price(l, tot_price);
+      
     }
 }
 

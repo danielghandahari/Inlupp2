@@ -21,10 +21,21 @@
  
 
 bool find_elem_DB(elem *e, char *key);
-
-
-
-
+void incr_shelf(shelf *s, int incr);
+elem * get_elem_DB(elem *e, char *key);
+bool check_shelf_used(node **n, char *key);  
+ware *get_ware_at_aux(node *n, int index, int *acc);
+void destroy_warehouse_subtree(node **n);
+void rem_elem(elem **e, void *elembox);
+void free_key_in_node(node *n);
+void free_list_in_node(node *n);
+void free_ware_in_node(node *n);
+void del_node_two_child(node **n);
+void del_node_one_child(node **n);
+void del_node_zero_child(node **n);
+void copy_node(node *from, node *to);
+node **find_max_to_left(node **n);
+void rem_node(node **n, void *key);
 
 ware * create_ware()
 {

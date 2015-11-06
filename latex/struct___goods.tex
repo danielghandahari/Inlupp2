@@ -1,0 +1,20 @@
+\hypertarget{struct___goods}{}\section{\+\_\+\+Goods Struct Reference}
+\label{struct___goods}\index{\+\_\+\+Goods@{\+\_\+\+Goods}}
+
+
+{\ttfamily \#include $<$database.\+h$>$}
+
+
+
+\subsection{Detailed Description}
+Struct that holds information about a single type of goods, this in turn holds a list filled with goods entries. These entries is what holds the location and amount at that location, of the goods. \begin{DoxySeeAlso}{See also}
+\+\_\+\+Goods\+Entry 
+\end{DoxySeeAlso}
+\begin{DoxyRefDesc}{Deprecated}
+\item[\hyperlink{deprecated__deprecated000001}{Deprecated}]The new implementation stores a list of all the entries of this goods instead of storing each goods in its own instane of this struct. Therefore the amount and location members is to be removed when no code uses it anymore. ~\newline
+ That is because we cannot break legacy code, used to run the warehouse system as it is implemented now. \end{DoxyRefDesc}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+I\+O\+O\+P\+M/\+Inlupp2/include/\hyperlink{database_8h}{database.\+h}\end{DoxyCompactItemize}

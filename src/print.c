@@ -221,6 +221,13 @@ void print_trolley_header()
   print_delimiter;
 }
 
+void print_current_del()
+{
+  print_delimiter;
+  print_centered("Current Trolley", LINE_LENGTH);
+  print_delimiter;
+      
+}
 
 void print_trolley_current(tree *t, list *l)
 {
@@ -230,11 +237,6 @@ void print_trolley_current(tree *t, list *l)
     {
       
       printf("\n");
-      print_delimiter;
-      print_centered("Current Trolley", LINE_LENGTH);
-      print_delimiter;
-
-
       printf("\n");
 
       elem *temp = l->first;
@@ -270,6 +272,17 @@ void print_ware_trolley(ware *w)
   printf("\nAmount: %d", get_tot_ware(w));
   printf("\n\n Pick amount(0-%d): ", get_tot_ware(w));
 
+}
+
+
+void print_trolley_final(tree *t, list *l)
+{
+  printf("\nYour final trolley:");
+  print_trolley_current(t, l);
+
+  int *tot = (int*)l->stuff;
+  printf("\n\tTotal price of your trolley: %d\n", *tot);
+  
 }
 
 
