@@ -376,6 +376,7 @@ int get_ware_index(tree *t)
 	  if(0 < i && i <= index % PRINT_TILL_CHECK)
 	    {
 	      int final = i - 1 + 20 * page;
+	      if(input) free(input);
 	      return final;
 	    }
 	}
@@ -402,14 +403,11 @@ void print_warehouse(tree *t)
 
 void pack_trolley_io(tree *t)
 {
-  //=======================
   list *trolley = create_list();
   int *tot_stuff = create_tot();
   trolley->stuff = tot_stuff;
   //========================
   print_trolley_header();
-  
-
 
   bool again = true;
 
@@ -418,8 +416,6 @@ void pack_trolley_io(tree *t)
       int index = get_ware_index(t);
       if(index < 0) break;
       ware *w = get_ware_at(t, index);
-      
-      
       int amount = -1;
 
       //================
@@ -468,6 +464,7 @@ void pack_trolley_io(tree *t)
       
 
     } while(again);
+
   print_trolley_final(t, trolley);
 }
 

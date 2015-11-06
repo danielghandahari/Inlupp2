@@ -185,14 +185,17 @@ ware *ware_exists(tree *t, char *warename)
 
   char *key  = make_key(warename);
   
-  node *n = get_node_in_tree(t, key); //TODO fix warename skickas in som om det vore en 'key'.
+  node *n = get_node_in_tree(t, key);
   log_info("ware_exists", n, "%p");
+  ware *w = NULL;
 
-  if(!n) return NULL;
+  if(!n) goto exit;
 
-  ware *w = (ware*)n->content;
+  w = (ware*)n->content;
   log_info("ware_exists", w, "%p");
 
+ exit:
+  free(key);
   return w;
 }
 
@@ -384,6 +387,7 @@ void remove_shelf_at(tree *t, ware *w, int index)
   
   if(!get_first_shelf(w)) rem_node_in_tree(t, key);
 
+  free(key);
 }
 
 char *get_shelf_loc_at(ware *w, int index)
@@ -430,6 +434,7 @@ void destroy_list_DB(list *l)
 void destroy_ware(ware *w)
 {
   destroy_list_DB(w->shelves);
+
   free(w->name);
   free(w->desc);
   free(w);
@@ -513,7 +518,6 @@ char * make_key(char *ware_name)
       new_key[i] = toupper(ware_name[i]);
     }
   return new_key;
-  
 }
 
 
@@ -552,6 +556,8 @@ void edit_desc(tree *t, char *name, char *new_desc)
   free(w->desc);
 
   w->desc = my_new_desc;
+
+  free(key);
 }
 
 
@@ -564,6 +570,7 @@ void edit_price(tree *t, char *name, int new_price)
   
   w->price = new_price;
   
+  free(key);
 }
 
 void edit_shelf_location(tree *t, char *name, char *old_shelf, char *new_shelf)
@@ -577,6 +584,8 @@ void edit_shelf_location(tree *t, char *name, char *old_shelf, char *new_shelf)
 
   free(s->location);
   s->location = my_new_shelf;
+
+  free(key);
 }
 
 
@@ -589,6 +598,8 @@ void edit_shelf_amount(tree *t, char *name, char *old_shelf, int new_amount)
   shelf *s = (shelf*)e->box;
 
   s->amount = new_amount;
+
+  free(key);
 }
 
 
