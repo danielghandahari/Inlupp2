@@ -271,19 +271,6 @@ void edit_shelf_location(tree *t, char *key, char *old_shelf, char *new_shelf);
  */
 void edit_shelf_amount(tree *t, char *key, char *old_shelf, int new_amount);
 
-
-
-
-
-
 void rem_node_in_tree(tree *t, void *key);
-
-
-
-
-
-
-
-
 
 #endif

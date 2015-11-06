@@ -31,6 +31,8 @@ char* user_input_string(const char *m)
 
   do
     {
+      if(s) free(s);
+
       printf("%s", m);
       print_choice();
 
@@ -46,6 +48,8 @@ char *user_input_shelf(const char *m)
 
   do
     {
+      if(s) free(s);
+
       printf("%s", m);
       print_choice();
       
@@ -101,8 +105,11 @@ void add_ware(tree *t)
     {
       print_new_ware();
 
-      ware_description = read_description();      
-      ware_price = read_price();
+      ware_description = read_description();
+      do
+	{
+	  ware_price = read_price();
+	} while(ware_price <= 0);
     }
   
   char *ware_shelf = NULL;
@@ -117,7 +124,10 @@ void add_ware(tree *t)
   
 
   int ware_amount;
-  ware_amount = read_amount();
+  do
+    {
+      ware_amount = read_amount();
+    } while(ware_amount <= 0);
 
   insert_ware(t, w, ware_name, ware_description, ware_price, ware_shelf, ware_amount);
 
@@ -199,9 +209,7 @@ void edit_ware_aux(tree *t, int index)
       ware *w = get_ware_at(t, index);
       print_ware(w);
 
-      char input = '\0';
-      printf("[N]ame [D]escription\n[P]rice [S]helf [A]mount\nE[X]it\n$ ");
-      read_char(&input);
+      char input = get_menu_choice("[N]ame [D]escription\n[P]rice [S]helf [A]mount\nE[X]it\n");
 
       //TODO move to separet function
       switch(input)
@@ -212,6 +220,7 @@ void edit_ware_aux(tree *t, int index)
 	    char *name = NULL;
 	    name = read_name();
 	    edit_name(t, get_ware_name(w), name);
+	    if(name) free(name);
 	  }
 	  break;
 
@@ -221,6 +230,7 @@ void edit_ware_aux(tree *t, int index)
 	    char *description = NULL;
 	    description = read_description();
 	    edit_desc(t, get_ware_name(w), description);
+	    if(description) free(description);
 	  }
 	  break;
 
@@ -255,12 +265,14 @@ void edit_ware_aux(tree *t, int index)
 	    char *new_location = NULL;
 	    do
 	      {
+		if(new_location) free(new_location);
 		new_location = read_shelf();
 
 		shelf_not_ok = !shelf_ok(t, w, new_location);
 	      } while(shelf_not_ok);
 
-	    edit_shelf_location(t, get_ware_name(w), get_shelf_loc_at(w, chosen_shelf - 1), new_location);	     
+	    edit_shelf_location(t, get_ware_name(w), get_shelf_loc_at(w, chosen_shelf - 1), new_location);
+	    if(new_location) free(new_location);
 	  }
 	  break;
 
@@ -300,7 +312,7 @@ void edit_ware(tree *t)
   int index = -1;
   index = get_ware_index(t);
 
-  edit_ware_aux(t, index);
+  if(index > 0) edit_ware_aux(t, index);
 }
 
 

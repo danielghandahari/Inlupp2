@@ -13,6 +13,7 @@
 #include <dbg.h>
 #include <string.h>
 #include <ctype.h>
+
 #define Equal action == 0
 #define ElementOf(SHELF) &(SHELF)
 #define ElementOrShelfOf(SHELF) (ElementOf(SHELF) == NULL || SHELF == NULL)
@@ -36,6 +37,8 @@ void del_node_zero_child(node **n);
 void copy_node(node *from, node *to);
 node **find_max_to_left(node **n);
 void rem_node(node **n, void *key);
+
+
 
 ware * create_ware()
 {
@@ -419,13 +422,13 @@ void destroy_elem(elem *e)
   if(e->next) destroy_elem(e->next);
 
   shelf *s = (shelf*)e->box;
-  destroy_shelf(s);
+  if(s) destroy_shelf(s);
   free(e);
 }
 
 void destroy_list_DB(list *l)
 {
-  destroy_elem(l->first);
+  if(l->first) destroy_elem(l->first);
 
   free(l->stuff);
   free(l);
@@ -433,7 +436,7 @@ void destroy_list_DB(list *l)
 
 void destroy_ware(ware *w)
 {
-  destroy_list_DB(w->shelves);
+  if(w->shelves) destroy_list_DB(w->shelves);
 
   free(w->name);
   free(w->desc);
@@ -449,9 +452,7 @@ void destroy_only_node(node *n)
 
 void destroy_node_DB(node *n)
 {
-  ware *w = (ware*)n->content;
-
-  destroy_ware(w);
+  if(n->content) destroy_ware(n->content);
   free(n->key);
   free(n);
 }
@@ -528,16 +529,18 @@ void edit_name(tree *t, char *old_name, char *name)
   char *old_key = make_key(old_name);
   node *old_node = get_node_in_tree(t, old_key);
 
-  node *new_node = create_node();
+  node *new_node = copy_node(old_node);
   char *new_name = strdup(name);
   char *new_key = make_key(name);
-  ware* new_w = create_ware();
+  ware *new_ware = (ware*)new_node->content;
 
-  memcpy(new_w, old_node->content, sizeof(ware));
-  new_w->name = new_name;
+  if(new_ware->name) free(new_ware->name);
+  new_ware->name = new_name;
 
-  new_node->content = new_w;
+  if(new_node->key) free(new_node->key);
   new_node->key = new_key;
+  new_node->left = NULL;
+  new_node->right = NULL;
   
   append_node_in_tree(t, new_node);
 
@@ -554,7 +557,6 @@ void edit_desc(tree *t, char *name, char *new_desc)
   ware *w = (ware*)n->content;
 
   free(w->desc);
-
   w->desc = my_new_desc;
 
   free(key);
@@ -602,85 +604,115 @@ void edit_shelf_amount(tree *t, char *name, char *old_shelf, int new_amount)
   free(key);
 }
 
-
-void free_key_in_node(node *n)
-{
-  free(n->key);
-}
-
-
-
-void free_list_in_node(node *n)
-{
-  ware *w = (ware*)n->content;
-  destroy_list_DB(w->shelves);
-}
-
-
-
-void free_ware_in_node(node *n)
-{
-  ware *w = (ware*)n->content;
-  destroy_ware(w);
-}
-
-
-
-
-
 void del_node_zero_child(node **n)
 {
-  free(*n);
-  (*n) = NULL;
+  destroy_node_DB(*n);
+  *n = NULL;
 }
 
 void del_node_one_child(node **n)
 {
-  if((*n)->right == NULL)
-    {
-      node *temp = (*n)->left;
-      free(*n);
-      *n = temp;
-      return;
-    }
+  node *next_node = NULL;
 
-  else if((*n)->left == NULL)
+  if((*n)->right != NULL)
     {
-      node *temp = (*n)->right;
-      free(*n);
-      *n = temp;
-      return;
+      next_node = (*n)->right;
+      (*n)->right = NULL;
+    }
+  else if((*n)->left != NULL)
+    {
+      next_node = (*n)->left;
+      (*n)->left = NULL;
     }
     else assert(false);
+
+  del_node_zero_child(n);
+  *n = next_node;
 }
 
 void del_node_two_child(node **n)
 {
   node **n_leaf = find_max_to_left(&((*n)->left));
-  
-  memcpy((*n)->content, (*n_leaf)->content, sizeof(ware));
-  (*n)->key = strdup((char*)(*n_leaf)->key);
+  node *tmp_left = (*n)->left;
+  node *tmp_right = (*n)->right;
+
+  destroy_node_DB(*n);
+  *n = copy_node(*n_leaf);
+
+  (*n)->left = tmp_left;
+  (*n)->right = tmp_right;
   
   rem_node(&(*n)->left, (*n_leaf)->key);
 }
 
-
-
-void copy_node(node *from, node *to)
+shelf *copy_shelf(shelf *src)
 {
-  free_list_in_node(to);
-  free_ware_in_node(to);
-  free_key_in_node(to);
+  shelf *copy = create_shelf();
+  memcpy(copy, src, sizeof(shelf));
 
+  copy->location = strdup(src->location);
 
-  to->key = from->key;
-  to->content = from->content;
-
-  from->content = NULL;
-
+  return copy;
 }
 
+elem *copy_elem(elem *src)
+{
+  elem *copy = create_elem();
+  memcpy(copy, src, sizeof(elem));
 
+  if(src->next) copy->next = copy_elem(src->next);
+
+  if(src->box) copy->box = copy_shelf(src->box);
+
+  return copy;
+}
+
+list *copy_list(list *src)
+{
+  list *copy = create_list();
+  memcpy(copy, src, sizeof(list));
+
+  //borde funka, kan läcka
+  if(src->stuff)
+    {
+      sum *s = calloc(1, sizeof(sum));
+      memcpy(s, src->stuff, sizeof(sum));
+      copy->stuff = s;
+    }
+
+  if(src->first)
+    {
+      copy->first = copy_elem(src->first);
+      copy->last = get_last_elem(&(copy->first));
+    }
+
+  return copy;
+}
+
+ware *copy_ware(ware *src)
+{
+  ware *copy = create_ware();
+  memcpy(copy, src, sizeof(ware));
+
+  if(src->shelves) copy->shelves = copy_list(src->shelves);
+  copy->name = strdup(src->name);
+  copy->desc = strdup(src->desc);
+  copy->price = src->price;
+
+  return copy;
+}
+
+node *copy_node(node *src)
+{
+  node *copy = create_node();
+  memcpy(copy, src, sizeof(node));
+ 
+  copy->content = copy_ware(src->content);
+  copy->key = strdup(src->key);
+  // left/right kopierade tack vare memcpy
+
+  return copy;
+}
 
 node **find_max_to_left(node **n)
 {
@@ -689,27 +721,21 @@ node **find_max_to_left(node **n)
   return n;
 }
 
-
-
-
 void rem_node_in_tree(tree *t, void *key)
 {
   rem_node(&(t->root), key);
 }  
 
-
 #define NodeIsLeaf(NODE) !(NODE->left) && !(NODE->right)
 #define NodeOneChild(NODE) ((NODE->left) && !(NODE->right)) || (!(NODE->left) && (NODE->right)) 
 #define NodeTwoChild(NODE) (NODE->left) && (NODE->right)
 
-
 void rem_node(node **n, void *key)
 {
-  log_info("rem_node", "balle", "%s");
-  log_info("rem_node", key, "%p");
+  int comp_result = key_compare(((*n)->key), key);
 
-  if     (key_compare(((*n)->key), key) < 0) rem_node(&(*n)->right, key);
-  else if(key_compare(((*n)->key), key) > 0) rem_node(&(*n)->left, key);
+  if     (comp_result < 0) rem_node(&(*n)->right, key);
+  else if(comp_result > 0) rem_node(&(*n)->left, key);
   else
     {
       if((*n)->left && (*n)->right)

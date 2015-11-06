@@ -47,6 +47,7 @@ char* read_string()
   return s;
   
  error:
+  if(s) free(s);
   return NULL;
 }
 
@@ -63,16 +64,18 @@ char read_char()
   char c = tmp[0];
   check_debug(isalnum(c), "'c' is neither letter nor number");
   
-  free(tmp);
+  if(tmp) free(tmp);
   return c;
  error:
+  if(tmp) free(tmp);
   return '\0';
 }
 
 
 
-bool is_number(char *s)
+bool is_number(const char *s)
 {
+  check_debug(strlen(s) > 0, "'s' is an empty string");
   for(int i = 0; s[i] != '\0'; ++i)
     {
       check_debug(isdigit(s[i]), "'s' is not numeric");
@@ -97,10 +100,11 @@ int read_int()
   int i = 0;
   i = atoi(tmp);
 
-  free(tmp);
+  if(tmp) free(tmp);
   return i;
 
  error:
+  if(tmp) free(tmp);
   return -1;
 }
 
@@ -121,5 +125,6 @@ char* read_shelf()
   return s;
 
  error:
+  if(s) free(s);
   return NULL;
 }

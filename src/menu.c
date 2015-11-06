@@ -28,7 +28,7 @@ void menu()
   bool exit = false;
   tree *t = create_tree();
 
-  //test_tree(t);
+  test_tree(t);
 
   while(!exit)
     {
