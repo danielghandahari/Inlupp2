@@ -157,8 +157,29 @@ void insert_ware(tree *t, ware *w, char *ware_name, char *ware_desc, int ware_pr
  * @result returns ware for specific index index
  */
 ware *get_ware_at(tree *t, int index);
+
+
+/**
+ * @brief gives a nodes ware
+ * @param n is a node
+ * @result returns the ware in n
+ */
 ware *get_ware(node *n);
+
+
+/**
+ * @brief Gives the name of a ware
+ * @param w is a ware
+ * @result returns the name of w
+ */
 char *get_ware_name(ware *w);
+
+
+/**
+ * @brief Gives the total amount of shel
+ * @param  
+ * @result
+ */
 int get_tot_ware(ware *w);
 
 /**

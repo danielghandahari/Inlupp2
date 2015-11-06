@@ -131,44 +131,32 @@ Functions</h2></td></tr>
 <tr class="memitem:adb23ef84e2493670fa12ed2a81da346b"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#adb23ef84e2493670fa12ed2a81da346b">make_key</a> (char *ware_name)</td></tr>
 <tr class="memdesc:adb23ef84e2493670fa12ed2a81da346b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts string into uppercase letters.  <a href="#adb23ef84e2493670fa12ed2a81da346b">More...</a><br /></td></tr>
 <tr class="separator:adb23ef84e2493670fa12ed2a81da346b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79fbc839f4a039d9d697983fc81b25d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79fbc839f4a039d9d697983fc81b25d4"></a>
-<a class="el" href="struct__ware__.html">ware</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a79fbc839f4a039d9d697983fc81b25d4">create_ware</a> ()</td></tr>
-<tr class="memdesc:a79fbc839f4a039d9d697983fc81b25d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a pointer to a ware, allocated on the heap <br /></td></tr>
+<tr class="memitem:a79fbc839f4a039d9d697983fc81b25d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct__ware__.html">ware</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a79fbc839f4a039d9d697983fc81b25d4">create_ware</a> ()</td></tr>
+<tr class="memdesc:a79fbc839f4a039d9d697983fc81b25d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates memory for a ware.  <a href="#a79fbc839f4a039d9d697983fc81b25d4">More...</a><br /></td></tr>
 <tr class="separator:a79fbc839f4a039d9d697983fc81b25d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f5ec43acbc37a734278834db4864232"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f5ec43acbc37a734278834db4864232"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a0f5ec43acbc37a734278834db4864232">incr_shelf_and_tot</a> (<a class="el" href="struct__list__.html">list</a> *l, char *key, int incr)</td></tr>
-<tr class="memdesc:a0f5ec43acbc37a734278834db4864232"><td class="mdescLeft">&#160;</td><td class="mdescRight">increments shelf, pointed by s, with incr. Increments total amonut of shelfs, pointed by l-&gt;shelves <br /></td></tr>
-<tr class="separator:a0f5ec43acbc37a734278834db4864232"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa62fe85ee665d081a7efda7a3c62e9af"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa62fe85ee665d081a7efda7a3c62e9af"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#aa62fe85ee665d081a7efda7a3c62e9af">find_elem_in_list_DB</a> (<a class="el" href="struct__list__.html">list</a> *l, char *key)</td></tr>
-<tr class="memdesc:aa62fe85ee665d081a7efda7a3c62e9af"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns true if shelflocation key exists in the list pointed by l <br /></td></tr>
+<tr class="memitem:ad22c22c02d994a29ced33763693e6f89"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#ad22c22c02d994a29ced33763693e6f89">incr_shelf_and_tot</a> (<a class="el" href="struct__list__.html">list</a> *l, char *shelf_loc, int incr)</td></tr>
+<tr class="memdesc:ad22c22c02d994a29ced33763693e6f89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments shelf with shelf flocation shelf_loc and total amount of shelves, in list l, with the amount of incr.  <a href="#ad22c22c02d994a29ced33763693e6f89">More...</a><br /></td></tr>
+<tr class="separator:ad22c22c02d994a29ced33763693e6f89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa62fe85ee665d081a7efda7a3c62e9af"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#aa62fe85ee665d081a7efda7a3c62e9af">find_elem_in_list_DB</a> (<a class="el" href="struct__list__.html">list</a> *l, char *key)</td></tr>
+<tr class="memdesc:aa62fe85ee665d081a7efda7a3c62e9af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Says whether key is in l.  <a href="#aa62fe85ee665d081a7efda7a3c62e9af">More...</a><br /></td></tr>
 <tr class="separator:aa62fe85ee665d081a7efda7a3c62e9af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b7d035ed71daede4cc9e83cdaed4d40"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b7d035ed71daede4cc9e83cdaed4d40"></a>
-<a class="el" href="struct__elem__.html">elem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a8b7d035ed71daede4cc9e83cdaed4d40">get_elem_in_list_DB</a> (<a class="el" href="struct__list__.html">list</a> *l, char *key)</td></tr>
-<tr class="memdesc:a8b7d035ed71daede4cc9e83cdaed4d40"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns element from list, pointed by l, where key is its shelflocation <br /></td></tr>
+<tr class="memitem:a8b7d035ed71daede4cc9e83cdaed4d40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct__elem__.html">elem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a8b7d035ed71daede4cc9e83cdaed4d40">get_elem_in_list_DB</a> (<a class="el" href="struct__list__.html">list</a> *l, char *key)</td></tr>
+<tr class="memdesc:a8b7d035ed71daede4cc9e83cdaed4d40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gives the element represented by key, in list l.  <a href="#a8b7d035ed71daede4cc9e83cdaed4d40">More...</a><br /></td></tr>
 <tr class="separator:a8b7d035ed71daede4cc9e83cdaed4d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3a6c2e8d890cd7204b9e7bb977b5fd9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac3a6c2e8d890cd7204b9e7bb977b5fd9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#ac3a6c2e8d890cd7204b9e7bb977b5fd9">check_shelf_used_in_tree</a> (<a class="el" href="struct__tree__.html">tree</a> *t, char *key)</td></tr>
-<tr class="memdesc:ac3a6c2e8d890cd7204b9e7bb977b5fd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns true if key is in tree, pointed by t <br /></td></tr>
+<tr class="memitem:ac3a6c2e8d890cd7204b9e7bb977b5fd9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#ac3a6c2e8d890cd7204b9e7bb977b5fd9">check_shelf_used_in_tree</a> (<a class="el" href="struct__tree__.html">tree</a> *t, char *key)</td></tr>
+<tr class="memdesc:ac3a6c2e8d890cd7204b9e7bb977b5fd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether key is used by any ware in t.  <a href="#ac3a6c2e8d890cd7204b9e7bb977b5fd9">More...</a><br /></td></tr>
 <tr class="separator:ac3a6c2e8d890cd7204b9e7bb977b5fd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25c33e70c652217a7261ab1f11c3169c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a25c33e70c652217a7261ab1f11c3169c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a25c33e70c652217a7261ab1f11c3169c">check_used_by_ware</a> (<a class="el" href="struct__tree__.html">tree</a> *t, void *key, char *shelfloc)</td></tr>
-<tr class="memdesc:a25c33e70c652217a7261ab1f11c3169c"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns true if shelflocation is used by a ware, where key is pointing to wares name, in the tree, where t points to the tree. shelfloc points to the shelflocation <br /></td></tr>
-<tr class="separator:a25c33e70c652217a7261ab1f11c3169c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed6b06f097bebd16c58552955649a70b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed6b06f097bebd16c58552955649a70b"></a>
-<a class="el" href="struct__ware__.html">ware</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#aed6b06f097bebd16c58552955649a70b">ware_exists</a> (<a class="el" href="struct__tree__.html">tree</a> *t, char *ware_name)</td></tr>
-<tr class="memdesc:aed6b06f097bebd16c58552955649a70b"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns pointer to a ware if that ware exists in the tree <br /></td></tr>
+<tr class="memitem:aed6b06f097bebd16c58552955649a70b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct__ware__.html">ware</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#aed6b06f097bebd16c58552955649a70b">ware_exists</a> (<a class="el" href="struct__tree__.html">tree</a> *t, char *ware_name)</td></tr>
+<tr class="memdesc:aed6b06f097bebd16c58552955649a70b"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks whether ware_name exists in t  <a href="#aed6b06f097bebd16c58552955649a70b">More...</a><br /></td></tr>
 <tr class="separator:aed6b06f097bebd16c58552955649a70b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fb9e1a73c6be38931bd0eba5bb64e15"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct__ware__.html">ware</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a3fb9e1a73c6be38931bd0eba5bb64e15">get_ware_at</a> (<a class="el" href="struct__tree__.html">tree</a> *t, int index)</td></tr>
-<tr class="memdesc:a3fb9e1a73c6be38931bd0eba5bb64e15"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns pointer to a ware at index index  <a href="#a3fb9e1a73c6be38931bd0eba5bb64e15">More...</a><br /></td></tr>
+<tr class="memdesc:a3fb9e1a73c6be38931bd0eba5bb64e15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gives a ware at index index, in t.  <a href="#a3fb9e1a73c6be38931bd0eba5bb64e15">More...</a><br /></td></tr>
 <tr class="separator:a3fb9e1a73c6be38931bd0eba5bb64e15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af53f1a6c911e24009af3a7545d891432"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af53f1a6c911e24009af3a7545d891432"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#af53f1a6c911e24009af3a7545d891432">shelf_ok</a> (<a class="el" href="struct__tree__.html">tree</a> *t, <a class="el" href="struct__ware__.html">ware</a> *w, char *ware_shelf)</td></tr>
-<tr class="memdesc:af53f1a6c911e24009af3a7545d891432"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks is a ware is in the list w-&gt;shelves. otherwise checks the tree, pointed by t, if the shelf is used <br /></td></tr>
+<tr class="memitem:af53f1a6c911e24009af3a7545d891432"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#af53f1a6c911e24009af3a7545d891432">shelf_ok</a> (<a class="el" href="struct__tree__.html">tree</a> *t, <a class="el" href="struct__ware__.html">ware</a> *w, char *ware_shelf)</td></tr>
+<tr class="memdesc:af53f1a6c911e24009af3a7545d891432"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if ware_shelf is in the linked list of w. if not, checks if ware_shelf is in othe other wares linked lists in t  <a href="#af53f1a6c911e24009af3a7545d891432">More...</a><br /></td></tr>
 <tr class="separator:af53f1a6c911e24009af3a7545d891432"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affda6d46c57c3975399778ead7deaadc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affda6d46c57c3975399778ead7deaadc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#affda6d46c57c3975399778ead7deaadc">insert_ware</a> (<a class="el" href="struct__tree__.html">tree</a> *t, <a class="el" href="struct__ware__.html">ware</a> *w, char *ware_name, char *ware_desc, int ware_price, char *ware_shelf, int ware_amount)</td></tr>
-<tr class="memdesc:affda6d46c57c3975399778ead7deaadc"><td class="mdescLeft">&#160;</td><td class="mdescRight">if w points to an existing ware, creates a shelf for it or increments its existing shelf. otherwise creates a ware with the given parameters <br /></td></tr>
+<tr class="memitem:affda6d46c57c3975399778ead7deaadc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#affda6d46c57c3975399778ead7deaadc">insert_ware</a> (<a class="el" href="struct__tree__.html">tree</a> *t, <a class="el" href="struct__ware__.html">ware</a> *w, char *ware_name, char *ware_desc, int ware_price, char *ware_shelf, int ware_amount)</td></tr>
+<tr class="memdesc:affda6d46c57c3975399778ead7deaadc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts a ware in t, with parameters ware_name, ware_desc, ware_price, ware_shelf and ware_amount if w is NULL. if w is NULL, a ware with the mentioned parameters is created in t.  <a href="#affda6d46c57c3975399778ead7deaadc">More...</a><br /></td></tr>
 <tr class="separator:affda6d46c57c3975399778ead7deaadc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a938b039ca507acdc35c018ffe8e48022"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a938b039ca507acdc35c018ffe8e48022"></a>
 <a class="el" href="struct__ware__.html">ware</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8h.html#a938b039ca507acdc35c018ffe8e48022">get_ware</a> (<a class="el" href="struct__node__.html">node</a> *n)</td></tr>
@@ -268,6 +256,138 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>rem_node_in_tree</b> 
 <div class="textblock"><p>Header file for the database. </p>
 <dl class="section author"><dt>Author</dt><dd>Daniel Ghandahari and Tim Svensson </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="ac3a6c2e8d890cd7204b9e7bb977b5fd9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool check_shelf_used_in_tree </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct__tree__.html">tree</a> *&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks whether key is used by any ware in t. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>is a binary search tree </td></tr>
+    <tr><td class="paramname">key</td><td>is a shelf location </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns true if key is used by any ware in t, otherwise false </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a79fbc839f4a039d9d697983fc81b25d4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct__ware__.html">ware</a>* create_ware </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Allocates memory for a ware. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns pointer to allocated ware </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa62fe85ee665d081a7efda7a3c62e9af"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool find_elem_in_list_DB </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct__list__.html">list</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Says whether key is in l. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>is a linked list </td></tr>
+    <tr><td class="paramname">string</td><td>key, that can be in l </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns true if key is in l, otherwise false </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8b7d035ed71daede4cc9e83cdaed4d40"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct__elem__.html">elem</a>* get_elem_in_list_DB </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct__list__.html">list</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gives the element represented by key, in list l. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>is a linked list </td></tr>
+    <tr><td class="paramname">string</td><td>key, that can be in l </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns the element if key is in l, otherwise NULL </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a3fb9e1a73c6be38931bd0eba5bb64e15"></a>
 <div class="memitem">
 <div class="memproto">
@@ -292,8 +412,138 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>rem_node_in_tree</b> 
       </table>
 </div><div class="memdoc">
 
-<p>returns pointer to a ware at index index </p>
-<p>returns a pointer to a wares name </p>
+<p>Gives a ware at index index, in t. </p>
+<p>Gives ware at an index index.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>is a binary search tree </td></tr>
+    <tr><td class="paramname">index</td><td>represents an index for a ware in t </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns the ware if valid index is inputed, otherwise NULL</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>is a binary search tree </td></tr>
+    <tr><td class="paramname">index</td><td>is an index for a ware </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns ware for specific index index </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad22c22c02d994a29ced33763693e6f89"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void incr_shelf_and_tot </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct__list__.html">list</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>shelf_loc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>incr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Increments shelf with shelf flocation shelf_loc and total amount of shelves, in list l, with the amount of incr. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>points to the linked list containing the shelf </td></tr>
+    <tr><td class="paramname">shelf_loc</td><td>is the string for the shelf location </td></tr>
+    <tr><td class="paramname">incr</td><td>is the amount to increment the amount of shelf and totalamount of shelves </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="affda6d46c57c3975399778ead7deaadc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void insert_ware </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct__tree__.html">tree</a> *&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct__ware__.html">ware</a> *&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>ware_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>ware_desc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ware_price</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>ware_shelf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ware_amount</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inserts a ware in t, with parameters ware_name, ware_desc, ware_price, ware_shelf and ware_amount if w is NULL. if w is NULL, a ware with the mentioned parameters is created in t. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>is a binary search tree </td></tr>
+    <tr><td class="paramname">w</td><td>represents a ware in t </td></tr>
+    <tr><td class="paramname">ware_name</td><td>represents a wares name </td></tr>
+    <tr><td class="paramname">ware_desc</td><td>represents a wqares description </td></tr>
+    <tr><td class="paramname">ware_price</td><td>represents a wares price </td></tr>
+    <tr><td class="paramname">ware_shelf</td><td>represents a shhelf for a ware </td></tr>
+    <tr><td class="paramname">ware_amount</td><td>represents the amount of a shelf </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
 </div>
 </div>
@@ -312,13 +562,92 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>rem_node_in_tree</b> 
 </div><div class="memdoc">
 
 <p>Converts string into uppercase letters. </p>
-<p>Compares the names of two goods. Mainly used by the binary tree to sort the goods. </p><dl class="params"><dt>Parameters</dt><dd>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ware_name</td><td>is string beeing converted to uppercase letters. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns string in uppercase letters. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af53f1a6c911e24009af3a7545d891432"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool shelf_ok </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct__tree__.html">tree</a> *&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct__ware__.html">ware</a> *&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>ware_shelf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>checks if ware_shelf is in the linked list of w. if not, checks if ware_shelf is in othe other wares linked lists in t </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>is a binary search tree </td></tr>
+    <tr><td class="paramname">w</td><td>represents a ware in t </td></tr>
+    <tr><td class="paramname">ware_shelf</td><td>represents the name of a ware </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns true </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aed6b06f097bebd16c58552955649a70b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct__ware__.html">ware</a>* ware_exists </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct__tree__.html">tree</a> *&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>ware_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>checks whether ware_name exists in t </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>is a binary search tree </td></tr>
+    <tr><td class="paramname">ware_name</td><td>represents a ware in a BStree </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns the ware if ware_name exists in t, otherwise false </dd></dl>
 
 </div>
 </div>

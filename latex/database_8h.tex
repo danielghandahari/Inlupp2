@@ -38,35 +38,24 @@ Header file for the database.
 \item 
 char $\ast$ \hyperlink{database_8h_adb23ef84e2493670fa12ed2a81da346b}{make\+\_\+key} (char $\ast$ware\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Converts string into uppercase letters. \end{DoxyCompactList}\item 
-\hypertarget{database_8h_a79fbc839f4a039d9d697983fc81b25d4}{}\hyperlink{struct__ware__}{ware} $\ast$ \hyperlink{database_8h_a79fbc839f4a039d9d697983fc81b25d4}{create\+\_\+ware} ()\label{database_8h_a79fbc839f4a039d9d697983fc81b25d4}
-
-\begin{DoxyCompactList}\small\item\em returns a pointer to a ware, allocated on the heap \end{DoxyCompactList}\item 
-\hypertarget{database_8h_a0f5ec43acbc37a734278834db4864232}{}void \hyperlink{database_8h_a0f5ec43acbc37a734278834db4864232}{incr\+\_\+shelf\+\_\+and\+\_\+tot} (\hyperlink{struct__list__}{list} $\ast$l, char $\ast$key, int incr)\label{database_8h_a0f5ec43acbc37a734278834db4864232}
-
-\begin{DoxyCompactList}\small\item\em increments shelf, pointed by s, with incr. Increments total amonut of shelfs, pointed by l-\/$>$shelves \end{DoxyCompactList}\item 
-\hypertarget{database_8h_aa62fe85ee665d081a7efda7a3c62e9af}{}bool \hyperlink{database_8h_aa62fe85ee665d081a7efda7a3c62e9af}{find\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B} (\hyperlink{struct__list__}{list} $\ast$l, char $\ast$key)\label{database_8h_aa62fe85ee665d081a7efda7a3c62e9af}
-
-\begin{DoxyCompactList}\small\item\em returns true if shelflocation key exists in the list pointed by l \end{DoxyCompactList}\item 
-\hypertarget{database_8h_a8b7d035ed71daede4cc9e83cdaed4d40}{}\hyperlink{struct__elem__}{elem} $\ast$ \hyperlink{database_8h_a8b7d035ed71daede4cc9e83cdaed4d40}{get\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B} (\hyperlink{struct__list__}{list} $\ast$l, char $\ast$key)\label{database_8h_a8b7d035ed71daede4cc9e83cdaed4d40}
-
-\begin{DoxyCompactList}\small\item\em returns element from list, pointed by l, where key is its shelflocation \end{DoxyCompactList}\item 
-\hypertarget{database_8h_ac3a6c2e8d890cd7204b9e7bb977b5fd9}{}bool \hyperlink{database_8h_ac3a6c2e8d890cd7204b9e7bb977b5fd9}{check\+\_\+shelf\+\_\+used\+\_\+in\+\_\+tree} (\hyperlink{struct__tree__}{tree} $\ast$t, char $\ast$key)\label{database_8h_ac3a6c2e8d890cd7204b9e7bb977b5fd9}
-
-\begin{DoxyCompactList}\small\item\em returns true if key is in tree, pointed by t \end{DoxyCompactList}\item 
-\hypertarget{database_8h_a25c33e70c652217a7261ab1f11c3169c}{}bool \hyperlink{database_8h_a25c33e70c652217a7261ab1f11c3169c}{check\+\_\+used\+\_\+by\+\_\+ware} (\hyperlink{struct__tree__}{tree} $\ast$t, void $\ast$key, char $\ast$shelfloc)\label{database_8h_a25c33e70c652217a7261ab1f11c3169c}
-
-\begin{DoxyCompactList}\small\item\em returns true if shelflocation is used by a ware, where key is pointing to wares name, in the tree, where t points to the tree. shelfloc points to the shelflocation \end{DoxyCompactList}\item 
-\hypertarget{database_8h_aed6b06f097bebd16c58552955649a70b}{}\hyperlink{struct__ware__}{ware} $\ast$ \hyperlink{database_8h_aed6b06f097bebd16c58552955649a70b}{ware\+\_\+exists} (\hyperlink{struct__tree__}{tree} $\ast$t, char $\ast$ware\+\_\+name)\label{database_8h_aed6b06f097bebd16c58552955649a70b}
-
-\begin{DoxyCompactList}\small\item\em returns pointer to a ware if that ware exists in the tree \end{DoxyCompactList}\item 
+\hyperlink{struct__ware__}{ware} $\ast$ \hyperlink{database_8h_a79fbc839f4a039d9d697983fc81b25d4}{create\+\_\+ware} ()
+\begin{DoxyCompactList}\small\item\em Allocates memory for a ware. \end{DoxyCompactList}\item 
+void \hyperlink{database_8h_ad22c22c02d994a29ced33763693e6f89}{incr\+\_\+shelf\+\_\+and\+\_\+tot} (\hyperlink{struct__list__}{list} $\ast$l, char $\ast$shelf\+\_\+loc, int incr)
+\begin{DoxyCompactList}\small\item\em Increments shelf with shelf flocation shelf\+\_\+loc and total amount of shelves, in list l, with the amount of incr. \end{DoxyCompactList}\item 
+bool \hyperlink{database_8h_aa62fe85ee665d081a7efda7a3c62e9af}{find\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B} (\hyperlink{struct__list__}{list} $\ast$l, char $\ast$key)
+\begin{DoxyCompactList}\small\item\em Says whether key is in l. \end{DoxyCompactList}\item 
+\hyperlink{struct__elem__}{elem} $\ast$ \hyperlink{database_8h_a8b7d035ed71daede4cc9e83cdaed4d40}{get\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B} (\hyperlink{struct__list__}{list} $\ast$l, char $\ast$key)
+\begin{DoxyCompactList}\small\item\em Gives the element represented by key, in list l. \end{DoxyCompactList}\item 
+bool \hyperlink{database_8h_ac3a6c2e8d890cd7204b9e7bb977b5fd9}{check\+\_\+shelf\+\_\+used\+\_\+in\+\_\+tree} (\hyperlink{struct__tree__}{tree} $\ast$t, char $\ast$key)
+\begin{DoxyCompactList}\small\item\em Checks whether key is used by any ware in t. \end{DoxyCompactList}\item 
+\hyperlink{struct__ware__}{ware} $\ast$ \hyperlink{database_8h_aed6b06f097bebd16c58552955649a70b}{ware\+\_\+exists} (\hyperlink{struct__tree__}{tree} $\ast$t, char $\ast$ware\+\_\+name)
+\begin{DoxyCompactList}\small\item\em checks whether ware\+\_\+name exists in t \end{DoxyCompactList}\item 
 \hyperlink{struct__ware__}{ware} $\ast$ \hyperlink{database_8h_a3fb9e1a73c6be38931bd0eba5bb64e15}{get\+\_\+ware\+\_\+at} (\hyperlink{struct__tree__}{tree} $\ast$t, int index)
-\begin{DoxyCompactList}\small\item\em returns pointer to a ware at index index \end{DoxyCompactList}\item 
-\hypertarget{database_8h_af53f1a6c911e24009af3a7545d891432}{}bool \hyperlink{database_8h_af53f1a6c911e24009af3a7545d891432}{shelf\+\_\+ok} (\hyperlink{struct__tree__}{tree} $\ast$t, \hyperlink{struct__ware__}{ware} $\ast$w, char $\ast$ware\+\_\+shelf)\label{database_8h_af53f1a6c911e24009af3a7545d891432}
-
-\begin{DoxyCompactList}\small\item\em checks is a ware is in the list w-\/$>$shelves. otherwise checks the tree, pointed by t, if the shelf is used \end{DoxyCompactList}\item 
-\hypertarget{database_8h_affda6d46c57c3975399778ead7deaadc}{}void \hyperlink{database_8h_affda6d46c57c3975399778ead7deaadc}{insert\+\_\+ware} (\hyperlink{struct__tree__}{tree} $\ast$t, \hyperlink{struct__ware__}{ware} $\ast$w, char $\ast$ware\+\_\+name, char $\ast$ware\+\_\+desc, int ware\+\_\+price, char $\ast$ware\+\_\+shelf, int ware\+\_\+amount)\label{database_8h_affda6d46c57c3975399778ead7deaadc}
-
-\begin{DoxyCompactList}\small\item\em if w points to an existing ware, creates a shelf for it or increments its existing shelf. otherwise creates a ware with the given parameters \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Gives a ware at index index, in t. \end{DoxyCompactList}\item 
+bool \hyperlink{database_8h_af53f1a6c911e24009af3a7545d891432}{shelf\+\_\+ok} (\hyperlink{struct__tree__}{tree} $\ast$t, \hyperlink{struct__ware__}{ware} $\ast$w, char $\ast$ware\+\_\+shelf)
+\begin{DoxyCompactList}\small\item\em checks if ware\+\_\+shelf is in the linked list of w. if not, checks if ware\+\_\+shelf is in othe other wares linked lists in t \end{DoxyCompactList}\item 
+void \hyperlink{database_8h_affda6d46c57c3975399778ead7deaadc}{insert\+\_\+ware} (\hyperlink{struct__tree__}{tree} $\ast$t, \hyperlink{struct__ware__}{ware} $\ast$w, char $\ast$ware\+\_\+name, char $\ast$ware\+\_\+desc, int ware\+\_\+price, char $\ast$ware\+\_\+shelf, int ware\+\_\+amount)
+\begin{DoxyCompactList}\small\item\em Inserts a ware in t, with parameters ware\+\_\+name, ware\+\_\+desc, ware\+\_\+price, ware\+\_\+shelf and ware\+\_\+amount if w is N\+U\+L\+L. if w is N\+U\+L\+L, a ware with the mentioned parameters is created in t. \end{DoxyCompactList}\item 
 \hypertarget{database_8h_a938b039ca507acdc35c018ffe8e48022}{}\hyperlink{struct__ware__}{ware} $\ast$ \hyperlink{database_8h_a938b039ca507acdc35c018ffe8e48022}{get\+\_\+ware} (\hyperlink{struct__node__}{node} $\ast$n)\label{database_8h_a938b039ca507acdc35c018ffe8e48022}
 
 \begin{DoxyCompactList}\small\item\em returns a pointer to a ware \end{DoxyCompactList}\item 
@@ -153,6 +142,91 @@ Daniel Ghandahari and Tim Svensson
 
 
 \subsection{Function Documentation}
+\hypertarget{database_8h_ac3a6c2e8d890cd7204b9e7bb977b5fd9}{}\index{database.\+h@{database.\+h}!check\+\_\+shelf\+\_\+used\+\_\+in\+\_\+tree@{check\+\_\+shelf\+\_\+used\+\_\+in\+\_\+tree}}
+\index{check\+\_\+shelf\+\_\+used\+\_\+in\+\_\+tree@{check\+\_\+shelf\+\_\+used\+\_\+in\+\_\+tree}!database.\+h@{database.\+h}}
+\subsubsection[{check\+\_\+shelf\+\_\+used\+\_\+in\+\_\+tree(tree $\ast$t, char $\ast$key)}]{\setlength{\rightskip}{0pt plus 5cm}bool check\+\_\+shelf\+\_\+used\+\_\+in\+\_\+tree (
+\begin{DoxyParamCaption}
+\item[{{\bf tree} $\ast$}]{t, }
+\item[{char $\ast$}]{key}
+\end{DoxyParamCaption}
+)}\label{database_8h_ac3a6c2e8d890cd7204b9e7bb977b5fd9}
+
+
+Checks whether key is used by any ware in t. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & is a binary search tree \\
+\hline
+{\em key} & is a shelf location \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns true if key is used by any ware in t, otherwise false 
+\end{DoxyReturn}
+\hypertarget{database_8h_a79fbc839f4a039d9d697983fc81b25d4}{}\index{database.\+h@{database.\+h}!create\+\_\+ware@{create\+\_\+ware}}
+\index{create\+\_\+ware@{create\+\_\+ware}!database.\+h@{database.\+h}}
+\subsubsection[{create\+\_\+ware()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ware}$\ast$ create\+\_\+ware (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{database_8h_a79fbc839f4a039d9d697983fc81b25d4}
+
+
+Allocates memory for a ware. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns pointer to allocated ware 
+\end{DoxyReturn}
+\hypertarget{database_8h_aa62fe85ee665d081a7efda7a3c62e9af}{}\index{database.\+h@{database.\+h}!find\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B@{find\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B}}
+\index{find\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B@{find\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B}!database.\+h@{database.\+h}}
+\subsubsection[{find\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B(list $\ast$l, char $\ast$key)}]{\setlength{\rightskip}{0pt plus 5cm}bool find\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B (
+\begin{DoxyParamCaption}
+\item[{{\bf list} $\ast$}]{l, }
+\item[{char $\ast$}]{key}
+\end{DoxyParamCaption}
+)}\label{database_8h_aa62fe85ee665d081a7efda7a3c62e9af}
+
+
+Says whether key is in l. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & is a linked list \\
+\hline
+{\em string} & key, that can be in l \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns true if key is in l, otherwise false 
+\end{DoxyReturn}
+\hypertarget{database_8h_a8b7d035ed71daede4cc9e83cdaed4d40}{}\index{database.\+h@{database.\+h}!get\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B@{get\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B}}
+\index{get\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B@{get\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B}!database.\+h@{database.\+h}}
+\subsubsection[{get\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B(list $\ast$l, char $\ast$key)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf elem}$\ast$ get\+\_\+elem\+\_\+in\+\_\+list\+\_\+\+D\+B (
+\begin{DoxyParamCaption}
+\item[{{\bf list} $\ast$}]{l, }
+\item[{char $\ast$}]{key}
+\end{DoxyParamCaption}
+)}\label{database_8h_a8b7d035ed71daede4cc9e83cdaed4d40}
+
+
+Gives the element represented by key, in list l. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & is a linked list \\
+\hline
+{\em string} & key, that can be in l \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the element if key is in l, otherwise N\+U\+L\+L 
+\end{DoxyReturn}
 \hypertarget{database_8h_a3fb9e1a73c6be38931bd0eba5bb64e15}{}\index{database.\+h@{database.\+h}!get\+\_\+ware\+\_\+at@{get\+\_\+ware\+\_\+at}}
 \index{get\+\_\+ware\+\_\+at@{get\+\_\+ware\+\_\+at}!database.\+h@{database.\+h}}
 \subsubsection[{get\+\_\+ware\+\_\+at(tree $\ast$t, int index)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ware} $\ast$ get\+\_\+ware\+\_\+at (
@@ -163,9 +237,93 @@ Daniel Ghandahari and Tim Svensson
 )}\label{database_8h_a3fb9e1a73c6be38931bd0eba5bb64e15}
 
 
-returns pointer to a ware at index index 
+Gives a ware at index index, in t. 
 
-returns a pointer to a wares name \hypertarget{database_8h_adb23ef84e2493670fa12ed2a81da346b}{}\index{database.\+h@{database.\+h}!make\+\_\+key@{make\+\_\+key}}
+Gives ware at an index index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & is a binary search tree \\
+\hline
+{\em index} & represents an index for a ware in t \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the ware if valid index is inputed, otherwise N\+U\+L\+L
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & is a binary search tree \\
+\hline
+{\em index} & is an index for a ware \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns ware for specific index index 
+\end{DoxyReturn}
+\hypertarget{database_8h_ad22c22c02d994a29ced33763693e6f89}{}\index{database.\+h@{database.\+h}!incr\+\_\+shelf\+\_\+and\+\_\+tot@{incr\+\_\+shelf\+\_\+and\+\_\+tot}}
+\index{incr\+\_\+shelf\+\_\+and\+\_\+tot@{incr\+\_\+shelf\+\_\+and\+\_\+tot}!database.\+h@{database.\+h}}
+\subsubsection[{incr\+\_\+shelf\+\_\+and\+\_\+tot(list $\ast$l, char $\ast$shelf\+\_\+loc, int incr)}]{\setlength{\rightskip}{0pt plus 5cm}void incr\+\_\+shelf\+\_\+and\+\_\+tot (
+\begin{DoxyParamCaption}
+\item[{{\bf list} $\ast$}]{l, }
+\item[{char $\ast$}]{shelf\+\_\+loc, }
+\item[{int}]{incr}
+\end{DoxyParamCaption}
+)}\label{database_8h_ad22c22c02d994a29ced33763693e6f89}
+
+
+Increments shelf with shelf flocation shelf\+\_\+loc and total amount of shelves, in list l, with the amount of incr. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & points to the linked list containing the shelf \\
+\hline
+{\em shelf\+\_\+loc} & is the string for the shelf location \\
+\hline
+{\em incr} & is the amount to increment the amount of shelf and totalamount of shelves \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{database_8h_affda6d46c57c3975399778ead7deaadc}{}\index{database.\+h@{database.\+h}!insert\+\_\+ware@{insert\+\_\+ware}}
+\index{insert\+\_\+ware@{insert\+\_\+ware}!database.\+h@{database.\+h}}
+\subsubsection[{insert\+\_\+ware(tree $\ast$t, ware $\ast$w, char $\ast$ware\+\_\+name, char $\ast$ware\+\_\+desc, int ware\+\_\+price, char $\ast$ware\+\_\+shelf, int ware\+\_\+amount)}]{\setlength{\rightskip}{0pt plus 5cm}void insert\+\_\+ware (
+\begin{DoxyParamCaption}
+\item[{{\bf tree} $\ast$}]{t, }
+\item[{{\bf ware} $\ast$}]{w, }
+\item[{char $\ast$}]{ware\+\_\+name, }
+\item[{char $\ast$}]{ware\+\_\+desc, }
+\item[{int}]{ware\+\_\+price, }
+\item[{char $\ast$}]{ware\+\_\+shelf, }
+\item[{int}]{ware\+\_\+amount}
+\end{DoxyParamCaption}
+)}\label{database_8h_affda6d46c57c3975399778ead7deaadc}
+
+
+Inserts a ware in t, with parameters ware\+\_\+name, ware\+\_\+desc, ware\+\_\+price, ware\+\_\+shelf and ware\+\_\+amount if w is N\+U\+L\+L. if w is N\+U\+L\+L, a ware with the mentioned parameters is created in t. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & is a binary search tree \\
+\hline
+{\em w} & represents a ware in t \\
+\hline
+{\em ware\+\_\+name} & represents a wares name \\
+\hline
+{\em ware\+\_\+desc} & represents a wqares description \\
+\hline
+{\em ware\+\_\+price} & represents a wares price \\
+\hline
+{\em ware\+\_\+shelf} & represents a shhelf for a ware \\
+\hline
+{\em ware\+\_\+amount} & represents the amount of a shelf \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\hypertarget{database_8h_adb23ef84e2493670fa12ed2a81da346b}{}\index{database.\+h@{database.\+h}!make\+\_\+key@{make\+\_\+key}}
 \index{make\+\_\+key@{make\+\_\+key}!database.\+h@{database.\+h}}
 \subsubsection[{make\+\_\+key(char $\ast$ware\+\_\+name)}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ make\+\_\+key (
 \begin{DoxyParamCaption}
@@ -176,11 +334,58 @@ returns a pointer to a wares name \hypertarget{database_8h_adb23ef84e2493670fa12
 
 Converts string into uppercase letters. 
 
-Compares the names of two goods. Mainly used by the binary tree to sort the goods. 
+
 \begin{DoxyParams}{Parameters}
 {\em ware\+\_\+name} & is string beeing converted to uppercase letters. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Returns string in uppercase letters. 
+\end{DoxyReturn}
+\hypertarget{database_8h_af53f1a6c911e24009af3a7545d891432}{}\index{database.\+h@{database.\+h}!shelf\+\_\+ok@{shelf\+\_\+ok}}
+\index{shelf\+\_\+ok@{shelf\+\_\+ok}!database.\+h@{database.\+h}}
+\subsubsection[{shelf\+\_\+ok(tree $\ast$t, ware $\ast$w, char $\ast$ware\+\_\+shelf)}]{\setlength{\rightskip}{0pt plus 5cm}bool shelf\+\_\+ok (
+\begin{DoxyParamCaption}
+\item[{{\bf tree} $\ast$}]{t, }
+\item[{{\bf ware} $\ast$}]{w, }
+\item[{char $\ast$}]{ware\+\_\+shelf}
+\end{DoxyParamCaption}
+)}\label{database_8h_af53f1a6c911e24009af3a7545d891432}
+
+
+checks if ware\+\_\+shelf is in the linked list of w. if not, checks if ware\+\_\+shelf is in othe other wares linked lists in t 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & is a binary search tree \\
+\hline
+{\em w} & represents a ware in t \\
+\hline
+{\em ware\+\_\+shelf} & represents the name of a ware \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns true 
+\end{DoxyReturn}
+\hypertarget{database_8h_aed6b06f097bebd16c58552955649a70b}{}\index{database.\+h@{database.\+h}!ware\+\_\+exists@{ware\+\_\+exists}}
+\index{ware\+\_\+exists@{ware\+\_\+exists}!database.\+h@{database.\+h}}
+\subsubsection[{ware\+\_\+exists(tree $\ast$t, char $\ast$ware\+\_\+name)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ware}$\ast$ ware\+\_\+exists (
+\begin{DoxyParamCaption}
+\item[{{\bf tree} $\ast$}]{t, }
+\item[{char $\ast$}]{ware\+\_\+name}
+\end{DoxyParamCaption}
+)}\label{database_8h_aed6b06f097bebd16c58552955649a70b}
+
+
+checks whether ware\+\_\+name exists in t 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & is a binary search tree \\
+\hline
+{\em ware\+\_\+name} & represents a ware in a B\+Stree \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the ware if ware\+\_\+name exists in t, otherwise false 
 \end{DoxyReturn}
