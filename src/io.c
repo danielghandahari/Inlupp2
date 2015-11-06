@@ -425,7 +425,7 @@ void pack_trolley_io(tree *t)
       printf("\nHow many %ss would you like to take? $", get_ware_name(w));  
 
       int loop1 = true;
-      int tot  = get_tot_ware(w);
+      int tot = get_tot_ware(w);
       while(loop1)
 	{
 	  amount = user_input_int("");
