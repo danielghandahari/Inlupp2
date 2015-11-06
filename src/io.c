@@ -414,6 +414,7 @@ void pack_trolley_io(tree *t)
   do
     {
       int index = get_ware_index(t);
+      if(index < 0) break;
       ware *w = get_ware_at(t, index);
 
       
@@ -424,7 +425,18 @@ void pack_trolley_io(tree *t)
       //================
       
       printf("\nHow many %ss would you like to take? $", get_ware_name(w));  
-      amount = user_input_int("");
+
+      int loop1 = true;
+      int tot  = get_tot_ware(w);
+      while(loop1)
+	{
+	  amount = user_input_int("");
+	  
+	  if(amount > tot) printf("\nDon't be so eager!");
+	  else if(amount > 0 && amount < tot) break;
+	  else printf("\nInvalid input");
+	}
+      
       
 
       pack_trolley(trolley, get_ware_name(w), amount);
