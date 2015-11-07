@@ -1,0 +1,6 @@
+# untracked files
+*.dSYM*
+/*~
+*#
+*.o
+inlupp2*
