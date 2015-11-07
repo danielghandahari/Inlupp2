@@ -283,6 +283,12 @@ void print_trolley_final(tree *t, list *l)
   int *tot = (int*)l->stuff;
   printf("\n\tTotal price of your trolley: %d\n", *tot);
   
+  for(elem *e = get_first_elem(l); e; e = e->next)
+    {
+      
+      //      printf("%s\n-----\n", get_ware_name((ware*)n->content));
+      //      for(elem *n_e = get_first_shelf
+    }
 }
 
 

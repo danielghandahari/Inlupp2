@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <dbg.h>
 #include <stdbool.h>
+#include <assert.h>
 
 trolley * create_trolley()
 {
@@ -152,27 +153,29 @@ elem * get_elem_trolley_aux(elem *e, char *key)
 
 
 
+void destroy_trolley_aux(elem *e)
+{
+  assert(e);
+
+  if(e->next) destroy_trolley_aux(e->next);
+  if(e->box)
+    {
+      trolley *t = (trolley*)e->box;
+      if(t->key) free(t->key);
+      free(t);
+    }
+
+  free(e);
+}
 
 void destroy_trolley(list *l)
 {
-  elem *temp = l->first;
+  assert(l);
 
-  while(temp)
-    {
-      trolley *s = (trolley*)temp->box;
-      char *t1 = s->key;
-      elem *free_temp = temp;
+  if(l->first) destroy_trolley_aux(l->first);
+  l->first = NULL;
+  l->last = NULL;
+  if(l->stuff) free(l->stuff);
 
-      temp = temp->next;
-      
-      free(t1);
-      free(temp->box);
-      free(free_temp);
-    }
-  free(l->stuff);
   free(l);
 }
-
-
-
-

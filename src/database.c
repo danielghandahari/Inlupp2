@@ -34,7 +34,7 @@ void free_ware_in_node(node *n);
 void del_node_two_child(node **n);
 void del_node_one_child(node **n);
 void del_node_zero_child(node **n);
-void copy_node(node *from, node *to);
+node *copy_node(node *from);
 node **find_max_to_left(node **n);
 void rem_node(node **n, void *key);
 
@@ -453,8 +453,8 @@ void destroy_only_node(node *n)
 void destroy_node_DB(node *n)
 {
   if(n->content) destroy_ware(n->content);
-  free(n->key);
-  free(n);
+  if(n->key) free(n->key);
+  if(n) free(n);
 }
 
 void destroy_warehouse_subtree(node **n)
@@ -637,12 +637,14 @@ void del_node_two_child(node **n)
   node *tmp_right = (*n)->right;
 
   destroy_node_DB(*n);
+
   *n = copy_node(*n_leaf);
 
   (*n)->left = tmp_left;
   (*n)->right = tmp_right;
   
-  rem_node(&(*n)->left, (*n_leaf)->key);
+  rem_node(&((*n)->left), (*n_leaf)->key);
+
 }
 
 shelf *copy_shelf(shelf *src)
@@ -675,8 +677,8 @@ list *copy_list(list *src)
   //borde funka, kan läcka
   if(src->stuff)
     {
-      sum *s = calloc(1, sizeof(sum));
-      memcpy(s, src->stuff, sizeof(sum));
+      int *s = calloc(1, sizeof(int));
+      memcpy(s, src->stuff, sizeof(int));
       copy->stuff = s;
     }
 

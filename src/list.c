@@ -4,7 +4,10 @@
 #include <string.h>
 #include <assert.h>
 #include <list.h>
+#include <database_secret.h>
 #include <list_secret.h>
+
+typedef struct _shelf_ shelf;
 
 #define Equal action == 0
 
@@ -59,7 +62,20 @@ elem * get_elem(elem *e, void *elembox)
 }
 
 
+void insert_elem_in_list_aux(elem **e, elem *ins_e)
+{
+  shelf* s = (shelf*)(*e)->box;
+  shelf* ins_s = (shelf*) ins_e->box;
 
+  if(s->amount < ins_s->amount)
+    {
+      ins_e->next = (*e)->next;
+      (*e) = ins_e;
+    }
+  
+  if((*e)->next) insert_elem_in_list_aux(&(*e)->next, ins_e);
+  else (*e)->next = ins_e;
+}
 
 void insert_elem_in_list(list *l, elem *e)
 {
@@ -69,19 +85,7 @@ void insert_elem_in_list(list *l, elem *e)
       l->last = e;
       e->next = NULL;
     }
-  else
-    {
-      elem *old_last = l->last;
-
-      log_info("insert_elem_in_list", old_last, "%p");
-      
-      old_last->next = e;
-      l->last = e;
-      e->next = NULL;
-    }
-
-  log_info("insert_elem_in_list", l->first, "%p");
-  log_info("insert_elem_in_list", l->last, "%p");
+  else insert_elem_in_list_aux(&(l->first), e);
 }
 
 

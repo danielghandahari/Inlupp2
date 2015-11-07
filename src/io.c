@@ -478,6 +478,7 @@ void pack_trolley_io(tree *t)
     } while(again);
 
   print_trolley_final(t, trolley);
+  destroy_trolley(trolley);
 }
 
 
