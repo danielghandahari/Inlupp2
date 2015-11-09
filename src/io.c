@@ -198,14 +198,15 @@ void remove_ware(tree *t)
 void edit_ware_aux(tree *t, int index)
 {
   bool again = true;
+  ware *w = NULL;
 
   if(index < 0)
     {
       return;
     }
+  w = get_ware_at(t, index);
   do
     {
-      ware *w = get_ware_at(t, index);
       print_ware(w);
 
       char input = get_menu_choice("[N]ame [D]escription\n[P]rice [S]helf [A]mount\nE[X]it\n");
@@ -218,7 +219,7 @@ void edit_ware_aux(tree *t, int index)
 	  {
 	    char *name = NULL;
 	    name = read_name();
-	    edit_name(t, get_ware_name(w), name);
+	    w = edit_name(t, get_ware_name(w), name);
 	    if(name) free(name);
 	  }
 	  break;
@@ -311,7 +312,7 @@ void edit_ware(tree *t)
   int index = -1;
   index = get_ware_index(t);
 
-  if(index > 0) edit_ware_aux(t, index);
+  if(index >= 0) edit_ware_aux(t, index);
 }
 
 
@@ -328,36 +329,19 @@ bool is_string_digit(const char *s)
 
 #define PRINT_TILL_CHECK 20
 
-int get_ware_index(tree *t)
+int print_till_check(tree *t, int page)
 {
-  print_warehouse_header();
-
-  log_info("get_ware_index", t, "%p");
-
-  int index = 0;
-  int page = 0;
   ware *w = NULL;
-  char *input = NULL;
-  
-  w = get_ware_at(t, index);
-  
- print_next_page:  
-  if(!w)
-    {
-      print_warehouse_empty();
-      goto exit;
-    }
+  int num_printed = 0;
 
-  //TODO move to print.c
   printf("Index || Ware\n");
-
   for(int i = 0; i < PRINT_TILL_CHECK; i++)
     {
-      print_index_name(index, get_ware_name(w));
-      ++index;
-      
+      int index = i + PRINT_TILL_CHECK * page;
       w = get_ware_at(t, index);
       if(!w) break;
+      print_index_name(i, get_ware_name(w));
+      ++num_printed;
     }
 
   if(!w)
@@ -365,8 +349,30 @@ int get_ware_index(tree *t)
       print_end_of_warehouse();
     }
 
+    print_warehouse_menu();
+
+    return num_printed;
+}
+
+int get_ware_index(tree *t)
+{
+  print_warehouse_header();
+
+  log_info("get_ware_index", t, "%p");
+
+  int page = 0;
+  char *input = NULL;
+  int num_printed = 0;
+  
+ print_next_page:
+  num_printed = print_till_check(t, page);
+  if(num_printed == 0)
+    {
+      print_warehouse_empty();
+      goto exit;
+    }
+
  incorrect_input:
-  print_warehouse_menu();
   if(input)
     {
       free(input);
@@ -390,7 +396,7 @@ int get_ware_index(tree *t)
       if(is_string_digit(input))
 	{
 	  int i = atoi(input);
-	  if(0 < i && i <= index % PRINT_TILL_CHECK)
+	  if(0 < i && i <= num_printed)
 	    {
 	      int final = i - 1 + 20 * page;
 	      if(input) free(input);

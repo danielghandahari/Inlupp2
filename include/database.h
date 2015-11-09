@@ -249,7 +249,7 @@ void rem_elem_in_list(list *l, void *elembox);
 /**
  * @brief replacing wares name with a new name, pointed by new_name. generates a new key for the node with the key pointed by old_key. The node is in the tree, pointed by t
  */
-void edit_name(tree *t, char *old_key, char *new_name);
+ware *edit_name(tree *t, char *old_key, char *new_name);
 
 /**
  * @brief replacing wares description with a new description, pointed by new_desc. The node, with the key, pointed by key, is in the tree, pointed by t

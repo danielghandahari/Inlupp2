@@ -553,7 +553,7 @@ char * make_key(char *ware_name)
 
 
 
-void edit_name(tree *t, char *old_name, char *name)
+ware *edit_name(tree *t, char *old_name, char *name)
 {
   char *old_key = make_key(old_name);
   node *old_node = get_node_in_tree(t, old_key);
@@ -575,6 +575,8 @@ void edit_name(tree *t, char *old_name, char *name)
 
   rem_node_in_tree(t, old_key);
   free(old_key);
+
+  return get_ware(new_node);
 }
 
 
