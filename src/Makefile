@@ -1,5 +1,5 @@
 IDIR	=../include
-ODIR	=obj
+ODIR	=.obj
 CC	=gcc
 
 CFLAGS 	=-Wall -std=c11 -ggdb -Wextra -Werror -Wfatal-errors -I$(IDIR)
@@ -12,24 +12,24 @@ OBJ 	= $(patsubst %,$(ODIR)/%.o,$(FILE))
 OUT	=inlupp2
 
 $(ODIR)/%.o:%.c $(DEPS)
-	@echo "##\tMake\tCompiling $@"
+	@echo "## Make\tCompiling $@."
 	@$(CC) $(CFLAGS) -c -o $@ $<
 
 $(OUT):$(OBJ)
-	@echo "##\tMake\tCompiling $@"
+	@echo "## Make\tCompiling $@."
 	@$(CC) $(CFLAGS) -o $@ $^
 
 clean:
-	@echo "##\tMake\tCleaning up waste."
+	@echo "## Make\tCleaning up waste."
 	@rm -fr ../*/*~
 	@rm -fr ../*/*#
 	@rm -fr ../*/*.dSYM
 	@rm -fr ../*/*.DS_Store
 
-run:$(OBJ)
+run:$(OUT)
 	@rm -f inlupp2_stderr
 	@touch inlupp2_stderr
-	@echo "##\n##\tMake:\tRunning file.\n##\n##\n"
+	@echo "## Make\tRunning file."
 	@./$^
 
 all:$(OUT) clean

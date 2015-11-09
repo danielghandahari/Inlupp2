@@ -35,7 +35,7 @@ void del_node_two_child(node **n);
 void del_node_one_child(node **n);
 void del_node_zero_child(node **n);
 node *copy_node(node *from);
-node **find_max_to_left(node **n);
+node *find_max_to_left(node **n);
 void rem_node(node **n, void *key);
 
 
@@ -120,16 +120,18 @@ bool check_shelf_used_in_tree(tree *t, char *key)
 void incr_shelf_and_tot(list *l, char *shelf_loc, int incr)
 {
   elem *e = get_elem_in_list_DB(l, shelf_loc);
-  log_info("incr_shelf_and_tot", e, "%p");
-
   shelf *s = (shelf*)e->box;
-  log_info("incr_shelf_and_tot", s, "%p");
-
   incr_shelf(s, incr);
-  log_info("incr_shelf_and_tot", s->amount, "%d");
-
   int *tot = (int*)l->stuff;
   *tot += incr;
+
+  elem *tmp = l->first;
+  while(tmp->next != e)
+    {
+      tmp = tmp->next;
+    }
+  tmp->next = e->next;
+  insert_elem_in_list(l, e);
 }
 
 
@@ -257,6 +259,12 @@ bool shelf_ok(tree *t, ware *w, char *shelfloc)
   return !check_shelf_used_in_tree(t, shelfloc);
 }
 
+void increment_total(list *l, int amount)
+{
+    int *total = (int*)l->stuff;
+    *total += amount;
+}
+
 void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice, char *shelfloc, int shelfamount)
 {
   log_info("insert_ware", t, "%p");
@@ -285,13 +293,12 @@ void insert_ware(tree *t, ware *w, char *warename, char *waredesc, int wareprice
 	  log_info("insert_ware", e->box, "%p");
 
 	  s->location = strdup(shelfloc);
-	  s->amount = 0;
-
-	  
+	  s->amount = shelfamount;
 
 	  insert_elem_in_list(w->shelves, e);
 
-	  incr_shelf_and_tot(w->shelves, s->location, shelfamount);       
+	  increment_total(w->shelves, shelfamount);
+	  //incr_shelf_and_tot(w->shelves, s->location, shelfamount);       
 	}
     }
   else
@@ -352,7 +359,11 @@ int get_tot_ware(ware *w)
 
 elem *get_first_shelf(ware *w) { return w->shelves->first; }
 elem *get_next_shelf(elem *e) { return e->next; }
-char *get_shelf_loc(elem *e) { return ((shelf*)e->box)->location; }
+char *get_shelf_loc(elem *e)
+{
+  if(e) return ((shelf*)e->box)->location;
+  return NULL;
+}
 int   get_shelf_amount(elem *e) { return ((shelf*)e->box)->amount; }
 
 // ===== ===== ===== =====
@@ -384,13 +395,20 @@ void remove_shelf_at(tree *t, ware *w, int index)
       shelf = &(*shelf)->next;
     }
 
-  rem_elem_in_list(w->shelves, (*shelf)->box);
+  if(shelf)
+    {
+      rem_elem_in_list(w->shelves, (*shelf)->box);
 
-  char *key = make_key(get_ware_name(w));
+      char *key = make_key(get_ware_name(w));
   
-  if(!get_first_shelf(w)) rem_node_in_tree(t, key);
+      if(!get_first_shelf(w)) rem_node_in_tree(t, key);
 
-  free(key);
+      free(key);
+    }
+  else
+    {
+      printf("Shelf does not exist!");
+    }
 }
 
 char *get_shelf_loc_at(ware *w, int index)
@@ -430,7 +448,7 @@ void destroy_list_DB(list *l)
 {
   if(l->first) destroy_elem(l->first);
 
-  free(l->stuff);
+  if(l->stuff) free(l->stuff);
   free(l);
 }
 
@@ -443,18 +461,29 @@ void destroy_ware(ware *w)
   free(w);
 }
 
-void destroy_only_node(node *n)
-{
-  free(n->key);
-  free(n->content);
-  free(n);
-}
-
 void destroy_node_DB(node *n)
 {
-  if(n->content) destroy_ware(n->content);
-  if(n->key) free(n->key);
-  if(n) free(n);
+  assert(n);
+
+  log_info("destroy_node_DB", n, "%p");
+  log_info("destroy_node_DB", &(n->key), "%p");
+  log_info("destroy_node_DB", &(n->content), "%p");
+  log_info("destroy_node_DB", &(n->left), "%p");
+  log_info("destroy_node_DB", &(n->right), "%p");
+
+  if(n->content)
+    {
+      destroy_ware(n->content);
+      n->content = NULL;
+    }
+  if(n->key)
+    {
+      free(n->key);
+      n->key = NULL;
+    }
+  n->left = NULL;
+  n->right = NULL;
+  free(n);
 }
 
 void destroy_warehouse_subtree(node **n)
@@ -632,20 +661,40 @@ void del_node_one_child(node **n)
 
 void del_node_two_child(node **n)
 {
-  node **n_leaf = find_max_to_left(&((*n)->left));
+  node *n_leaf = find_max_to_left(&((*n)->left));
   node *tmp_left = (*n)->left;
   node *tmp_right = (*n)->right;
 
-  destroy_node_DB(*n);
+  log_info("del_node_two_child", (*n), "%p");
+  log_info("del_node_two_child", &(*n)->key, "%p");
+  log_info("del_node_two_child", &((*n)->content), "%p");
+  log_info("del_node_two_child", &((*n)->left), "%p");
+  log_info("del_node_two_child", &((*n)->right), "%p");
 
-  *n = copy_node(*n_leaf);
+  log_info("del_node_two_child", n_leaf, "%p");
+  log_info("del_node_two_child", &(n_leaf->key), "%p");
+  log_info("del_node_two_child", &(n_leaf->content), "%p");
+  log_info("del_node_two_child", &(n_leaf->left), "%p");
+  log_info("del_node_two_child", &(n_leaf->right), "%p");
+
+  destroy_node_DB(*n);
+  *n = NULL;
+
+  *n = copy_node(n_leaf);
 
   (*n)->left = tmp_left;
   (*n)->right = tmp_right;
-  
-  rem_node(&((*n)->left), (*n_leaf)->key);
 
+  log_info("del_node_two_child", (*n), "%p");
+  log_info("del_node_two_child", &(*n)->key, "%p");
+  log_info("del_node_two_child", &((*n)->content), "%p");
+  log_info("del_node_two_child", &((*n)->left), "%p");
+  log_info("del_node_two_child", &((*n)->right), "%p");
+  
+  rem_node(&((*n)->left), n_leaf->key);
 }
+
+
 
 shelf *copy_shelf(shelf *src)
 {
@@ -663,7 +712,6 @@ elem *copy_elem(elem *src)
   memcpy(copy, src, sizeof(elem));
 
   if(src->next) copy->next = copy_elem(src->next);
-
   if(src->box) copy->box = copy_shelf(src->box);
 
   return copy;
@@ -713,14 +761,26 @@ node *copy_node(node *src)
   copy->key = strdup(src->key);
   // left/right kopierade tack vare memcpy
 
+  log_info("copy_node", src, "%p");
+  log_info("copy_node", &(src->key), "%p");
+  log_info("copy_node", &(src->content), "%p");
+  log_info("copy_node", &(src->left), "%p");
+  log_info("copy_node", &(src->right), "%p");
+
+  log_info("copy_node", copy, "%p");
+  log_info("copy_node", &(copy->key), "%p");
+  log_info("copy_node", &(copy->content), "%p");
+  log_info("copy_node", &(copy->left), "%p");
+  log_info("copy_node", &(copy->right), "%p");
+
   return copy;
 }
 
-node **find_max_to_left(node **n)
+node *find_max_to_left(node **n)
 {
   while((*n)->right) n = &(*n)->right;
 
-  return n;
+  return *n;
 }
 
 void rem_node_in_tree(tree *t, void *key)
@@ -742,17 +802,14 @@ void rem_node(node **n, void *key)
     {
       if((*n)->left && (*n)->right)
 	{
-	  log_info("rem_node", "twochild", "%s");
 	  del_node_two_child(n);
 	}
       else if((*n)->left || (*n)->right)
 	{
-	  log_info("rem_node", "onechild", "%s");
 	  del_node_one_child(n);
 	}
       else
 	{
-	  log_info("rem_node", "zerochild", "%s");
 	  del_node_zero_child(n);
 	}
     }

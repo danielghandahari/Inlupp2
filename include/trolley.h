@@ -17,5 +17,6 @@ void pack_trolley(tree *t, list *l, char *ware_name, int amount);
 elem * get_elem_trolley(list *l, char *key);
 elem * get_elem_trolley_aux(elem *e, char *key);
 void destroy_trolley(list *l);
+int get_trolley_amount(list *l, char* key);
 
 #endif

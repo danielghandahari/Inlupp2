@@ -43,7 +43,7 @@ void print_trolley_header();
 void print_trolley_current(tree *t, list *l);
 void print_current_del();
 void print_pack_again();
-void print_ware_trolley(ware *w);
+void print_ware_trolley(ware *w, int taken);
 void print_trolley_final(tree *t, list *l);
 
 void print_exit();

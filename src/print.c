@@ -266,14 +266,36 @@ void print_pack_again()
 
 
 
-void print_ware_trolley(ware *w)
+void print_ware_trolley(ware *w, int taken)
 {
-  printf("\nName: %s", get_ware_name(w));
-  printf("\nAmount: %d", get_tot_ware(w));
-  printf("\n\n Pick amount(0-%d): ", get_tot_ware(w));
-
+  printf("Name: %s\n", get_ware_name(w));
+  printf("Amount: %d\n", get_tot_ware(w));
+  if(taken > 0)  printf("Already taken: %d\n", taken);
+  printf("\n\nPick amount(0-%d)", get_tot_ware(w) - taken);
 }
 
+void print_trolley_ware(node *n, int amount)
+{
+  ware *w = get_ware(n);
+  elem *e = get_first_shelf(w);
+
+  printf("  %s\n", get_ware_name(w));
+  
+  for(int amount_to_print = amount; e && amount_to_print > 0; e = get_next_shelf(e))
+    {
+      int shelf_amount = get_shelf_amount(e);
+      char *shelf_location = get_shelf_loc(e);
+
+      if(amount_to_print <= shelf_amount)
+	{
+	  shelf_amount = amount_to_print;
+	  amount_to_print = 0;
+	}
+      else amount_to_print -= shelf_amount;
+
+      printf("    %4s (%d)\n", shelf_location, shelf_amount);
+    }
+}
 
 void print_trolley_final(tree *t, list *l)
 {
@@ -285,9 +307,10 @@ void print_trolley_final(tree *t, list *l)
   
   for(elem *e = get_first_elem(l); e; e = e->next)
     {
-      
-      //      printf("%s\n-----\n", get_ware_name((ware*)n->content));
-      //      for(elem *n_e = get_first_shelf
+      trolley *tr = (trolley*)e->box;
+      node *n = get_node_in_tree(t, tr->key);
+      printf("----------\n");
+      print_trolley_ware(n, tr->amount);
     }
 }
 

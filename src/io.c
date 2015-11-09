@@ -169,6 +169,7 @@ void remove_ware(tree *t)
     {
       log_info("remove_ware", w, "%p");
 
+      num_shelves = get_num_shelves(w);
       print_shelves_numbered(w);
       //TODO make simpler, similar to how get_ware_index get's it's index, try to combine
       input = user_input_int("To remove a shelf, input shelf index\ninput 0 to exit.\n");
@@ -176,9 +177,7 @@ void remove_ware(tree *t)
       if(0 < input && input <= num_shelves)
 	{
 	  printf("Shelf %s removed\n", get_shelf_loc_at(w, input - 1));
-	  num_shelves = get_num_shelves(w);
 	  remove_shelf_at(t, w, input - 1);
-
 	  if(num_shelves-1 < 1)
 	    {
 	      printf("All shelves removed from ware.");
@@ -352,12 +351,13 @@ int get_ware_index(tree *t)
   //TODO move to print.c
   printf("Index || Ware\n");
 
-  while(w && (index % PRINT_TILL_CHECK) < PRINT_TILL_CHECK)
+  for(int i = 0; i < PRINT_TILL_CHECK; i++)
     {
       print_index_name(index, get_ware_name(w));
       ++index;
       
       w = get_ware_at(t, index);
+      if(!w) break;
     }
 
   if(!w)
@@ -367,6 +367,11 @@ int get_ware_index(tree *t)
 
  incorrect_input:
   print_warehouse_menu();
+  if(input)
+    {
+      free(input);
+      input = NULL;
+    }
   input = user_input_string("");
 
   //TODO move to different fuction
@@ -422,38 +427,50 @@ void pack_trolley_io(tree *t)
   print_trolley_header();
 
   bool again = true;
+  char *ware_key = NULL;
 
   do
     {
       int index = get_ware_index(t);
       if(index < 0) break;
-      ware *w = get_ware_at(t, index);
-      int amount = -1;
 
-      //================
-      print_ware_trolley(w);
-      //================
-      
-      printf("\nHow many %ss would you like to take? $", get_ware_name(w));  
+      ware *w = get_ware_at(t, index);
+      int amount = -1;      
+      char *ware_name = get_ware_name(w);
 
       int loop1 = true;
       int tot = get_tot_ware(w);
+      int taken = 0;
+      
+      if(ware_key)
+	{
+	  free(ware_key);
+	  ware_key = NULL;
+	}
+      ware_key = make_key(ware_name);
+      taken = get_trolley_amount(trolley, ware_key);
+      if(ware_key)
+	{
+	  free(ware_key);
+	  ware_key = NULL;
+	}
+      print_ware_trolley(w, taken);
+
+      printf("\nHow many %ss would you like to take? ", ware_name);
+
       while(loop1)
 	{
 	  amount = user_input_int("");
 	  
-	  if(amount > tot) printf("\nDon't be so eager!");
-	  else if(amount > 0 && amount < tot) break;
+	  if (amount == 0) break;
+	  else if(amount > tot-taken) printf("\nDon't be so eager!");
+	  else if(0 < amount && amount <= tot) break;
 	  else printf("\nInvalid input");
 	}
       
-      
-
       pack_trolley(t, trolley, get_ware_name(w), amount);
-
       print_current_del();
       print_trolley_current(t, trolley);
-    
       print_pack_again();
       
       char input = '\0';
@@ -479,6 +496,8 @@ void pack_trolley_io(tree *t)
 
   print_trolley_final(t, trolley);
   destroy_trolley(trolley);
+
+  if(ware_key) free(ware_key);
 }
 
 

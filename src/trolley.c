@@ -1,3 +1,5 @@
+#define _GNU_SOURCE
+
 #include <database.h>
 #include <database_secret.h>
 #include <trolley_secret.h>
@@ -27,7 +29,16 @@ bool trolley_is_empty(list *l)
 }
 
 
+int get_trolley_amount(list *l, char* key)
+{
+  for(elem *e = l->first; e; e = e->next)
+    {
+      trolley *tr = e->box;
+      if(strcmp(tr->key, key) == 0) return tr->amount;
+    }
 
+  return 0;
+}
 
 int get_trolley_price(list *l)
 {
@@ -85,6 +96,8 @@ int get_amount(list *l, char *key)
 
 void pack_trolley(tree *t, list *l, char *ware_name, int amount)
 {
+  if(amount <= 0) return;
+
   char *key = make_key(ware_name);
   elem *e = get_elem_in_list_DB(l, key);
 
@@ -96,8 +109,6 @@ void pack_trolley(tree *t, list *l, char *ware_name, int amount)
       ware *w = (ware*)n->content;
       int tot_price = (w->price) * amount;
 
-
-
       incr_trolley_price(l, tot_price);
     }
   else
@@ -107,19 +118,19 @@ void pack_trolley(tree *t, list *l, char *ware_name, int amount)
       
       new_elem->box = new_trolley;
       
-      new_trolley->key = key;
+      new_trolley->key = strdup(key);
       new_trolley->amount = amount;
 
       insert_elem_in_list(l, new_elem);
-
 
       node *n = get_node_in_tree(t, key);
       ware *w = (ware*)n->content;
       int tot_price = (w->price) * amount;
       
       incr_trolley_price(l, tot_price);
-      
     }
+
+  if(key) free(key);
 }
 
 
@@ -161,8 +172,11 @@ void destroy_trolley_aux(elem *e)
   if(e->box)
     {
       trolley *t = (trolley*)e->box;
-      if(t->key) free(t->key);
-      free(t);
+      if(t)
+	{
+	  if(t->key) free(t->key);
+	  free(t);
+	}
     }
 
   free(e);

@@ -67,13 +67,12 @@ void insert_elem_in_list_aux(elem **e, elem *ins_e)
   shelf* s = (shelf*)(*e)->box;
   shelf* ins_s = (shelf*) ins_e->box;
 
-  if(s->amount < ins_s->amount)
+  if(ins_s->amount > s->amount)
     {
-      ins_e->next = (*e)->next;
-      (*e) = ins_e;
+      ins_e->next = *e;
+      *e = ins_e;
     }
-  
-  if((*e)->next) insert_elem_in_list_aux(&(*e)->next, ins_e);
+  else if((*e)->next) insert_elem_in_list_aux(&(*e)->next, ins_e);
   else (*e)->next = ins_e;
 }
 
@@ -85,7 +84,11 @@ void insert_elem_in_list(list *l, elem *e)
       l->last = e;
       e->next = NULL;
     }
-  else insert_elem_in_list_aux(&(l->first), e);
+  else
+    {
+      insert_elem_in_list_aux(&(l->first), e);
+      l->last = get_last_elem(&(l->first));
+    }
 }
 
 
